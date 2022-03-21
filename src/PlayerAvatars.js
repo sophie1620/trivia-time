@@ -1,62 +1,56 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import AvatarPic from './AvatarPic';
+
 function PlayerAvatars() {
 
     // make axios call to DiceBear API
 
-    // useEffect((number) => {
-    //     axios({
-    //         url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
-    //     }).then((data) => {
-    //         // console.log('DiceBear Data:', data)
-    //         setAvatar(data.request.responseURL)
-    //         console.log(data.request.responseURL)
-    //     })
-    // }, []);
-
     const [avatar, setAvatar] = useState([]);
     const avatarSelection = [];
+    const avatars = [];
 
-    async function avatarCall(number) {
-        const apiData = await axios({
-            url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
-        })
-        const data = await apiData;
-        console.log(apiData)
-        return data;
-        // console.log(data);
-        // }).then((data) => {
-        //     // console.log('DiceBear Data:', data)
-        //     setAvatar(data.request.responseURL)
-        //     console.log(data.request.responseURL)
-        // })
-    }
-
-    Promise.all(avatarSelection)
-        .then(response => {
-            response.forEach(avatar => {
-                console.log(avatar)
+    useEffect(() => {
+        for (let i = 1; i <= 5; ++i) {
+            avatarSelection.push(avatarCall(i));
+        }
+        async function avatarCall(number) {
+            const apiData = await axios({
+                url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
             })
-        })
 
-    // for (let i = 1; i <= 5; i++) {
-    //     avatarSelection.push(i);
-    // }
+            avatars.push(apiData.request.responseURL)
+            console.log(avatars)
+            // setAvatar(avatars)
+        }
 
-    console.log(avatarSelection);
+        // Promise.all(avatarSelection)
+        //     .then(response => {
+        //         console.log(response)
+        //     })
 
-    for (let i = 1; i <= 5; ++i) {
-        avatarSelection.push(avatarCall(i));
-    }
 
-    // console.log(avatarSelection, 'hello');
+        // console.log(avatarSelection);
+    }, []);
+
+    console.log(avatars)
 
     return (
-        // avatarSelection.map((individualAvatar) => {
-        //     <img src={individualAvatar} alt=""></img>
-        // })
-        <p>hi</p>
+        <div>
+            {/* {
+                avatars.map((avatar) => {
+                    console.log(avatar)
+                    return (
+                        <AvatarPic
+                            imageUrl={avatar}
+                            key={avatar}
+                        />
+                    )
+                })
+            } */}
+            <p>helo</p>
+        </div>
     )
 
 }
