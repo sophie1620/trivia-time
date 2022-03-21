@@ -22,15 +22,7 @@ function PlayerAvatars() {
         const apiData = await axios({
             url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
         })
-        const data = await apiData;
-        console.log(apiData)
-        return data;
-        // console.log(data);
-        // }).then((data) => {
-        //     // console.log('DiceBear Data:', data)
-        //     setAvatar(data.request.responseURL)
-        //     console.log(data.request.responseURL)
-        // })
+        console.log(apiData.request);
     }
 
     Promise.all(avatarSelection)
