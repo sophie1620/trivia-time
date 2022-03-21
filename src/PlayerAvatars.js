@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import AvatarPic from './AvatarPic';
-
 function PlayerAvatars() {
     const [avatar, setAvatar] = useState([]);
 
@@ -11,7 +9,7 @@ function PlayerAvatars() {
         const batchRes = [];
 
         // Loop and call API 5 times;
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 0; i < 5; i++) {
             // Push response to temporary array
             const res = await avatarCall(i)
             batchRes.push(res)
@@ -35,13 +33,10 @@ function PlayerAvatars() {
     return (
         <div>
             {
-                avatar.map((a) => {
+                avatar.map((avatarUrl) => {
                     return (
-                        <AvatarPic
-                            imageUrl={a}
-                            // Using Math.Random() for now to generate temporary ID
-                            key={Math.random()}
-                        />
+                        // Using Math.Random() for now to generate temporary ID
+                        <img src={avatarUrl} alt="" key={Math.random()} />
                     )
                 })
             }
