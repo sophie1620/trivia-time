@@ -1,62 +1,47 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import AvatarPic from './AvatarPic';
-
 function PlayerAvatars() {
+    const [avatar, setAvatar] = useState([]);
 
-    const [ avatar, setAvatar ] = useState([])
-    const avatarSelection = [];
-    const blah = [];
+    useEffect(async () => {
+        // Array to store batched API resonse
+        const batchRes = [];
 
-    useEffect(() => {
-        // create a new url for each API call to get 5 new avatars
-        for (let i = 1; i <= 5; ++i) {
-            avatarSelection.push(avatarCall(i));
+        // Loop and call API 5 times;
+        for (let i = 0; i < 5; i++) {
+            // Push response to temporary array
+            const res = await avatarCall(i)
+            batchRes.push(res)
         }
 
-        // make API call
+        // Set state array to temporary array
+        // We do this because the endpoint only returns one and not an actual batch
+        // Setting it each time will cause unecessary rerenders since we would be calling setState each time with a new array
+        setAvatar(batchRes);
+
         async function avatarCall(number) {
             const apiData = await axios({
                 url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
             })
-            const response = await apiData.request.responseURL;
-            // console.log(response)
-            return response;
-            // setAvatar(avatars)
-        }
 
-        // Once all promises have been fulfilled, push all the results into the array: avatarSelection
-            // use .map() on avatarSelection array to put each individual avartar image onto the page
-        Promise.all(avatarSelection)
-            .then(response => {
-                // console.log(response)
-                avatarSelection.push(response)
-                setAvatar(avatarSelection);
-            })
-        console.log(avatarSelection);
+            // Returns response string
+            return apiData.request.responseURL
+        }
     }, []);
 
-    console.log(avatar);
-    // this is returning as an object, and I don't know how to change it so that we are accessing the array within the object so that we can map it
     return (
         <div>
             {
-                avatar.map((item) => {
-                    console.log('item', item) //this is showing up as the array for some reason
+                avatar.map((avatarUrl) => {
                     return (
-
-                        <AvatarPic
-                            imageUrl={item}
-                            key={item}
-                        />
+                        // Using Math.Random() for now to generate temporary ID
+                        <img src={avatarUrl} alt="" key={Math.random()} />
                     )
 
                 })
             }
-            <p>helo</p>
         </div>
-    )
-
+    );
 }
 export default PlayerAvatars;
