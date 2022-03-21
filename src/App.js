@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.scss';
 
+import Form from './Form'
+
 function App() {
 
   const [ avatar, setAvatar ] = useState('')
@@ -14,7 +16,7 @@ function App() {
         category: 14
       }
     }).then( (apiData) => {
-      console.log('Trivia Data', apiData.data.results);
+      // console.log('Trivia Data', apiData.data.results);
     })
   }, [])
 
@@ -26,25 +28,35 @@ function App() {
     axios({
       url: 'https://avatars.dicebear.com/api/bottts/michelle.svg'
     }).then( (data) => {
-      console.log('DiceBear Data:', data)
+      // console.log('DiceBear Data:', data)
       setAvatar(data.request.responseURL)
     })
   }, [])
 
-  console.log(avatar)
-
-  // /////// save player's names into a variable and then do a .map or something to put each name into its 
+  // console.log(avatar)
 
 
 
   return (
     <div className="App">
-      {/* <img src={`data:image/svg+xml;utf8,${avatar}`} /> */}
+      <header>
+        <div className="wrapper">
+        </div>
+      </header>
+
+      <main>
+        <div className="wrapper">
+          <Form />
+        </div>
+      </main>
 
 
-      <div>
-        <img src={avatar} alt="" />
-      </div>
+
+      <footer>
+        <div className="wrapper">
+
+        </div>
+      </footer>
 
     </div>
   );
