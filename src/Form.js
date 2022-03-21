@@ -1,8 +1,9 @@
+import PlayerAvatars from './PlayerAvatars';
 
 function Form() {
 
 
-    return(
+    return (
         <form action="">
             <fieldset>
                 <label htmlFor="numOfPlayer">Number of Players</label>
@@ -30,7 +31,7 @@ function Form() {
 
             </fieldset>
 
-        </form>  
+        </form>
     )
 }
 
