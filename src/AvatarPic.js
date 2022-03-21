@@ -1,5 +1,5 @@
 function AvatarPic(props) {
-    console.log(props)
+    // console.log(props)
 
     return (
         <img src={props.imageUrl} alt="" />

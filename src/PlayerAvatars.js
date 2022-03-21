@@ -4,54 +4,48 @@ import axios from 'axios'
 import AvatarPic from './AvatarPic';
 
 function PlayerAvatars() {
-
-    // make axios call to DiceBear API
-
     const [avatar, setAvatar] = useState([]);
-    const avatarSelection = [];
-    const avatars = [];
 
-    useEffect(() => {
-        for (let i = 1; i <= 5; ++i) {
-            avatarSelection.push(avatarCall(i));
+    useEffect(async () => {
+        // Array to store batched API resonse
+        const batchRes = [];
+
+        // Loop and call API 5 times;
+        for (let i = 1; i <= 5; i++) {
+            // Push response to temporary array
+            const res = await avatarCall(i)
+            batchRes.push(res)
         }
+
+        // Set state array to temporary array
+        // We do this because the endpoint only returns one and not an actual batch
+        // Setting it each time will cause unecessary rerenders since we would be calling setState each time with a new array
+        setAvatar(batchRes);
+
         async function avatarCall(number) {
             const apiData = await axios({
                 url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
             })
 
-            avatars.push(apiData.request.responseURL)
-            console.log(avatars)
-            // setAvatar(avatars)
+            // Returns response string
+            return apiData.request.responseURL
         }
-
-        // Promise.all(avatarSelection)
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-
-
-        // console.log(avatarSelection);
     }, []);
-
-    console.log(avatars)
 
     return (
         <div>
-            {/* {
-                avatars.map((avatar) => {
-                    console.log(avatar)
+            {
+                avatar.map((a) => {
                     return (
                         <AvatarPic
-                            imageUrl={avatar}
-                            key={avatar}
+                            imageUrl={a}
+                            // Using Math.Random() for now to generate temporary ID
+                            key={Math.random()}
                         />
                     )
                 })
-            } */}
-            <p>helo</p>
+            }
         </div>
-    )
-
+    );
 }
 export default PlayerAvatars;
