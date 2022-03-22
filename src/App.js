@@ -8,18 +8,11 @@ import PlayerAvatars from './PlayerAvatars';
 
 function App() {
 
-  const [ avatar, setAvatar ] = useState('')
   const [currentQuestions, setCurrentQuestions] = useState([])
 
   function handleSubmit(event, questionArray) {
     event.preventDefault()
     setCurrentQuestions(questionArray)
-  }
-
-  const getNumOfPlayers = function(numOfPpl) {
-    // event.preventDefault();
-    console.log(numOfPpl);
-    setTriviaPlayers(numOfPpl);
   }
 
   return (

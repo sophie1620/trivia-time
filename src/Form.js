@@ -21,38 +21,32 @@ function Form(props) {
         // const selectedNumPlayers = ;
         setSelectedNumber(event.target.value);
         console.log(` hereee: ${event.target.value}`);
-        displayAvatar();
         
-    }
-
-    const displayAvatar = function () {
-
-        props.getNumOfPlayers(selectedNumber);
+        
     }
 
 
     const handleSubmit = function (event) {
         props.showQuestions(event, questions)
+
         // console.log('form submitted');
 
-        // to toggle between display:none and display:block for PlayerAvatar.js
     }
 
-    // console.log(questions);
 
-useEffect( () => {
-    axios({
-        url:  'https://opentdb.com/api.php/', 
-        params: {
-        category: selectedCategory,
-            amount: (selectedNumber * 3)
+    useEffect( () => {
+        axios({
+            url:  'https://opentdb.com/api.php/', 
+            params: {
+            category: selectedCategory,
+                amount: (selectedNumber * 3)
 
-        }
-    }).then( (apiData) => {
-        // console.log('Trivia Data', apiData.data.results);
-        setQuestions(apiData.data.results)
-    })
-}, [selectedCategory, selectedNumber])
+            }
+        }).then( (apiData) => {
+            // console.log('Trivia Data', apiData.data.results);
+            setQuestions(apiData.data.results)
+        })
+    }, [selectedCategory, selectedNumber])
 
     return(
         <div className="">
