@@ -9,6 +9,7 @@ function AvatarPic(props) {
                 alt="robot avatar" 
             />
 
+                {/* for players to set their own names */}
             <label htmlFor="playerName">Player Name</label>
             <input type="text" name="playerName" id="playerName" />
         </div>

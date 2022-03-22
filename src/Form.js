@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import PlayerAvatars from './PlayerAvatars';
+// import PlayerAvatars from './PlayerAvatars';
 
 function Form(props) {
     // console.log(props.triviaPlayers);
-    console.log(props.displayAvatar);
+    // console.log(props.displayAvatar);
 
     const [ numOfPlayers, setNumOfPlayers] = useState(0)
 
@@ -15,6 +15,8 @@ function Form(props) {
 
     function handleSubmit(e) {
         props.triviaPlayers(e, numOfPlayers);
+
+        // to toggle between display:none and display:block for PlayerAvatar.js
         props.displayAvatar('show');
     }
 
@@ -23,6 +25,7 @@ function Form(props) {
             <fieldset>
                 <label htmlFor="numOfPlayer">Number of Players</label>
                 <select name="numOfPlayer" id="numofPlayer" onChange={handleChange}>
+                    <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

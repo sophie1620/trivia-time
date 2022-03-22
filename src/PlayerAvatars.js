@@ -40,7 +40,6 @@ function PlayerAvatars(props) {
         <form action='' className={props.className}>
             {
                 avatar.map((avatarUrl) => {
-                    console.log(avatar);
                     return (
                         // Using Math.Random() for now to generate temporary ID
                         <AvatarPic 
