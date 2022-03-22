@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import AvatarPic from './AvatarPic';
 
-function PlayerAvatars() {
+function PlayerAvatars(props) {
+    // console.log(props.triviaPlayers);
+
     const [avatar, setAvatar] = useState([]);
+
+    const numOfAvatar = props.triviaPlayers;
 
     useEffect(async () => {
         // Array to store batched API resonse
         const batchRes = [];
 
         // Loop and call API 5 times;
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < numOfAvatar; i++) {
             // Push response to temporary array
             const res = await avatarCall(i)
             batchRes.push(res)
@@ -28,20 +33,26 @@ function PlayerAvatars() {
             // Returns response string
             return apiData.request.responseURL
         }
-    }, []);
+    }, props.triviaPlayers);
 
     return (
-        <div>
+        // should we put this as a form, so that we can hold onto the player's name info when they press submit?
+        <form action='' className={props.className}>
             {
                 avatar.map((avatarUrl) => {
+                    console.log(avatar);
                     return (
                         // Using Math.Random() for now to generate temporary ID
-                        <img src={avatarUrl} alt="" key={Math.random()} />
+                        <AvatarPic 
+                            src={avatarUrl} 
+                            key={Math.random()} 
+                        />
                     )
 
                 })
             }
-        </div>
+            <button>Start game!</button>
+        </form>
     );
 }
 export default PlayerAvatars;

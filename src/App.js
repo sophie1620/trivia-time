@@ -7,7 +7,9 @@ import PlayerAvatars from './PlayerAvatars';
 
 function App() {
 
-  const [avatar, setAvatar] = useState('')
+  const [ triviaPlayers, setTriviaPlayers ] = useState(0)
+  const [ display, setDistplay ] = useState('none');
+    // used to change display classes for what is shown when
 
   // make axios call to Trivia API
   useEffect(() => {
@@ -21,22 +23,10 @@ function App() {
     })
   }, [])
 
-
-  // ////// .map() through and push the correct answer and incorrect answer into a new array and then this array should be shuffled
-
-  // make axios call to DiceBear API
-  // useEffect(() => {
-  //   axios({
-  //     url: 'https://avatars.dicebear.com/api/bottts/michelle.svg'
-  //   }).then((data) => {
-  //     // console.log('DiceBear Data:', data)
-  //     setAvatar(data.request.responseURL)
-  //   })
-  // }, [])
-
-  // console.log(avatar)
-
-
+  const getNumOfPlayers = function(e, numOfPpl) {
+    e.preventDefault();
+    setTriviaPlayers(numOfPpl);
+  }
 
   return (
     <div className="App">
@@ -47,8 +37,8 @@ function App() {
 
       <main>
         <div className="wrapper">
-          <Form />
-          <PlayerAvatars />
+          <Form triviaPlayers={getNumOfPlayers} displayAvatar={setDistplay}/>
+          <PlayerAvatars triviaPlayers={[triviaPlayers]} className={display}/>
         </div>
       </main>
 

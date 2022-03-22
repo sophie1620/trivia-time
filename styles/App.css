@@ -252,3 +252,11 @@ html {
 img {
   width: 200px;
 }
+
+.none {
+  display: none;
+}
+
+.show {
+  display: block;
+}

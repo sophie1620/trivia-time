@@ -1,13 +1,28 @@
+import { useState } from 'react';
 import PlayerAvatars from './PlayerAvatars';
 
-function Form() {
+function Form(props) {
+    // console.log(props.triviaPlayers);
+    console.log(props.displayAvatar);
 
+    const [ numOfPlayers, setNumOfPlayers] = useState(0)
+
+
+    function handleChange(e) {
+        // console.log(e.target.value);
+        setNumOfPlayers(e.target.value);
+    }
+
+    function handleSubmit(e) {
+        props.triviaPlayers(e, numOfPlayers);
+        props.displayAvatar('show');
+    }
 
     return (
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
             <fieldset>
                 <label htmlFor="numOfPlayer">Number of Players</label>
-                <select name="numOfPlayer" id="numofPlayer">
+                <select name="numOfPlayer" id="numofPlayer" onChange={handleChange}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -28,9 +43,9 @@ function Form() {
                     <option value="26">Celebrities</option>
                     <option value="27">Animals</option>
                 </select>
-
             </fieldset>
 
+            <button>Play a game</button>
         </form>
     )
 }
