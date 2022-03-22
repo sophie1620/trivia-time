@@ -1,6 +1,6 @@
 import CategoryCall from "./CategoryCall"
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "axios"; 
 
 function Form(props) {
 
@@ -9,23 +9,32 @@ function Form(props) {
     const [selectedNumber, setSelectedNumber] = useState(1);
     const [questions, setQuestions] = useState([])
 
+    const [numOfPlayers, setNumOfPlayers] = useState(0)
+
     const handleSelections = function (event) {
         setSelectedCategory(event.target.value);
     
         
     }
+
+    // a function to handle number of users
     const handleSelectionsNumber = function (event) {
         setSelectedNumber(event.target.value);
-
     }
+
     console.log(selectedCategory);
     console.log(selectedNumber)
 
     const handleSubmit = function (event) {
         props.showQuestions(event, questions)
         console.log('form submitted');
+        props.triviaPlayers(e, selectedNumber);
+
+        // to toggle between display:none and display:block for PlayerAvatar.js
+        props.displayAvatar('show');
         
     }
+
     console.log(questions);
 
 useEffect( () => {
@@ -33,20 +42,21 @@ useEffect( () => {
         url:  'https://opentdb.com/api.php/', 
         params: {
         category: selectedCategory,
-        amount: (selectedNumber * 3)
+            amount: (selectedNumber * 3)
 
-      }
+        }
     }).then( (apiData) => {
-      console.log('Trivia Data', apiData.data.results);
+        console.log('Trivia Data', apiData.data.results);
         setQuestions(apiData.data.results)
     })
-  }, [selectedCategory, selectedNumber])
+}, [selectedCategory, selectedNumber])
 
     return(
         <form action="" onSubmit={handleSubmit}>
             <fieldset>
                 <label htmlFor="numOfPlayer">Number of Players</label>
                 <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber}>
+                    <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -70,6 +80,7 @@ useEffect( () => {
             </fieldset>
             <button id='submit'>Submit</button>
         </form>  
+
     )
 }
 
