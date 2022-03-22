@@ -1,6 +1,7 @@
 import CategoryCall from "./CategoryCall"
 import { useState, useEffect } from "react";
-import axios from "axios"; 
+import axios from "axios";
+import { Link } from 'react-router-dom'
 import PlayerAvatars from "./PlayerAvatars";
 
 function Form(props) {
@@ -21,35 +22,41 @@ function Form(props) {
         // const selectedNumPlayers = ;
         setSelectedNumber(event.target.value);
         console.log(` hereee: ${event.target.value}`);
-        
-        
+
+
     }
 
 
     const handleSubmit = function (event) {
+        event.preventDefault();
         props.showQuestions(event, questions)
 
         // console.log('form submitted');
 
     }
 
+    function test() {
+        console.log('testinggggg')
+    }
 
-    useEffect( () => {
+
+    useEffect(() => {
         axios({
-            url:  'https://opentdb.com/api.php/', 
+            url: 'https://opentdb.com/api.php/',
             params: {
-            category: selectedCategory,
+                category: selectedCategory,
                 amount: (selectedNumber * 3)
 
             }
-        }).then( (apiData) => {
+        }).then((apiData) => {
             // console.log('Trivia Data', apiData.data.results);
             setQuestions(apiData.data.results)
         })
     }, [selectedCategory, selectedNumber])
 
-    return(
+    return (
         <div className="">
+
             <form action="" onSubmit={handleSubmit}>
                 <fieldset>
                     <label htmlFor="numOfPlayer">Number of Players</label>
@@ -80,10 +87,13 @@ function Form(props) {
                     {/* Need to set height/class to avoid button jumping */}
                     <PlayerAvatars triviaPlayers={[selectedNumber]} />
                 </div>
-                <button id='submit'>Submit</button>
-            </form>  
+                <Link to="/game">
+                    <button id='submit' >Submit</button>
+                </Link>
+            </form>
 
-            
+
+
         </div>
     )
 }
