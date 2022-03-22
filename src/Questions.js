@@ -2,23 +2,23 @@ import PlayerQuestions from './PlayerQuestions'
 import { useState, useEffect } from 'react'
 
 function Questions(props) {
-    const [playerSelectedAnswer, setPlayerSelectedAnswer] = useState('')
-    const [correctAnswer, setCorrectAnswer] = useState('')
+    // const [playerSelectedAnswer, setPlayerSelectedAnswer] = useState('')
+    // const [correctAnswer, setCorrectAnswer] = useState('')
     console.log(props.currentQuestions)
 
-    function check(a, b) {
-        setPlayerSelectedAnswer(a)
-        setCorrectAnswer(b)
+    // function check(a, b) {
+    //     setPlayerSelectedAnswer(a)
+    //     setCorrectAnswer(b)
 
 
 
-    }
-    useEffect((handleSubmit) => {
-        if (playerSelectedAnswer === correctAnswer) {
-            console.log('correct')
-            // create counter usestate and update score
-        }
-    }, [])
+    // }
+    // useEffect((handleSubmit) => {
+    //     if (playerSelectedAnswer === correctAnswer) {
+    //         console.log('correct')
+    //         // create counter usestate and update score
+    //     }
+    // }, [])
 
 
     return (
@@ -32,7 +32,7 @@ function Questions(props) {
                     console.log(questions)
                     return (
 
-                        <PlayerQuestions checkAnswer={check} questionText={questions.question.replace(/&[#039]*;/g, "'")
+                        <PlayerQuestions questionText={questions.question.replace(/&[#039]*;/g, "'")
                             .replace(/&[amp]*;/g, '&')
                             .replace(/&[quot]*;/g, '"')
                             .replace(/&[rsquo]*;/g, '’')

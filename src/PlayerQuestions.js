@@ -28,7 +28,7 @@ function PlayerQuestions(props) {
 
     }
 
-    props.checkAnswer(selectedAnswer, correct)
+    // props.checkAnswer(selectedAnswer, correct)
 
 
     const shuffledAnswers = shuffleArray(answerList)
