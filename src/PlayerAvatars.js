@@ -38,7 +38,7 @@ function PlayerAvatars(props) {
 
     return (
         // should we put this as a form, so that we can hold onto the player's name info when they press submit?
-        <form action='' className={props.className}>
+        <div>
             {
                 avatar.map((avatarUrl) => {
                     return (
@@ -51,8 +51,7 @@ function PlayerAvatars(props) {
 
                 })
             }
-            <button>Start game!</button>
-        </form>
+        </div>
     );
 }
 export default PlayerAvatars;

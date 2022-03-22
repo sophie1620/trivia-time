@@ -6,9 +6,9 @@ function Questions(props) {
             console.log(props);
             return (
                 <div>
-                   <p> {questions.question}</p>
-                   <p>{questions.correct_answer}</p>
-                   <p>{questions.incorrect_answers}</p>
+                    <p> {questions.question}</p>
+                    <p>{questions.correct_answer}</p>
+                    <p>{questions.incorrect_answers}</p>
                 </div>
                 
             )
