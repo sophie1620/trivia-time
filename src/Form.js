@@ -9,33 +9,38 @@ function Form(props) {
     const [selectedNumber, setSelectedNumber] = useState(1);
     const [questions, setQuestions] = useState([])
 
-    const [numOfPlayers, setNumOfPlayers] = useState(0)
+    // const [numOfPlayers, setNumOfPlayers] = useState(0)
 
     const handleSelections = function (event) {
         setSelectedCategory(event.target.value);
-    
-        
     }
 
     // a function to handle number of users
     const handleSelectionsNumber = function (event) {
-        setSelectedNumber(event.target.value);
+        const selectedNumPlayers = event.target.value;
+        setSelectedNumber(selectedNumPlayers);
+        console.log(` hereee: ${event.target.value}`);
+        displayRobotAvatars(selectedNumPlayers);
+        // console.log(``);
     }
 
-    console.log(selectedCategory);
-    console.log(selectedNumber)
+    const displayRobotAvatars = function (selectedNumber) {
+        // props.displayAvatar('show');
+    }
+
+    // console.log(selectedCategory);
+    // console.log(selectedNumber)
 
     const handleSubmit = function (event) {
         props.showQuestions(event, questions)
-        console.log('form submitted');
-        props.triviaPlayers(e, selectedNumber);
+        // console.log('form submitted');
 
         // to toggle between display:none and display:block for PlayerAvatar.js
-        props.displayAvatar('show');
+        
         
     }
 
-    console.log(questions);
+    // console.log(questions);
 
 useEffect( () => {
     axios({
@@ -46,7 +51,7 @@ useEffect( () => {
 
         }
     }).then( (apiData) => {
-        console.log('Trivia Data', apiData.data.results);
+        // console.log('Trivia Data', apiData.data.results);
         setQuestions(apiData.data.results)
     })
 }, [selectedCategory, selectedNumber])

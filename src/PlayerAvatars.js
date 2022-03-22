@@ -3,11 +3,12 @@ import axios from 'axios'
 import AvatarPic from './AvatarPic';
 
 function PlayerAvatars(props) {
-    // console.log(props.triviaPlayers);
+    console.log(props.triviaPlayers);
 
     const [avatar, setAvatar] = useState([]);
 
     const numOfAvatar = props.triviaPlayers;
+
 
     useEffect(async () => {
         // Array to store batched API resonse

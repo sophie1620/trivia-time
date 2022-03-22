@@ -33,8 +33,9 @@ function handleSubmit(event, questionArray) {
 
 
   const [ triviaPlayers, setTriviaPlayers ] = useState(0)
-  const [ display, setDistplay ] = useState('none');
+  const [ display, setDisplay ] = useState('none');
     // used to change display classes for what is shown when
+    
 
   // make axios call to Trivia API
   useEffect(() => {
@@ -48,8 +49,9 @@ function handleSubmit(event, questionArray) {
     })
   }, [])
 
-  const getNumOfPlayers = function(e, numOfPpl) {
-    e.preventDefault();
+  const getNumOfPlayers = function(numOfPpl) {
+    // event.preventDefault();
+    console.log(numOfPpl);
     setTriviaPlayers(numOfPpl);
   }
 
@@ -62,13 +64,11 @@ function handleSubmit(event, questionArray) {
 
       <main>
         <div className="wrapper">
-          <Form showQuestions={handleSubmit}/>
+          <Form showQuestions={handleSubmit} getNumOfPlayers={getNumOfPlayers} displayAvatar={setDisplay}/>
           <Questions currentQuestions={currentQuestions}/>
-          <Form triviaPlayers={getNumOfPlayers} displayAvatar={setDistplay}/>
-          <PlayerAvatars triviaPlayers={[triviaPlayers]} className={display}/>
+          <PlayerAvatars triviaPlayers={[triviaPlayers]} className={display} />
         </div>
       </main>
-
 
 
       <footer>
