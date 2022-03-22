@@ -87,9 +87,17 @@ function Form(props) {
                     {/* Need to set height/class to avoid button jumping */}
                     <PlayerAvatars triviaPlayers={[selectedNumber]} />
                 </div>
+                {/* <Link to={{
+                    pathname: '/game',
+                    state: { currentQuestions: questions }
+                }}
+                /> */}
+
+                <button id='submit' >Submit</button>
                 <Link to="/game">
-                    <button id='submit' >Submit</button>
+                    <button>Play</button>
                 </Link>
+
             </form>
 
 
