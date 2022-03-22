@@ -45,7 +45,8 @@ function Form(props) {
             url: 'https://opentdb.com/api.php/',
             params: {
                 category: selectedCategory,
-                amount: (selectedNumber * 3)
+                amount: (selectedNumber * 3),
+                type: "multiple"
 
             }
         }).then((apiData) => {
