@@ -25,12 +25,17 @@ function Form(props) {
     }
 
 
-    const handleSubmit = function (event) {
-        event.preventDefault();
+    // const handleSubmit = function (event) {
+    //     event.preventDefault();
+    //     console.log('form submitted.');
+    //     // props.showQuestions(event, questions)
+
+    //     // console.log('form submitted');
+
+    // }
+
+    const handleClick = function (event) {
         props.showQuestions(event, questions)
-
-        // console.log('form submitted');
-
     }
 
     useEffect(() => {
@@ -51,7 +56,7 @@ function Form(props) {
     return (
         <div className="">
 
-            <form action="" onSubmit={handleSubmit}>
+            <form action="">
                 <fieldset>
                     <label htmlFor="numOfPlayer">Number of Players</label>
                     <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber}>
@@ -87,9 +92,9 @@ function Form(props) {
                 }}
                 /> */}
 
-                <button id='submit' >Submit</button>
+                {/* <button id='submit' >Submit</button> */}
                 <Link to="/game">
-                    <button>Play</button>
+                    <button onClick={handleClick}>Play</button>
                 </Link>
 
             </form>

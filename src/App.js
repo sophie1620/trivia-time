@@ -12,8 +12,8 @@ function App() {
 
   const [currentQuestions, setCurrentQuestions] = useState([])
 
-  function handleSubmit(event, questionArray) {
-    event.preventDefault()
+  function showQuestions(event, questionArray) {
+    // event.preventDefault()
     setCurrentQuestions(questionArray)
   }
   // { console.log(currentQuestions) }
@@ -26,7 +26,7 @@ function App() {
         <div className="wrapper">
           {/* <Form showQuestions={handleSubmit} /> */}
           <Routes>
-            <Route path="/" element={<Form showQuestions={handleSubmit} />} />
+            <Route path="/" element={<Form showQuestions={showQuestions} />} />
             <Route path="/game" element={<Questions currentQuestions={currentQuestions} />} />
             {/* <Route path="/results" element={<Scoreboard />} /> */}
           </Routes>
