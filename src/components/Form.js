@@ -21,9 +21,7 @@ function Form(props) {
     const handleSelectionsNumber = function (event) {
         // const selectedNumPlayers = ;
         setSelectedNumber(event.target.value);
-        console.log(` hereee: ${event.target.value}`);
-
-
+        // console.log(` hereee: ${event.target.value}`);
     }
 
 
@@ -34,11 +32,6 @@ function Form(props) {
         // console.log('form submitted');
 
     }
-
-    function test() {
-        console.log('testinggggg')
-    }
-
 
     useEffect(() => {
         axios({
