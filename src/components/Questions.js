@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react'
 function Questions(props) {
     // console.log('question props', props.currentQuestions);
 
-    const [ playerQuestions, setPlayerQuestions ] =useState([])
-    const [ playerSelectedAns, setPlayerSelectedAns ] = useState('')
-    
-    
+    const [playerQuestions, setPlayerQuestions] = useState([])
+    const [playerSelectedAns, setPlayerSelectedAns] = useState('')
+    const [score, setScore] = useState(0)
+
+
     // handleSubmit button will have a function that maps through each question to identify and save that value
-        // will compare this saved value with the value that the player has selected, which has been passed back up to us in an onChange function?
+    // will compare this saved value with the value that the player has selected, which has been passed back up to us in an onChange function?
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -22,7 +23,7 @@ function Questions(props) {
     }
 
     const newShuffledAnswersArray = [];
-    
+
     useEffect(() => {
         props.currentQuestions.map(function (question) {
             console.log(question.correct_answer);
@@ -32,7 +33,8 @@ function Questions(props) {
 
             const newObj = {
                 triviaQuestn: question.question,
-                answers: shuffledAnswerOptions
+                answers: shuffledAnswerOptions,
+                correct: question.correct_answer
             }
             return (
                 newShuffledAnswersArray.push(newObj)
@@ -43,7 +45,7 @@ function Questions(props) {
         })
         // console.log(newShuffledAnswersArray);
         setPlayerQuestions(newShuffledAnswersArray)
-    } ,props.currentQuestions)
+    }, props.currentQuestions)
 
     // console.log(playerQuestions);
     // console.log('player ans', playerSelectedAns)
@@ -57,6 +59,10 @@ function Questions(props) {
                 console.log('better luck next time!')
             }
         })
+    }
+
+    function increaseScore() {
+        setScore(score + 1)
     }
     // it SOMEWHAT works, but it only keeps track of the last submitted response, so I think the check will need to be done in PlayerQuestions
 
@@ -74,14 +80,14 @@ function Questions(props) {
         <div>
 
             {/* {console.log(props)} */}
-
+            <p>score: {score}</p>
             <form onSubmit={handleSubmit}>
                 {
                     playerQuestions.map((questions) => {
                         // console.log(questions)
                         return (
 
-                            <PlayerQuestions 
+                            <PlayerQuestions
                                 playerSelected={setPlayerSelectedAns}
                                 key={Math.random()}
                                 triviaQuestn={questions.triviaQuestn.replace(/&[#039]*;/g, "'")
@@ -119,8 +125,10 @@ function Questions(props) {
                                     .replace(/&[epsilon]*;/g, 'ε')
                                     .replace(/&[Phi]*;/g, 'φ')}
                                 answers={questions.answers}
-                                // correct={questions.correct_answer}
-                                // incorrect={questions.incorrect_answers} 
+                                rightAnswer={questions.correct}
+                                increaseScore={increaseScore}
+                            // correct={questions.correct_answer}
+                            // incorrect={questions.incorrect_answers} 
                             />
 
                         )

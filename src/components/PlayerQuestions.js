@@ -4,7 +4,7 @@ function PlayerQuestions(props) {
     // console.log(props)
     // console.log(props.playerSelected)
 
-    // const [selectedAnswer, setSelectedAnswer] = useState('')
+    const [selectedAnswer, setSelectedAnswer] = useState('')
 
     // const answerList = [];
     // answerList.push(props.correct)
@@ -17,13 +17,23 @@ function PlayerQuestions(props) {
     function handleSelect(event) {
         console.log(event.target.value);
         // console.log(selectedAnswer)
-        props.playerSelected(event.target.value)
+        setSelectedAnswer(event.target.value)
+        props.playerSelected(selectedAnswer)
+        if (event.target.value === props.rightAnswer) {
+            props.increaseScore()
+        }
     }
     // // props.checkAnswer(selectedAnswer, correct)
 
-
+    // function correct() {
+    //     console.log('correct!')
+    // }
     // const shuffledAnswers = shuffleArray(answerList)
     // // console.log(shuffledAnswers)
+
+
+    // radio buttons don't turn blue but THATS OK
+    // we will style so its just the lables anyway
 
     return (
         <fieldset>
