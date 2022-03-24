@@ -5,10 +5,10 @@ function Questions(props) {
     // console.log('question props', props.currentQuestions);
 
     const [playerQuestions, setPlayerQuestions] = useState([])
-    const [playerSelectedAns, setPlayerSelectedAns] = useState('')
+    // const [playerSelectedAns, setPlayerSelectedAns] = useState('')
     const [score, setScore] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
-    const [currentPlayer, setCurrentPlayer] = useState(1)
+    const [currentPlayer, setCurrentPlayer] = useState(0)
 
 
     // handleSubmit button will have a function that maps through each question to identify and save that value
@@ -94,38 +94,24 @@ function Questions(props) {
     //     })
     // }
 
-    // function createPlayerQuestions() {
-    //     if (props.numberOfPlayers == 1) {
-    //         const playerOneQuestions = finalQuestionArray.slice(0, 3)
-    //     }
-    //     if (props.numberOfPlayers == 2) {
-    //         const playerOneQuestions = finalQuestionArray.slice(0, 3)
-    //         const playerTwoQuestions = finalQuestionArray.slice(3, 7)
-    //     }
-    //     if (props.numberOfPlayers == 3) {
-    //         const playerOneQuestions = finalQuestionArray.slice(0, 3)
-    //         const playerTwoQuestions = finalQuestionArray.slice(3, 7)
-    //         const playerThreeQuestions = finalQuestionArray.slice(7, 11)
-    //     }
-    //     if (props.numberOfPlayers == 4) {
-    //         const playerOneQuestions = finalQuestionArray.slice(0, 3)
-    //     }
-    //     if (props.numberOfPlayers == 5) {
-    //         const playerOneQuestions = finalQuestionArray.slice(0, 3)
-    //     }
-    // }
+
 
 
     function increaseScore() {
         setScore(score + 1)
     }
-
+    console.log(props.numOfPlayers)
     function next() {
 
-        setCurrentQuestion(currentQuestion + 1)
-        if (currentQuestion % 3 === 0) {
-            setCurrentPlayer(currentPlayer + 1)
+        // setCurrentQuestion(currentQuestion + 1)
+        // if (currentQuestion >= 3) {
+        setCurrentPlayer(currentPlayer + 1)
+        setCurrentQuestion(0)
+        setScore(0)
+        if (currentPlayer === (props.numOfPlayers - 1)) {
+            console.log('done!')
         }
+        // }
     }
     // it SOMEWHAT works, but it only keeps track of the last submitted response, so I think the check will need to be done in PlayerQuestions
 
@@ -143,7 +129,6 @@ function Questions(props) {
         return (
 
             <PlayerQuestions
-                playerSelected={setPlayerSelectedAns}
                 key={Math.random()}
                 triviaQuestn={questions.triviaQuestn.replace(/&[#039]*;/g, "'")
                     .replace(/&[amp]*;/g, '&')
@@ -190,12 +175,23 @@ function Questions(props) {
         )
 
     })
+    const playerOneQuestions = finalQuestionArray.slice(0, 3)
+    const playerTwoQuestions = finalQuestionArray.slice(3, 6)
+    const playerThreeQuestions = finalQuestionArray.slice(6, 9)
+    const playerFourQuestions = finalQuestionArray.slice(9, 12)
+    const playerFiveQuestions = finalQuestionArray.slice(12, 15)
+
+    const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
+
+    console.log(assignedQuestions)
+
 
     return (
         <div>
             <p>score: {score}</p>
-            <p>Player:{currentPlayer}</p>
-            {finalQuestionArray[currentQuestion]}
+            <p>Player: {currentPlayer + 1} </p>
+            {assignedQuestions[currentPlayer]}
+            <button onClick={next}>submit</button>
         </div>
     )
 }

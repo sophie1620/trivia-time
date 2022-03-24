@@ -18,8 +18,8 @@ function PlayerQuestions(props) {
         console.log(event.target.value);
         // console.log(selectedAnswer)
         setSelectedAnswer(event.target.value)
-        props.playerSelected(selectedAnswer)
-        props.nextQuestion()
+        // props.playerSelected(selectedAnswer)
+        // props.nextQuestion()
         if (event.target.value === props.rightAnswer) {
             props.increaseScore()
         }
