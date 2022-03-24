@@ -1,9 +1,11 @@
 import PlayerQuestions from './PlayerQuestions'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 function Questions(props) {
 
-
+    const [showQuestions, setShowQuestions] = useState(true)
+    const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
@@ -45,48 +47,12 @@ function Questions(props) {
 
 
 
-
-
-
     const finalQuestionArray = playerQuestions.map((questions) => {
         return (
 
             <PlayerQuestions
                 key={Math.random()}
-                triviaQuestn={questions.triviaQuestn.replace(/&[#039]*;/g, "'")
-                    .replace(/&[amp]*;/g, '&')
-                    .replace(/&[quot]*;/g, '"')
-                    .replace(/&[rsquo]*;/g, '’')
-                    .replace(/&[lsquo]*;/g, '‘')
-                    .replace(/&[ldquo]*;/g, '“')
-                    .replace(/&[rdquo]*;/g, '”')
-                    .replace(/&[apos]*;/gd, "'")
-                    .replace(/&[hellip]*;/g, "…")
-                    .replace(/&[percnt]*;/g, '%')
-                    .replace(/&[divide]*;/g, '÷')
-                    .replace(/&[div]*;/g, '÷')
-                    .replace(/&[lt]*;/g, '<')
-                    .replace(/&[gt]*;/g, '>')
-                    .replace(/&[sup2]*;/g, '²')
-                    .replace(/&[deg]*;/g, '°')
-                    .replace(/&[aacute]*;/g, 'á')
-                    .replace(/&[aAring]*;/g, 'Å')
-                    .replace(/&[eacute]*;/g, 'é')
-                    .replace(/&[iacute]*;/g, 'í')
-                    .replace(/&[ntilde]*;/g, 'ñ')
-                    .replace(/&[oacirc]*;/g, 'ô')
-                    .replace(/&[oacute]*;/g, 'ó')
-                    .replace(/&[uacute]*;/g, 'ú')
-                    .replace(/&[auml]*;/g, 'ä')
-                    .replace(/&[euml]*;/g, 'ë')
-                    .replace(/&[iuml]*;/g, 'ï')
-                    .replace(/&[ouml]*;/g, 'ö')
-                    .replace(/&[uuml]*;/g, 'ü')
-                    .replace(/&[yuml]*;/g, 'ÿ')
-                    .replace(/&[uuml]*;/g, 'ü')
-                    .replace(/&[scaron]*;/g, 'š')
-                    .replace(/&[epsilon]*;/g, 'ε')
-                    .replace(/&[Phi]*;/g, 'φ')}
+                triviaQuestn={questions.triviaQuestn}
                 answers={questions.answers}
                 rightAnswer={questions.correct}
                 nextQuestion={next}
@@ -118,18 +84,36 @@ function Questions(props) {
         setCurrentPlayer(currentPlayer + 1)
         setScore(0)
         if (currentPlayer === (props.numOfPlayers - 1)) {
-            console.log('done!')
+            setShowResultsLink(true)
+            setShowQuestions(false)
         }
-        // }
+
     }
 
 
     return (
+
         <div>
-            <p>score: {score}</p>
-            <p>Player: {currentPlayer + 1} </p>
-            {assignedQuestions[currentPlayer]}
-            <button onClick={next}>submit</button>
+            {
+                showQuestions
+                    ? <div>
+                        <p>score: {score}</p>
+                        <p>Player: {currentPlayer + 1} </p>
+                        {assignedQuestions[currentPlayer]}
+                        <button onClick={next}>submit</button>
+                    </div>
+                    : null
+            }
+
+            {
+                showResultsLink
+                    ?
+                    <Link to="/results">
+                        <button>Finish game</button>
+                    </Link>
+                    : null
+            }
+
         </div>
     )
 }
