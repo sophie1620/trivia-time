@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function AvatarPic(props) {
     // console.log(props)
@@ -7,12 +7,13 @@ function AvatarPic(props) {
 
     const handleInputChange = function (event) {
         setUserInput(event.target.value)
-        // console.log(userInput);
-        
+
+        // getting the userInput and indiv avatar picture for parent component
+        props.playerNameInfo(userInput, props.src)
     }
 
     return (
-        <div>
+        <fieldset>
 
             <img 
                 src={props.src} 
@@ -24,7 +25,7 @@ function AvatarPic(props) {
             <label htmlFor="playerName">Player Name</label>
             <input type="text" name="playerName" id="playerName" onChange={handleInputChange} />
             
-        </div>
+        </fieldset>
     )
 }
 

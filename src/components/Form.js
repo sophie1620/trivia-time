@@ -11,7 +11,7 @@ function Form(props) {
     const [selectedNumber, setSelectedNumber] = useState(0);
     const [questions, setQuestions] = useState([])
 
-    // const [numOfPlayers, setNumOfPlayers] = useState(0)
+    const [PlayInfo, setPlayInfo] = useState(0)
 
     const handleSelections = function (event) {
         setSelectedCategory(event.target.value);
@@ -29,8 +29,18 @@ function Form(props) {
         event.preventDefault();
         props.showQuestions(event, questions)
 
+        // to get player avatar and name
+        props.playerInfo()
         // console.log('form submitted');
+    }
 
+    
+    const nameArray = [];
+
+    function playerAvatarName(info, link) {
+        console.log('playerAvatarName', info, link)
+        // props.playerInfo(info)
+        // setPlayInfo(info)
     }
 
     useEffect(() => {
@@ -79,7 +89,7 @@ function Form(props) {
                 </fieldset>
                 <div className="">
                     {/* Need to set height/class to avoid button jumping */}
-                    <PlayerAvatars triviaPlayers={[selectedNumber]} />
+                    <PlayerAvatars triviaPlayers={[selectedNumber]} playerAvatarName={playerAvatarName}/>
                 </div>
                 {/* <Link to={{
                     pathname: '/game',
