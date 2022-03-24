@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom'
 import './App.scss';
 
 import Questions from './components/Questions'
@@ -19,7 +18,7 @@ function App() {
     setCurrentQuestions(questionArray)
     setNumberOfPlayers(number)
   }
-  // { console.log(currentQuestions) }
+
 
   return (
     <div className="App">
@@ -27,13 +26,13 @@ function App() {
 
       <main>
         <div className="wrapper">
-          {/* <Form showQuestions={handleSubmit} /> */}
+
           <Routes>
             <Route path="/" element={<Form getInfo={handleSubmit} />} />
             <Route path="/game" element={<Questions currentQuestions={currentQuestions} numOfPlayers={numberOfPlayers} />} />
             {/* <Route path="/results" element={<Scoreboard />} /> */}
           </Routes>
-          {/* <Questions currentQuestions={currentQuestions} /> */}
+
         </div>
       </main>
 

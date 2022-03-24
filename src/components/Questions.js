@@ -2,17 +2,12 @@ import PlayerQuestions from './PlayerQuestions'
 import { useState, useEffect } from 'react'
 
 function Questions(props) {
-    // console.log('question props', props.currentQuestions);
+
 
     const [playerQuestions, setPlayerQuestions] = useState([])
-    // const [playerSelectedAns, setPlayerSelectedAns] = useState('')
     const [score, setScore] = useState(0)
-    const [currentQuestion, setCurrentQuestion] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
 
-
-    // handleSubmit button will have a function that maps through each question to identify and save that value
-    // will compare this saved value with the value that the player has selected, which has been passed back up to us in an onChange function?
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -36,93 +31,21 @@ function Questions(props) {
             const newObj = {
                 triviaQuestn: question.question,
                 answers: shuffledAnswerOptions,
-                correct: question.correct_answer.replace(/&[#039]*;/g, "'").replace(/&[amp]*;/g, '&').replace(/&[quot]*;/g, '"')
-                    .replace(/&[rsquo]*;/g, '’')
-                    .replace(/&[lsquo]*;/g, '‘')
-                    .replace(/&[ldquo]*;/g, '“')
-                    .replace(/&[rdquo]*;/g, '”')
-                    .replace(/&[apos]*;/gd, "'")
-                    .replace(/&[hellip]*;/g, "…")
-                    .replace(/&[percnt]*;/g, '%')
-                    .replace(/&[divide]*;/g, '÷')
-                    .replace(/&[div]*;/g, '÷')
-                    .replace(/&[lt]*;/g, '<')
-                    .replace(/&[gt]*;/g, '>')
-                    .replace(/&[sup2]*;/g, '²')
-                    .replace(/&[deg]*;/g, '°')
-                    .replace(/&[aacute]*;/g, 'á')
-                    .replace(/&[aAring]*;/g, 'Å')
-                    .replace(/&[eacute]*;/g, 'é')
-                    .replace(/&[iacute]*;/g, 'í')
-                    .replace(/&[ntilde]*;/g, 'ñ')
-                    .replace(/&[oacirc]*;/g, 'ô')
-                    .replace(/&[oacute]*;/g, 'ó')
-                    .replace(/&[uacute]*;/g, 'ú')
-                    .replace(/&[auml]*;/g, 'ä')
-                    .replace(/&[euml]*;/g, 'ë')
-                    .replace(/&[iuml]*;/g, 'ï')
-                    .replace(/&[ouml]*;/g, 'ö')
-                    .replace(/&[uuml]*;/g, 'ü')
-                    .replace(/&[yuml]*;/g, 'ÿ')
-                    .replace(/&[uuml]*;/g, 'ü')
-                    .replace(/&[scaron]*;/g, 'š')
-                    .replace(/&[epsilon]*;/g, 'ε')
-                    .replace(/&[Phi]*;/g, 'φ')
+                correct: question.correct_answer
             }
             return (
                 newShuffledAnswersArray.push(newObj)
             )
-            // console.log(question);
-            // console.log('all answer options', allAnswerOptions);
-            // console.log('all SHUFFLED answer options', shuffledAnswerOptions);
+
         })
-        // console.log(newShuffledAnswersArray);
+
         setPlayerQuestions(newShuffledAnswersArray)
     }, [props.currentQuestions])
 
-    // console.log(playerQuestions);
-    // console.log('player ans', playerSelectedAns)
-
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     props.currentQuestions.map((question) => {
-    //         if (question.correct_answer === playerSelectedAns) {
-    //             console.log('right answer!')
-    //         } else {
-    //             console.log('better luck next time!')
-    //         }
-    //     })
-    // }
 
 
 
 
-    function increaseScore() {
-        setScore(score + 1)
-    }
-    console.log(props.numOfPlayers)
-    function next() {
-
-        // setCurrentQuestion(currentQuestion + 1)
-        // if (currentQuestion >= 3) {
-        setCurrentPlayer(currentPlayer + 1)
-        setCurrentQuestion(0)
-        setScore(0)
-        if (currentPlayer === (props.numOfPlayers - 1)) {
-            console.log('done!')
-        }
-        // }
-    }
-    // it SOMEWHAT works, but it only keeps track of the last submitted response, so I think the check will need to be done in PlayerQuestions
-
-
-    // }
-    // useEffect((handleSubmit) => {
-    //     if (playerSelectedAnswer === correctAnswer) {
-    //         console.log('correct')
-    //         // create counter usestate and update score
-    //     }
-    // }, [])
 
 
     const finalQuestionArray = playerQuestions.map((questions) => {
@@ -184,6 +107,21 @@ function Questions(props) {
     const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
 
     console.log(assignedQuestions)
+
+
+    function increaseScore() {
+        setScore(score + 1)
+    }
+    console.log(props.numOfPlayers)
+    function next() {
+
+        setCurrentPlayer(currentPlayer + 1)
+        setScore(0)
+        if (currentPlayer === (props.numOfPlayers - 1)) {
+            console.log('done!')
+        }
+        // }
+    }
 
 
     return (
