@@ -27,7 +27,7 @@ function Form(props) {
 
     const handleSubmit = function (event) {
         event.preventDefault();
-        props.showQuestions(event, questions)
+        props.getInfo(event, questions, selectedNumber)
 
         // console.log('form submitted');
 

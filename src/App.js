@@ -8,13 +8,16 @@ import Header from './components/Header';
 import Form from './components/Form';
 
 
+
 function App() {
 
   const [currentQuestions, setCurrentQuestions] = useState([])
+  const [numberOfPlayers, setNumberOfPlayers] = useState([])
 
-  function handleSubmit(event, questionArray) {
+  function handleSubmit(event, questionArray, number) {
     event.preventDefault()
     setCurrentQuestions(questionArray)
+    setNumberOfPlayers(number)
   }
   // { console.log(currentQuestions) }
 
@@ -26,8 +29,8 @@ function App() {
         <div className="wrapper">
           {/* <Form showQuestions={handleSubmit} /> */}
           <Routes>
-            <Route path="/" element={<Form showQuestions={handleSubmit} />} />
-            <Route path="/game" element={<Questions currentQuestions={currentQuestions} />} />
+            <Route path="/" element={<Form getInfo={handleSubmit} />} />
+            <Route path="/game" element={<Questions currentQuestions={currentQuestions} numOfPlayers={numberOfPlayers} />} />
             {/* <Route path="/results" element={<Scoreboard />} /> */}
           </Routes>
           {/* <Questions currentQuestions={currentQuestions} /> */}
