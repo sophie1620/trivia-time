@@ -15,6 +15,8 @@ function App() {
   // getting player avatar and name
   const [playerInfo, setPlayerInfo] = useState([])
 
+  console.log(playerInfo);
+
   function handleSubmit(event, questionArray) {
     event.preventDefault()
     setCurrentQuestions(questionArray)

@@ -6,10 +6,11 @@ function AvatarPic(props) {
     const [userInput, setUserInput] = useState();
 
     const handleInputChange = function (event) {
-        setUserInput(event.target.value)
+        // console.log(event.target.value)
+        // setUserInput(event.target.value)
 
         // getting the userInput and indiv avatar picture for parent component
-        props.playerNameInfo(userInput, props.src)
+        props.playerNameInfo(event.target.value, props.src)
     }
 
     return (

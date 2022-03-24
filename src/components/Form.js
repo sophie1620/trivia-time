@@ -30,17 +30,23 @@ function Form(props) {
         props.showQuestions(event, questions)
 
         // to get player avatar and name
-        props.playerInfo()
+        props.playerInfo(nameArray)
         // console.log('form submitted');
     }
 
-    
+
     const nameArray = [];
 
     function playerAvatarName(info, link) {
         console.log('playerAvatarName', info, link)
         // props.playerInfo(info)
-        // setPlayInfo(info)
+            // setPlayInfo(info)
+
+            const playerObj = {
+                name: info, 
+                pic: link
+            }
+        nameArray.push(playerObj)
     }
 
     useEffect(() => {
