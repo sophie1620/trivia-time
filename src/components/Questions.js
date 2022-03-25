@@ -9,20 +9,15 @@ function Questions(props) {
     const [showQuestions, setShowQuestions] = useState(true)
     const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
+    const [answerCheck, setAnswerCheck] = useState(0)
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
 
-
-
-    // set it so that when the answer is right, it becomes 1, this happens for each question. at the end, add all the questions = final score
-
-    const [questionOneCheck, setQuestionOneCheck] = useState(0)
-    const [questionTwoCheck, setQuestionTwoCheck] = useState(0)
-    const [questionThreeCheck, setQuestionThreeCheck] = useState(0)
-
     const [isDisabled, setIsDisabled] = useState(false);
 
+    const { currentQuestions, numOfPlayers, playerInfo } = props;
+    console.log(props);
 
 
     function shuffleArray(array) {
@@ -38,10 +33,8 @@ function Questions(props) {
     const newShuffledAnswersArray = [];
 
     useEffect(() => {
-        console.log(props)
-        console.log(props.currentQuestions)
-        props.currentQuestions.map(function (question) {
-            // console.log(question.correct_answer);
+
+        currentQuestions.map(function (question) {
 
             const allAnswerOptions = question.incorrect_answers.concat(question.correct_answer);
             const shuffledAnswerOptions = shuffleArray(allAnswerOptions);
@@ -58,25 +51,9 @@ function Questions(props) {
         })
 
         setPlayerQuestions(newShuffledAnswersArray)
-    }, [props.currentQuestions])
-
-    function changeScore() {
-        setQuestionOneCheck(1)
-    }
-    function revertScore() {
-        setQuestionOneCheck(0)
-    }
-
+    }, [currentQuestions])
 
     const finalQuestionArray = playerQuestions.map((questions) => {
-
-        const questionOne = {
-            question: playerQuestions[0],
-            check: questionOneCheck
-        }
-        const questionTwo = playerQuestions[1]
-        const questionThree = playerQuestions[2]
-        console.log(questionOne)
 
         return (
 
@@ -85,17 +62,8 @@ function Questions(props) {
                 triviaQuestn={questions.triviaQuestn}
                 answers={questions.answers}
                 rightAnswer={questions.correct}
-                nextQuestion={next}
-                increaseScore={increaseScore}
                 disabledStatus={isDisabled}
                 changeScore={changeScore}
-                revertScore={revertScore}
-                questionOneCheck={setQuestionOneCheck}
-                questionTwoCheck={setQuestionTwoCheck}
-                questionThreeCheck={setQuestionThreeCheck}
-
-            // correct={questions.correct_answer}
-            // incorrect={questions.incorrect_answers} 
             />
 
         )
@@ -109,25 +77,33 @@ function Questions(props) {
 
     const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
 
-    console.log(assignedQuestions)
+    // console.log(score);
 
-
-    function increaseScore() {
-        setScore(score + 1)
+    // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
+    function changeScore(number) {
+        setAnswerCheck(number)
     }
 
-    // console.log(props.numOfPlayers)
+    // map over the playerInfo array to create points key value pair in order to store the score
+    playerInfo.map((player) => {
+        player.points = 0;
+    })
+    console.log(props.playerInfo)
 
 
     function next() {
-
+        // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
+        setScore(score + answerCheck)
         setCurrentQuestion(currentQuestion + 1)
-        setScore(0)
+
+        // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
+            playerInfo[currentPlayer].points = score;
+            setScore(0);
             setCurrentPlayer(currentPlayer + 1)
             setCurrentQuestion(0)
         }
-        if (currentPlayer === (props.numOfPlayers - 1)) {
+        if (currentPlayer === (numOfPlayers)) {
             setShowResultsLink(true)
             setShowQuestions(false)
         }
@@ -135,7 +111,7 @@ function Questions(props) {
     }
     const handleCountdown = () => {
         setIsDisabled(true)
-        console.log('this');
+        // console.log('this');
     }
 
     return (

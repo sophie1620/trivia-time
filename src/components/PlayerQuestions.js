@@ -1,24 +1,16 @@
-import { useState } from 'react'
 // import CountDown from './CountDown';
 
 function PlayerQuestions(props) {
 
-    //   const [active, setActive] = useState(0);
-    //   const [selectedAnswer, setSelectedAnswer] = useState('')
+    const { triviaQuestn, answers, rightAnswer, changeScore } = props;
 
-    const { triviaQuestn, answers, rightAnswer, setQuestionOneCheck, setQuestionTwoCheck, setQuestionThreeCheck, changeScore, revertScore } = props;
-
-
-    // console.log(rightAnswer)
-
-    // function handleSelect(event) {
-    //     if (event.target.value === rightAnswer) {
-    //         changeScore()
-    //     } else if (event.target.value !== rightAnswer) {
-    //         revertScore()
-    //     }
-    // }
-
+    function handleSelect(event) {
+        if (event.target.value === rightAnswer) {
+            changeScore(1)
+        } else if (event.target.value !== rightAnswer) {
+            changeScore(0)
+        }
+    }
 
     function normalizeText(text) {
         return text
@@ -57,11 +49,6 @@ function PlayerQuestions(props) {
             .replace(/&[epsilon]*;/g, 'ε')
             .replace(/&[Phi]*;/g, 'φ')
     }
-    console.log(rightAnswer)
-
-
-    // radio buttons don't turn blue but THATS OK
-    // we will style so its just the lables anyway
 
     return (
         <fieldset disabled={props.disabledStatus}>
@@ -69,16 +56,16 @@ function PlayerQuestions(props) {
             <legend>{normalizeText(triviaQuestn)}</legend>
 
             <label htmlFor={`ans1-${normalizeText(triviaQuestn)}}`}>{normalizeText(answers[0])}</label>
-            <input type="radio" name={triviaQuestn} id={`ans1-${normalizeText(triviaQuestn)}}`} value={answers[0]} />
+            <input type="radio" name={triviaQuestn} id={`ans1-${normalizeText(triviaQuestn)}}`} value={answers[0]} onChange={handleSelect} />
 
             <label htmlFor={`ans2-${normalizeText(triviaQuestn)}}`}>{normalizeText(answers[1])}</label>
-            <input type="radio" name={triviaQuestn} id={`ans2-${normalizeText(triviaQuestn)}}`} value={answers[1]} />
+            <input type="radio" name={triviaQuestn} id={`ans2-${normalizeText(triviaQuestn)}}`} value={answers[1]} onChange={handleSelect} />
 
             <label htmlFor={`ans3-${normalizeText(triviaQuestn)}}`}>{normalizeText(answers[2])}</label>
-            <input type="radio" name={triviaQuestn} id={`ans3-${normalizeText(triviaQuestn)}}`} value={answers[2]} />
+            <input type="radio" name={triviaQuestn} id={`ans3-${normalizeText(triviaQuestn)}}`} value={answers[2]} onChange={handleSelect} />
 
             <label htmlFor={`ans4-${normalizeText(triviaQuestn)}}`}>{normalizeText(answers[3])}</label>
-            <input type="radio" name={triviaQuestn} id={`ans4-${normalizeText(triviaQuestn)}}`} value={answers[3]} />
+            <input type="radio" name={triviaQuestn} id={`ans4-${normalizeText(triviaQuestn)}}`} value={answers[3]} onChange={handleSelect} />
 
 
         </fieldset>
