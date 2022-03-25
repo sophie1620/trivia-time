@@ -1,64 +1,61 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom'
 import './App.scss';
 
-import Form from './Form'
-import PlayerAvatars from './PlayerAvatars';
+import Questions from './components/Questions'
+import Header from './components/Header';
+import Form from './components/Form';
+
+
 
 function App() {
 
-  const [avatar, setAvatar] = useState('')
+  const [currentQuestions, setCurrentQuestions] = useState([])
+  const [numberOfPlayers, setNumberOfPlayers] = useState([])
 
-  // make axios call to Trivia API
-  useEffect(() => {
-    axios({
-      url: 'https://opentdb.com/api.php?amount=20',
-      params: {
-        category: 14
-      }
-    }).then((apiData) => {
-      // console.log('Trivia Data', apiData.data.results);
-    })
-  }, [])
+  console.log(numberOfPlayers)
 
+  // getting player avatar and name to pass to <Questions />
+  const [playerInfo, setPlayerInfo] = useState([])
 
-  // ////// .map() through and push the correct answer and incorrect answer into a new array and then this array should be shuffled
+  console.log(playerInfo);
 
-  // make axios call to DiceBear API
-  useEffect(() => {
-    axios({
-      url: 'https://avatars.dicebear.com/api/bottts/michelle.svg'
-    }).then((data) => {
-      // console.log('DiceBear Data:', data)
-      setAvatar(data.request.responseURL)
-    })
-  }, [])
+  function handleSubmit(questionArray, number) {
 
-  // console.log(avatar)
-
+    setCurrentQuestions(questionArray)
+    setNumberOfPlayers(number)
+  }
 
 
   return (
     <div className="App">
-      <header>
-        <div className="wrapper">
-        </div>
-      </header>
+      <Header />
 
       <main>
         <div className="wrapper">
-          <Form />
-          <PlayerAvatars />
+
+          <Routes>
+
+
+            <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
+            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} />} />
+
+            {/* <Route path="/results" element={<Scoreboard />} /> */}
+          </Routes>
+
         </div>
       </main>
 
 
-
       <footer>
         <div className="wrapper">
+          <p className='footerP'>Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
+          <p className='footerP'>Seanna Stewart | Michelle Wong | Sylvia Raposo | <a href="https://sophielai.ca/">Sophie Lai</a></p>
+          <p className='footerP'>APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
 
         </div>
       </footer>
+
 
     </div>
   );
