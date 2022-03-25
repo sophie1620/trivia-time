@@ -11,6 +11,8 @@ function Questions(props) {
     const [playerQuestions, setPlayerQuestions] = useState([])
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
+    const [currentQuestion, setCurrentQuestion] = useState(0)
+
 
 
     // set it so that when the answer is right, it becomes 1, this happens for each question. at the end, add all the questions = final score
@@ -119,8 +121,12 @@ function Questions(props) {
 
     function next() {
 
-        setCurrentPlayer(currentPlayer + 1)
+        setCurrentQuestion(currentQuestion + 1)
         setScore(0)
+        if (currentQuestion === 2) {
+            setCurrentPlayer(currentPlayer + 1)
+            setCurrentQuestion(0)
+        }
         if (currentPlayer === (props.numOfPlayers - 1)) {
             setShowResultsLink(true)
             setShowQuestions(false)
@@ -141,8 +147,8 @@ function Questions(props) {
                         <CountDown seconds={30} handleCountdownFinish={() => handleCountdown()} />
                         <p>score: {score}</p>
                         <p>Player: {currentPlayer + 1} </p>
-                        {assignedQuestions[currentPlayer]}
-                        <button onClick={next}>submit</button>
+                        {assignedQuestions[currentPlayer][currentQuestion]}
+                        <button onClick={next}>next</button>
                     </div>
                     : null
             }
