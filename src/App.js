@@ -12,8 +12,13 @@ function App() {
 
   const [currentQuestions, setCurrentQuestions] = useState([])
 
-  function showQuestions(event, questionArray) {
-    // event.preventDefault()
+  // getting player avatar and name to pass to <Questions />
+  const [playerInfo, setPlayerInfo] = useState([])
+  
+  console.log(playerInfo);
+  
+  function handleSubmit(event, questionArray) {
+    event.preventDefault()
     setCurrentQuestions(questionArray)
   }
   // { console.log(currentQuestions) }
@@ -26,8 +31,8 @@ function App() {
         <div className="wrapper">
           {/* <Form showQuestions={handleSubmit} /> */}
           <Routes>
-            <Route path="/" element={<Form showQuestions={showQuestions} />} />
-            <Route path="/game" element={<Questions currentQuestions={currentQuestions} />} />
+            <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
+            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} />} />
             {/* <Route path="/results" element={<Scoreboard />} /> */}
           </Routes>
           {/* <Questions currentQuestions={currentQuestions} /> */}
@@ -37,6 +42,9 @@ function App() {
 
       <footer>
         <div className="wrapper">
+          <p className='footerP'>Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
+          <p className='footerP'>Seanna Stewart | Michelle Wong | Sylvia Raposo | <a href="https://sophielai.ca/">Sophie Lai</a></p>
+          <p className='footerP'>APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
 
         </div>
       </footer>

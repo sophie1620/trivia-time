@@ -2,9 +2,12 @@
 @use "./partials/showAvatars";
 
 
+
 // Base Styles
 @import './partials/baseStyles';
 // Variables
 @import './partials/variables';
 // Typography
 @import './partials/typography';
+
+@import './partials/footer';
