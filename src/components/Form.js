@@ -14,28 +14,28 @@ function Form(props) {
     // const [playerInfo, setPlayerInfo] = useState([])
     const [nameArray, setNameArray] = useState([])
 
-    const handleSelections = function(event) {
+    const handleSelections = function (event) {
         setSelectedCategory(event.target.value);
     }
 
     // a function to handle number of users
-    const handleSelectionsNumber = function(event) {
+    const handleSelectionsNumber = function (event) {
         setSelectedNumber(event.target.value);
-        
+
         let tempArray = [];
-        for (let i = 0; i < event.target.value; i++ ) {
+        for (let i = 0; i < event.target.value; i++) {
             tempArray.push({
-                name: `player${i+1}`,
-                pic:''
+                name: `player${i + 1}`,
+                pic: ''
             })
         }
         setNameArray(tempArray);
-    
+
         // to get player avatar and name
         // props.playerInfo(nameArray)
     }
 
-    const playerAvatarName = function(userObject, arrayIndex) {
+    const playerAvatarName = function (userObject, arrayIndex) {
         // console.log(userObject, arrayIndex);
         // userObject will hold the name and URL link
         // arrayIndex is to help identify which location within the array the object belongs to
@@ -51,8 +51,8 @@ function Form(props) {
         // setting nameArray with the updated information
     }
 
-    const handleClick = function(event) {
-        props.showQuestions(event, questions)
+    const handleClick = function () {
+        props.showQuestions(questions, selectedNumber)
         props.playerInfo(nameArray)
 
     }
@@ -103,7 +103,7 @@ function Form(props) {
                 </fieldset>
                 <div className="">
                     {/* Need to set height/class to avoid button jumping */}
-                    <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName}/>
+                    <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} />
                 </div>
                 {/* <Link to={{
                     pathname: '/game',
@@ -115,6 +115,7 @@ function Form(props) {
                 <Link to="/game">
                     <button onClick={handleClick}>Play</button>
                 </Link>
+                {/* <button>submit</button> */}
 
             </form>
 

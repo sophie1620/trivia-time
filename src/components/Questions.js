@@ -18,7 +18,7 @@ function Questions(props) {
     const [questionOneCheck, setQuestionOneCheck] = useState(0)
     const [questionTwoCheck, setQuestionTwoCheck] = useState(0)
     const [questionThreeCheck, setQuestionThreeCheck] = useState(0)
-    
+
     const [isDisabled, setIsDisabled] = useState(false);
 
 
@@ -36,6 +36,8 @@ function Questions(props) {
     const newShuffledAnswersArray = [];
 
     useEffect(() => {
+        console.log(props)
+        console.log(props.currentQuestions)
         props.currentQuestions.map(function (question) {
             // console.log(question.correct_answer);
 
@@ -83,6 +85,7 @@ function Questions(props) {
                 rightAnswer={questions.correct}
                 nextQuestion={next}
                 increaseScore={increaseScore}
+                disabledStatus={isDisabled}
                 changeScore={changeScore}
                 revertScore={revertScore}
                 questionOneCheck={setQuestionOneCheck}
@@ -127,7 +130,7 @@ function Questions(props) {
     const handleCountdown = () => {
         setIsDisabled(true)
         console.log('this');
-
+    }
 
     return (
 
@@ -135,6 +138,7 @@ function Questions(props) {
             {
                 showQuestions
                     ? <div>
+                        <CountDown seconds={30} handleCountdownFinish={() => handleCountdown()} />
                         <p>score: {score}</p>
                         <p>Player: {currentPlayer + 1} </p>
                         {assignedQuestions[currentPlayer]}
@@ -152,37 +156,6 @@ function Questions(props) {
                     : null
             }
 
-
-
-            {/* {console.log(props)} */}
-            <p>score: {score}</p>
-            <form onSubmit={handleSubmit} >
-
-                <CountDown seconds={6} handleCountdownFinish={() => handleCountdown()} />
-                {
-                    playerQuestions.map((questions) => {
-                        // console.log(questions)
-                        return (
-
-                            <PlayerQuestions
-                                playerSelected={setPlayerSelectedAns}
-                                key={Math.random()}
-                                disabledStatus={isDisabled}
-                                triviaQuestn={questions.triviaQuestn}
-                                answers={questions.answers}
-                                rightAnswer={questions.correct}
-                                increaseScore={increaseScore}
-                            // correct={questions.correct_answer}
-                            // incorrect={questions.incorrect_answers} 
-                            />
-
-                        )
-
-                    })
-                }
-                <button>submit</button>
-            </form>
-\
         </div>
     )
 }

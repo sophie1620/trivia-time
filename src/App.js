@@ -13,15 +13,15 @@ function App() {
   const [currentQuestions, setCurrentQuestions] = useState([])
   const [numberOfPlayers, setNumberOfPlayers] = useState([])
 
+  console.log(numberOfPlayers)
 
   // getting player avatar and name to pass to <Questions />
   const [playerInfo, setPlayerInfo] = useState([])
-  
-  console.log(playerInfo);
-  
-  function handleSubmit(event, questionArray, number) {
 
-    event.preventDefault()
+  console.log(playerInfo);
+
+  function handleSubmit(questionArray, number) {
+
     setCurrentQuestions(questionArray)
     setNumberOfPlayers(number)
   }
@@ -38,7 +38,7 @@ function App() {
 
 
             <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
-            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers}/>} />
+            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} />} />
 
             {/* <Route path="/results" element={<Scoreboard />} /> */}
           </Routes>
