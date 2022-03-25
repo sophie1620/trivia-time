@@ -2,19 +2,26 @@ import { useEffect, useState } from "react";
 
 function AvatarPic(props) {
     // console.log(props)
-
-    const [userInput, setUserInput] = useState();
+    const [userInput, setUserInput] = useState (props.userObject.name)
 
     const handleInputChange = function (event) {
-        // console.log(event.target.value)
+        console.log(event.target.value)
         // setUserInput(event.target.value)
 
-        // getting the userInput and indiv avatar picture for parent component
-        props.playerNameInfo(event.target.value, props.src)
+        const inputObject = {
+            name: userInput, 
+            pic:props.src
+        }
+
+        props.playerAvatarName(inputObject, props.arrayIndex) 
+    }
+    
+    const handleLocalInputChange = function(event) {
+        setUserInput(event.target.value)
     }
 
     return (
-        <fieldset>
+        <fieldset >
 
             <img 
                 src={props.src} 
@@ -24,7 +31,8 @@ function AvatarPic(props) {
                 {/* for players to set their own names */}
 
             <label htmlFor="playerName">Player Name</label>
-            <input type="text" name="playerName" id="playerName" onChange={handleInputChange} />
+            <input type="text" name="playerName" id="playerName" value={userInput} onChange={handleLocalInputChange} onBlur={handleInputChange}/>
+            {/* oncChange now only handles LOCAL changes, and onBlur will update with the object info ONCE the user clicks away from the input box */}
             
         </fieldset>
     )

@@ -11,7 +11,8 @@ function Form(props) {
     const [selectedNumber, setSelectedNumber] = useState(0);
     const [questions, setQuestions] = useState([])
 
-    const [PlayInfo, setPlayInfo] = useState(0)
+    // const [playInfo, setPlayInfo] = useState([])
+    const [nameArray, setNameArray] = useState([])
 
     const handleSelections = function (event) {
         setSelectedCategory(event.target.value);
@@ -21,6 +22,16 @@ function Form(props) {
     const handleSelectionsNumber = function (event) {
         // const selectedNumPlayers = ;
         setSelectedNumber(event.target.value);
+
+        let tempArray = [];
+
+        for (let i = 0; i < event.target.value; i++ ) {
+            tempArray.push({
+                name: `player${i+1}`,
+                pic:''
+            })
+        }
+        setNameArray(tempArray);
         // console.log(` hereee: ${event.target.value}`);
     }
 
@@ -34,19 +45,20 @@ function Form(props) {
         // console.log('form submitted');
     }
 
+    
 
-    const nameArray = [];
+    function playerAvatarName(userObject, arrayIndex) {
+        // console.log(userObject, arrayIndex);
+        // userObject will hold the name and URL link
+        // arrayIndex is to help identify which location within the array the object belongs to
 
-    function playerAvatarName(info, link) {
-        console.log('playerAvatarName', info, link)
-        // props.playerInfo(info)
-            // setPlayInfo(info)
+        const tempArray = [...nameArray]
 
-            const playerObj = {
-                name: info, 
-                pic: link
-            }
-        nameArray.push(playerObj)
+        tempArray[arrayIndex] = userObject
+        // array with the index (which we got from the child) will be updated withe userObject  
+
+        setNameArray(tempArray)
+        // setting nameArray with the updated information
     }
 
     useEffect(() => {
@@ -95,7 +107,7 @@ function Form(props) {
                 </fieldset>
                 <div className="">
                     {/* Need to set height/class to avoid button jumping */}
-                    <PlayerAvatars triviaPlayers={[selectedNumber]} playerAvatarName={playerAvatarName}/>
+                    <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName}/>
                 </div>
                 {/* <Link to={{
                     pathname: '/game',

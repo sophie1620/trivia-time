@@ -31,7 +31,14 @@ function PlayerAvatars(props) {
         Promise.all(batchRes)
             .then((apiData) => {
                 setAvatar(apiData)
+
+                // giving each player an avatar for error handling, in case they don't want to change the default placeholder
+                apiData.forEach((item, index) => {
+                    props.nameArray[index].pic = item.request.responseURL
+                    props.playerAvatarName(props.nameArray[index], index)
+                })
             })
+
 
         async function avatarCall(number) {
             const apiData = await axios({
@@ -44,23 +51,37 @@ function PlayerAvatars(props) {
         }
     }, props.triviaPlayers);
 
+    // console.log('playInfo', props.playInfo);
 
-    // getting the userInput and indiv avatar picture for parent component
-    function playerNameInfo(name, avatarLink) {
-        props.playerAvatarName(name, avatarLink)
-    }
+
+    // // getting the userInput and indiv avatar picture for parent component
+    // function playerNameInfo(name, avatarLink) {
+    //     props.playerAvatarName(name, avatarLink)
+    // }
+
+    // // map through the apiData, and then we can update the playerAvatarName with each 
+    // avatar.forEach((item, index) => {
+    //     props.nameArray[index].pic = item.request.responseURL
+    //     props.playerAvatarName(props.nameArray[index], index)
+    // })
+
+
 
     return (
         // should we put this as a form, so that we can hold onto the player's name info when they press submit?
         <div>
             {
-                avatar.map((avatarUrl) => {
+                avatar.map((avatarUrl, i) => {
                     return (
                         // Using Math.Random() for now to generate temporary ID
                         <AvatarPic 
                             src={avatarUrl.request.responseURL} 
                             key={Math.random()} 
-                            playerNameInfo={playerNameInfo}
+                            // playerNameInfo={playerNameInfo}
+                            // playInfo={props.playInfo}
+                            userObject={props.nameArray[i]}
+                            playerAvatarName={props.playerAvatarName}
+                            arrayIndex={i}
                         />
                     )
 
