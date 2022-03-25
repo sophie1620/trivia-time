@@ -12,7 +12,7 @@ function App() {
 
   const [currentQuestions, setCurrentQuestions] = useState([])
 
-  // getting player avatar and name
+  // getting player avatar and name to pass to <Questions />
   const [playerInfo, setPlayerInfo] = useState([])
   
   console.log(playerInfo);
@@ -42,6 +42,9 @@ function App() {
 
       <footer>
         <div className="wrapper">
+          <p className='foooterP'>Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
+          <p className='footerP'>Seanna Stewart | Michelle Wong | Sylvia Raposo | <a href="https://sophielai.ca/">Sophie Lai</a></p>
+          <p className='footerP'>APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
 
         </div>
       </footer>
