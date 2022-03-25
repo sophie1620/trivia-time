@@ -10,6 +10,12 @@ function Questions(props) {
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
 
+    // set it so that when the answer is right, it becomes 1, this happens for each question. at the end, add all the questions = final score
+
+    const [questionOneCheck, setQuestionOneCheck] = useState(0)
+    const [questionTwoCheck, setQuestionTwoCheck] = useState(0)
+    const [questionThreeCheck, setQuestionThreeCheck] = useState(0)
+
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -25,7 +31,7 @@ function Questions(props) {
 
     useEffect(() => {
         props.currentQuestions.map(function (question) {
-            console.log(question.correct_answer);
+            // console.log(question.correct_answer);
 
             const allAnswerOptions = question.incorrect_answers.concat(question.correct_answer);
             const shuffledAnswerOptions = shuffleArray(allAnswerOptions);
@@ -44,10 +50,24 @@ function Questions(props) {
         setPlayerQuestions(newShuffledAnswersArray)
     }, [props.currentQuestions])
 
-
+    function changeScore() {
+        setQuestionOneCheck(1)
+    }
+    function revertScore() {
+        setQuestionOneCheck(0)
+    }
 
 
     const finalQuestionArray = playerQuestions.map((questions) => {
+
+        const questionOne = {
+            question: playerQuestions[0],
+            check: questionOneCheck
+        }
+        const questionTwo = playerQuestions[1]
+        const questionThree = playerQuestions[2]
+        console.log(questionOne)
+
         return (
 
             <PlayerQuestions
@@ -57,6 +77,12 @@ function Questions(props) {
                 rightAnswer={questions.correct}
                 nextQuestion={next}
                 increaseScore={increaseScore}
+                changeScore={changeScore}
+                revertScore={revertScore}
+                questionOneCheck={setQuestionOneCheck}
+                questionTwoCheck={setQuestionTwoCheck}
+                questionThreeCheck={setQuestionThreeCheck}
+
             // correct={questions.correct_answer}
             // incorrect={questions.incorrect_answers} 
             />
@@ -78,7 +104,9 @@ function Questions(props) {
     function increaseScore() {
         setScore(score + 1)
     }
-    console.log(props.numOfPlayers)
+
+    // console.log(props.numOfPlayers)
+
     function next() {
 
         setCurrentPlayer(currentPlayer + 1)
