@@ -1,7 +1,10 @@
 import { useState } from 'react'
+// import CountDown from './CountDown';
 
 function PlayerQuestions(props) {
-    const [active, setActive] = useState(0);
+  
+  const [active, setActive] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState('')
 
     const { triviaQuestn, answers, rightAnswer, setQuestionOneCheck, setQuestionTwoCheck, setQuestionThreeCheck, changeScore, revertScore } = props;
     console.log(rightAnswer)
@@ -13,6 +16,7 @@ function PlayerQuestions(props) {
             revertScore()
         }
     }
+
 
     function normalizeText(text) {
         return text
@@ -53,11 +57,12 @@ function PlayerQuestions(props) {
     }
 
 
+
     // radio buttons don't turn blue but THATS OK
     // we will style so its just the lables anyway
 
     return (
-        <fieldset>
+        <fieldset disabled={props.disabledStatus}>
 
             <legend>{normalizeText(triviaQuestn)}</legend>
 

@@ -1,6 +1,8 @@
 import PlayerQuestions from './PlayerQuestions'
 import { useState, useEffect } from 'react'
+
 import { Link } from 'react-router-dom'
+import CountDown from './CountDown';
 
 function Questions(props) {
 
@@ -10,11 +12,15 @@ function Questions(props) {
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
 
+
     // set it so that when the answer is right, it becomes 1, this happens for each question. at the end, add all the questions = final score
 
     const [questionOneCheck, setQuestionOneCheck] = useState(0)
     const [questionTwoCheck, setQuestionTwoCheck] = useState(0)
     const [questionThreeCheck, setQuestionThreeCheck] = useState(0)
+    
+    const [isDisabled, setIsDisabled] = useState(false);
+
 
 
     function shuffleArray(array) {
@@ -107,6 +113,7 @@ function Questions(props) {
 
     // console.log(props.numOfPlayers)
 
+
     function next() {
 
         setCurrentPlayer(currentPlayer + 1)
@@ -117,6 +124,9 @@ function Questions(props) {
         }
 
     }
+    const handleCountdown = () => {
+        setIsDisabled(true)
+        console.log('this');
 
 
     return (
@@ -142,6 +152,37 @@ function Questions(props) {
                     : null
             }
 
+
+
+            {/* {console.log(props)} */}
+            <p>score: {score}</p>
+            <form onSubmit={handleSubmit} >
+
+                <CountDown seconds={6} handleCountdownFinish={() => handleCountdown()} />
+                {
+                    playerQuestions.map((questions) => {
+                        // console.log(questions)
+                        return (
+
+                            <PlayerQuestions
+                                playerSelected={setPlayerSelectedAns}
+                                key={Math.random()}
+                                disabledStatus={isDisabled}
+                                triviaQuestn={questions.triviaQuestn}
+                                answers={questions.answers}
+                                rightAnswer={questions.correct}
+                                increaseScore={increaseScore}
+                            // correct={questions.correct_answer}
+                            // incorrect={questions.incorrect_answers} 
+                            />
+
+                        )
+
+                    })
+                }
+                <button>submit</button>
+            </form>
+\
         </div>
     )
 }
