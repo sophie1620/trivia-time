@@ -1,8 +1,11 @@
 footer {
     background-color: $cream;
+    padding: 30px;
 }
 
 .footerP {
     color: $dark-teal;
     text-align: center;
+    font-family: $tertiary-font;
+    font-size: $paragraph-text;
 }

@@ -1,11 +1,13 @@
 @use "./partials/setup";
+@use "./partials/showAvatars";
+
+
 
 // Base Styles
-@use './partials/baseStyles';
+@import './partials/baseStyles';
 // Variables
-@use './partials/variables';
+@import './partials/variables';
 // Typography
-@use './partials/typography';
+@import './partials/typography';
 
-@use "./partials/showAvatars";
-@use "./partials/footer";
+@import './partials/footer';

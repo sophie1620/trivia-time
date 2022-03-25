@@ -11,7 +11,7 @@ function Form(props) {
     const [selectedNumber, setSelectedNumber] = useState(0);
     const [questions, setQuestions] = useState([])
 
-    // const [playInfo, setPlayInfo] = useState([])
+    // const [playerInfo, setPlayerInfo] = useState([])
     const [nameArray, setNameArray] = useState([])
 
     const handleSelections = function(event) {
@@ -32,7 +32,7 @@ function Form(props) {
         setNameArray(tempArray);
     
         // to get player avatar and name
-        props.playerInfo(nameArray)
+        // props.playerInfo(nameArray)
     }
 
     const playerAvatarName = function(userObject, arrayIndex) {
@@ -51,6 +51,8 @@ function Form(props) {
 
     const handleClick = function(event) {
         props.showQuestions(event, questions)
+        props.playerInfo(nameArray)
+
     }
 
     useEffect(() => {
