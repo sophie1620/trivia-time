@@ -1,17 +1,13 @@
 import { useState } from 'react'
+// import CountDown from './CountDown';
 
 function PlayerQuestions(props) {
+    console.log(props);
     // console.log(props)
     // console.log(props.playerSelected)
 
     const [selectedAnswer, setSelectedAnswer] = useState('')
 
-    // const answerList = [];
-    // answerList.push(props.correct)
-    // answerList.push(props.incorrect[0], props.incorrect[1], props.incorrect[2])
-    // // console.log(answerList)
-    // const correct = props.correct
-    // // console.log(correct)
 
 
     function handleSelect(event) {
@@ -23,20 +19,13 @@ function PlayerQuestions(props) {
             props.increaseScore()
         }
     }
-    // // props.checkAnswer(selectedAnswer, correct)
-
-    // function correct() {
-    //     console.log('correct!')
-    // }
-    // const shuffledAnswers = shuffleArray(answerList)
-    // // console.log(shuffledAnswers)
 
 
     // radio buttons don't turn blue but THATS OK
     // we will style so its just the lables anyway
 
     return (
-        <fieldset>
+        <fieldset disabled={props.disabledStatus}>
 
             <legend>{props.triviaQuestn}</legend>
 

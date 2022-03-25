@@ -1,5 +1,6 @@
 import PlayerQuestions from './PlayerQuestions'
 import { useState, useEffect } from 'react'
+import CountDown from './CountDown';
 
 function Questions(props) {
     // console.log('question props', props.currentQuestions);
@@ -8,6 +9,7 @@ function Questions(props) {
     const [playerSelectedAns, setPlayerSelectedAns] = useState('')
     const [score, setScore] = useState(0)
 
+    const [isDisabled, setIsDisabled] = useState(false);
 
     // handleSubmit button will have a function that maps through each question to identify and save that value
     // will compare this saved value with the value that the player has selected, which has been passed back up to us in an onChange function?
@@ -67,13 +69,10 @@ function Questions(props) {
     // it SOMEWHAT works, but it only keeps track of the last submitted response, so I think the check will need to be done in PlayerQuestions
 
 
-    // }
-    // useEffect((handleSubmit) => {
-    //     if (playerSelectedAnswer === correctAnswer) {
-    //         console.log('correct')
-    //         // create counter usestate and update score
-    //     }
-    // }, [])
+    const handleCountdown = () => {
+        setIsDisabled(true)
+        console.log('this');
+    }
 
 
     return (
@@ -81,7 +80,9 @@ function Questions(props) {
 
             {/* {console.log(props)} */}
             <p>score: {score}</p>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
+
+                <CountDown seconds={6} handleCountdownFinish={() => handleCountdown()} />
                 {
                     playerQuestions.map((questions) => {
                         // console.log(questions)
@@ -90,6 +91,7 @@ function Questions(props) {
                             <PlayerQuestions
                                 playerSelected={setPlayerSelectedAns}
                                 key={Math.random()}
+                                disabledStatus={isDisabled}
                                 triviaQuestn={questions.triviaQuestn.replace(/&[#039]*;/g, "'")
                                     .replace(/&[amp]*;/g, '&')
                                     .replace(/&[quot]*;/g, '"')
