@@ -99,6 +99,7 @@ function Questions(props) {
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
             playerInfo[currentPlayer].points = score;
+            console.log(playerInfo[currentPlayer])
             setScore(0);
             setCurrentPlayer(currentPlayer + 1)
             setCurrentQuestion(0)
