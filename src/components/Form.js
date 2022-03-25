@@ -21,31 +21,30 @@ function Form(props) {
     const handleSelectionsNumber = function (event) {
         // const selectedNumPlayers = ;
         setSelectedNumber(event.target.value);
-        console.log(` hereee: ${event.target.value}`);
-
-
+        // console.log(` hereee: ${event.target.value}`);
     }
 
 
-    const handleSubmit = function (event) {
-        event.preventDefault();
+    // const handleSubmit = function (event) {
+    //     event.preventDefault();
+    //     console.log('form submitted.');
+    //     // props.showQuestions(event, questions)
+
+    //     // console.log('form submitted');
+
+    // }
+
+    const handleClick = function (event) {
         props.showQuestions(event, questions)
-
-        // console.log('form submitted');
-
     }
-
-    function test() {
-        console.log('testinggggg')
-    }
-
 
     useEffect(() => {
         axios({
             url: 'https://opentdb.com/api.php/',
             params: {
                 category: selectedCategory,
-                amount: (selectedNumber * 3)
+                amount: (selectedNumber * 3),
+                type: "multiple"
 
             }
         }).then((apiData) => {
@@ -57,7 +56,7 @@ function Form(props) {
     return (
         <div className="">
 
-            <form action="" onSubmit={handleSubmit}>
+            <form action="">
                 <fieldset>
                     <label htmlFor="numOfPlayer">Number of Players</label>
                     <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber}>
@@ -93,9 +92,9 @@ function Form(props) {
                 }}
                 /> */}
 
-                <button id='submit' >Submit</button>
+                {/* <button id='submit' >Submit</button> */}
                 <Link to="/game">
-                    <button>Play</button>
+                    <button onClick={handleClick}>Play</button>
                 </Link>
 
             </form>
