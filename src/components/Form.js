@@ -14,17 +14,15 @@ function Form(props) {
     // const [playInfo, setPlayInfo] = useState([])
     const [nameArray, setNameArray] = useState([])
 
-    const handleSelections = function (event) {
+    const handleSelections = function(event) {
         setSelectedCategory(event.target.value);
     }
 
     // a function to handle number of users
-    const handleSelectionsNumber = function (event) {
-        // const selectedNumPlayers = ;
+    const handleSelectionsNumber = function(event) {
         setSelectedNumber(event.target.value);
-
+        
         let tempArray = [];
-
         for (let i = 0; i < event.target.value; i++ ) {
             tempArray.push({
                 name: `player${i+1}`,
@@ -32,22 +30,12 @@ function Form(props) {
             })
         }
         setNameArray(tempArray);
-        // console.log(` hereee: ${event.target.value}`);
-    }
-
-
-    const handleSubmit = function (event) {
-        event.preventDefault();
-        props.showQuestions(event, questions)
-
+    
         // to get player avatar and name
         props.playerInfo(nameArray)
-        // console.log('form submitted');
     }
 
-    
-
-    function playerAvatarName(userObject, arrayIndex) {
+    const playerAvatarName = function(userObject, arrayIndex) {
         // console.log(userObject, arrayIndex);
         // userObject will hold the name and URL link
         // arrayIndex is to help identify which location within the array the object belongs to
@@ -59,6 +47,10 @@ function Form(props) {
 
         setNameArray(tempArray)
         // setting nameArray with the updated information
+    }
+
+    const handleClick = function(event) {
+        props.showQuestions(event, questions)
     }
 
     useEffect(() => {
@@ -79,7 +71,7 @@ function Form(props) {
     return (
         <div className="">
 
-            <form action="" onSubmit={handleSubmit}>
+            <form action="">
                 <fieldset>
                     <label htmlFor="numOfPlayer">Number of Players</label>
                     <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber}>
@@ -115,9 +107,9 @@ function Form(props) {
                 }}
                 /> */}
 
-                <button id='submit' >Submit</button>
+                {/* <button id='submit' >Submit</button> */}
                 <Link to="/game">
-                    <button>Play</button>
+                    <button onClick={handleClick}>Play</button>
                 </Link>
 
             </form>

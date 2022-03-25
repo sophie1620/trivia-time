@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 function Header() {
     return (
         <header>
+            <div className="wave"></div>
             <div className="wrapper">
                 <Link to="/">
-                    <h1>Awesome Trivia Game</h1>
+                    <h1>Trivia Time</h1>
                 </Link>
             </div>
         </header >

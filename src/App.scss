@@ -1,3 +1,14 @@
 @use "./partials/setup";
 @use "./partials/showAvatars";
+<<<<<<< HEAD
 @use "./partials/footer";
+=======
+
+
+// Base Styles
+@import './partials/baseStyles';
+// Variables
+@import './partials/variables';
+// Typography
+@import './partials/typography';
+>>>>>>> e9b8ccd8ec02ade2bcf66e06114c7d35075642f3
