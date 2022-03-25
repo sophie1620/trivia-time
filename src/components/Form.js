@@ -1,4 +1,3 @@
-import CategoryCall from "./CategoryCall"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom'
@@ -54,13 +53,14 @@ function Form(props) {
     }, [selectedCategory, selectedNumber])
 
     return (
-        <div className="">
-
+        <div className="gameForm">
+            <h3>how to play</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet culpa voluptas odio atque aperiam plac perspiciatis iusto, fugiat aut ut labore? Nisi quas velit quasi.</p>
             <form action="">
                 <fieldset>
-                    <label htmlFor="numOfPlayer">Number of Players</label>
+                    <label htmlFor="numOfPlayer" className="sr-only">How many players?</label>
                     <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber}>
-                        <option value="0">0</option>
+                        <option value="placeholder" disabled selected>How many players?</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -68,8 +68,9 @@ function Form(props) {
                         <option value="5">5</option>
                     </select>
 
-                    <label htmlFor="categories">Choose the trivia category!</label>
+                    <label htmlFor="categories" className='sr-only'>Pick a category!</label>
                     <select name="categories" id="categories" onChange={handleSelections}>
+                        <option value="placeholder" disabled selected>Pick a category!</option>
                         <option value="9">General</option>
                         <option value="10">Books</option>
                         <option value="11">Film</option>
@@ -94,7 +95,7 @@ function Form(props) {
 
                 {/* <button id='submit' >Submit</button> */}
                 <Link to="/game">
-                    <button onClick={handleClick}>Play</button>
+                    <button className="start" onClick={handleClick}>START</button>
                 </Link>
 
             </form>

@@ -1,0 +1,48 @@
+.gameForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    p {
+        width: 70%;
+        text-align: center;
+    }
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+          fieldset {
+            border: none;
+            display:flex;
+            width:100%;
+            justify-content: space-evenly;
+
+            select {
+                color: $bright-yellow;
+                padding:1%;
+                border: 2px solid $dark-blue;
+                text-align: center;
+                border-radius:5px;
+                margin:2%;
+                width: 250px
+        }
+       
+    }
+    a{
+        
+        .start {
+        background-color:$light-teal;
+        border:none;
+        border-radius: 15px;
+        padding:5px;
+        cursor: pointer;
+        color: $cream;
+        font-size:25px;
+    }
+    }
+    
+    }
+  
+}
