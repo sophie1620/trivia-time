@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom'
 import './App.scss';
 
 import Questions from './components/Questions'
@@ -8,20 +7,25 @@ import Header from './components/Header';
 import Form from './components/Form';
 
 
+
 function App() {
 
   const [currentQuestions, setCurrentQuestions] = useState([])
+  const [numberOfPlayers, setNumberOfPlayers] = useState([])
+
 
   // getting player avatar and name to pass to <Questions />
   const [playerInfo, setPlayerInfo] = useState([])
   
   console.log(playerInfo);
   
-  function handleSubmit(event, questionArray) {
+  function handleSubmit(event, questionArray, number) {
+
     event.preventDefault()
     setCurrentQuestions(questionArray)
+    setNumberOfPlayers(number)
   }
-  // { console.log(currentQuestions) }
+
 
   return (
     <div className="App">
@@ -29,13 +33,16 @@ function App() {
 
       <main>
         <div className="wrapper">
-          {/* <Form showQuestions={handleSubmit} /> */}
+
           <Routes>
+
+
             <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
-            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} />} />
+            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers}/>} />
+
             {/* <Route path="/results" element={<Scoreboard />} /> */}
           </Routes>
-          {/* <Questions currentQuestions={currentQuestions} /> */}
+
         </div>
       </main>
 

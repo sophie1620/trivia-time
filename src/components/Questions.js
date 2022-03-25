@@ -1,18 +1,27 @@
 import PlayerQuestions from './PlayerQuestions'
 import { useState, useEffect } from 'react'
+
+import { Link } from 'react-router-dom'
 import CountDown from './CountDown';
 
 function Questions(props) {
-    // console.log('question props', props.currentQuestions);
 
+    const [showQuestions, setShowQuestions] = useState(true)
+    const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
-    const [playerSelectedAns, setPlayerSelectedAns] = useState('')
     const [score, setScore] = useState(0)
+    const [currentPlayer, setCurrentPlayer] = useState(0)
 
+
+    // set it so that when the answer is right, it becomes 1, this happens for each question. at the end, add all the questions = final score
+
+    const [questionOneCheck, setQuestionOneCheck] = useState(0)
+    const [questionTwoCheck, setQuestionTwoCheck] = useState(0)
+    const [questionThreeCheck, setQuestionThreeCheck] = useState(0)
+    
     const [isDisabled, setIsDisabled] = useState(false);
 
-    // handleSubmit button will have a function that maps through each question to identify and save that value
-    // will compare this saved value with the value that the player has selected, which has been passed back up to us in an onChange function?
+
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -28,7 +37,7 @@ function Questions(props) {
 
     useEffect(() => {
         props.currentQuestions.map(function (question) {
-            console.log(question.correct_answer);
+            // console.log(question.correct_answer);
 
             const allAnswerOptions = question.incorrect_answers.concat(question.correct_answer);
             const shuffledAnswerOptions = shuffleArray(allAnswerOptions);
@@ -41,42 +50,109 @@ function Questions(props) {
             return (
                 newShuffledAnswersArray.push(newObj)
             )
-            // console.log(question);
-            // console.log('all answer options', allAnswerOptions);
-            // console.log('all SHUFFLED answer options', shuffledAnswerOptions);
+
         })
-        // console.log(newShuffledAnswersArray);
+
         setPlayerQuestions(newShuffledAnswersArray)
-    }, props.currentQuestions)
+    }, [props.currentQuestions])
 
-    // console.log(playerQuestions);
-    // console.log('player ans', playerSelectedAns)
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        props.currentQuestions.map((question) => {
-            if (question.correct_answer === playerSelectedAns) {
-                console.log('right answer!')
-            } else {
-                console.log('better luck next time!')
-            }
-        })
+    function changeScore() {
+        setQuestionOneCheck(1)
     }
+    function revertScore() {
+        setQuestionOneCheck(0)
+    }
+
+
+    const finalQuestionArray = playerQuestions.map((questions) => {
+
+        const questionOne = {
+            question: playerQuestions[0],
+            check: questionOneCheck
+        }
+        const questionTwo = playerQuestions[1]
+        const questionThree = playerQuestions[2]
+        console.log(questionOne)
+
+        return (
+
+            <PlayerQuestions
+                key={Math.random()}
+                triviaQuestn={questions.triviaQuestn}
+                answers={questions.answers}
+                rightAnswer={questions.correct}
+                nextQuestion={next}
+                increaseScore={increaseScore}
+                changeScore={changeScore}
+                revertScore={revertScore}
+                questionOneCheck={setQuestionOneCheck}
+                questionTwoCheck={setQuestionTwoCheck}
+                questionThreeCheck={setQuestionThreeCheck}
+
+            // correct={questions.correct_answer}
+            // incorrect={questions.incorrect_answers} 
+            />
+
+        )
+
+    })
+    const playerOneQuestions = finalQuestionArray.slice(0, 3)
+    const playerTwoQuestions = finalQuestionArray.slice(3, 6)
+    const playerThreeQuestions = finalQuestionArray.slice(6, 9)
+    const playerFourQuestions = finalQuestionArray.slice(9, 12)
+    const playerFiveQuestions = finalQuestionArray.slice(12, 15)
+
+    const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
+
+    console.log(assignedQuestions)
+
 
     function increaseScore() {
         setScore(score + 1)
     }
-    // it SOMEWHAT works, but it only keeps track of the last submitted response, so I think the check will need to be done in PlayerQuestions
+
+    // console.log(props.numOfPlayers)
 
 
+    function next() {
+
+        setCurrentPlayer(currentPlayer + 1)
+        setScore(0)
+        if (currentPlayer === (props.numOfPlayers - 1)) {
+            setShowResultsLink(true)
+            setShowQuestions(false)
+        }
+
+    }
     const handleCountdown = () => {
         setIsDisabled(true)
         console.log('this');
-    }
 
 
     return (
+
         <div>
+            {
+                showQuestions
+                    ? <div>
+                        <p>score: {score}</p>
+                        <p>Player: {currentPlayer + 1} </p>
+                        {assignedQuestions[currentPlayer]}
+                        <button onClick={next}>submit</button>
+                    </div>
+                    : null
+            }
+
+            {
+                showResultsLink
+                    ?
+                    <Link to="/results">
+                        <button>Finish game</button>
+                    </Link>
+                    : null
+            }
+
+
 
             {/* {console.log(props)} */}
             <p>score: {score}</p>
@@ -92,40 +168,7 @@ function Questions(props) {
                                 playerSelected={setPlayerSelectedAns}
                                 key={Math.random()}
                                 disabledStatus={isDisabled}
-                                triviaQuestn={questions.triviaQuestn.replace(/&[#039]*;/g, "'")
-                                    .replace(/&[amp]*;/g, '&')
-                                    .replace(/&[quot]*;/g, '"')
-                                    .replace(/&[rsquo]*;/g, '’')
-                                    .replace(/&[lsquo]*;/g, '‘')
-                                    .replace(/&[ldquo]*;/g, '“')
-                                    .replace(/&[rdquo]*;/g, '”')
-                                    .replace(/&[apos]*;/gd, "'")
-                                    .replace(/&[hellip]*;/g, "…")
-                                    .replace(/&[percnt]*;/g, '%')
-                                    .replace(/&[divide]*;/g, '÷')
-                                    .replace(/&[div]*;/g, '÷')
-                                    .replace(/&[lt]*;/g, '<')
-                                    .replace(/&[gt]*;/g, '>')
-                                    .replace(/&[sup2]*;/g, '²')
-                                    .replace(/&[deg]*;/g, '°')
-                                    .replace(/&[aacute]*;/g, 'á')
-                                    .replace(/&[aAring]*;/g, 'Å')
-                                    .replace(/&[eacute]*;/g, 'é')
-                                    .replace(/&[iacute]*;/g, 'í')
-                                    .replace(/&[ntilde]*;/g, 'ñ')
-                                    .replace(/&[oacirc]*;/g, 'ô')
-                                    .replace(/&[oacute]*;/g, 'ó')
-                                    .replace(/&[uacute]*;/g, 'ú')
-                                    .replace(/&[auml]*;/g, 'ä')
-                                    .replace(/&[euml]*;/g, 'ë')
-                                    .replace(/&[iuml]*;/g, 'ï')
-                                    .replace(/&[ouml]*;/g, 'ö')
-                                    .replace(/&[uuml]*;/g, 'ü')
-                                    .replace(/&[yuml]*;/g, 'ÿ')
-                                    .replace(/&[uuml]*;/g, 'ü')
-                                    .replace(/&[scaron]*;/g, 'š')
-                                    .replace(/&[epsilon]*;/g, 'ε')
-                                    .replace(/&[Phi]*;/g, 'φ')}
+                                triviaQuestn={questions.triviaQuestn}
                                 answers={questions.answers}
                                 rightAnswer={questions.correct}
                                 increaseScore={increaseScore}
@@ -139,6 +182,7 @@ function Questions(props) {
                 }
                 <button>submit</button>
             </form>
+\
         </div>
     )
 }

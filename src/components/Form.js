@@ -40,10 +40,12 @@ function Form(props) {
         // userObject will hold the name and URL link
         // arrayIndex is to help identify which location within the array the object belongs to
 
+
         const tempArray = [...nameArray]
 
         tempArray[arrayIndex] = userObject
         // array with the index (which we got from the child) will be updated withe userObject  
+
 
         setNameArray(tempArray)
         // setting nameArray with the updated information
