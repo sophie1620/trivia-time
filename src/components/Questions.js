@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
 import CountDown from './CountDown';
+import Results from './Results'
 
 function Questions(props) {
 
@@ -17,7 +18,8 @@ function Questions(props) {
     const [isDisabled, setIsDisabled] = useState(false);
 
     const { currentQuestions, numOfPlayers, playerInfo } = props;
-    console.log(props);
+
+    console.log(score)
 
 
     function shuffleArray(array) {
@@ -85,10 +87,13 @@ function Questions(props) {
     }
 
     // map over the playerInfo array to create points key value pair in order to store the score
-    playerInfo.map((player) => {
-        player.points = 0;
-    })
-    console.log(props.playerInfo)
+    // (changed this to for each since we dont want to create a new array, just alter the current one)
+    // playerInfo.forEach((player) => {
+    //     player.points = 0;
+
+    // })
+
+
 
 
     function next() {
@@ -98,8 +103,12 @@ function Questions(props) {
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
+
             playerInfo[currentPlayer].points = score;
+            console.log(playerInfo[currentPlayer].points)
             reset()
+
+
         }
 
     }
@@ -110,9 +119,15 @@ function Questions(props) {
         if (currentPlayer === (numOfPlayers - 1)) {
             setShowResultsLink(true)
             setShowQuestions(false)
+            props.updateFinalScores(playerInfo)
+
         } else {
             setCurrentPlayer(currentPlayer + 1)
         }
+    }
+
+    const submitScores = function () {
+        props.updateFinalScores(playerInfo)
     }
 
 
@@ -129,8 +144,8 @@ function Questions(props) {
                     ? <div>
                         <CountDown seconds={30} handleCountdownFinish={() => handleCountdown()} />
 
-                        <p>Player: {props.playerInfo[currentPlayer].name}  </p>
-                        <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
+                        <p>Player: {playerInfo[currentPlayer].name}  </p>
+                        <img src={playerInfo[currentPlayer].pic} alt="player avatar" />
                         {assignedQuestions[currentPlayer][currentQuestion]}
                         <button onClick={next}>next</button>
                     </div>
@@ -140,9 +155,10 @@ function Questions(props) {
             {
                 showResultsLink
                     ?
-                    <Link to="/results">
-                        <button>Finish game</button>
-                    </Link>
+                    // <Link to="/results" >
+                    //     <button onClick={submitScores}>Finish game</button>
+                    // </Link>
+                    <Results finalScores={playerInfo} />
                     : null
             }
 
