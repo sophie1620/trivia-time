@@ -1,5 +1,5 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 // import PlayerQuestions from "./PlayerQuestions";
 
 const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNextButton, }) => {
@@ -9,7 +9,7 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
 
 
     const tick = () => {
-        if (paused || over ) return;
+        if (paused || over) return;
         if (m === 0 && s === 0) {
             setOver(true);
         } else if (s == 0) {
@@ -20,7 +20,7 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
     };
 
     const resetTimer = () => {
-        setTime([ parseInt(minutes), parseInt(seconds)]);
+        setTime([parseInt(minutes), parseInt(seconds)]);
         setPaused(false);
         setOver(false);
     };
