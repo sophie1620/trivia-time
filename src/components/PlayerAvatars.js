@@ -44,27 +44,21 @@ function PlayerAvatars(props) {
             const apiData = await axios({
                 url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
             })
-
+            if (apiData.request.status === 200 || apiData.request.statusText == 'OK') {
+                return apiData
+            } else {
+                throw new Error(apiData.request.statusText);
+            }
             // Returns response string
-            return apiData
-            // .request.responseURL
         }
     }, props.triviaPlayers);
 
-    // console.log('playInfo', props.playInfo);
-
-
-    // // getting the userInput and indiv avatar picture for parent component
-    // function playerNameInfo(name, avatarLink) {
-    //     props.playerAvatarName(name, avatarLink)
-    // }
 
     // // map through the apiData, and then we can update the playerAvatarName with each 
     // avatar.forEach((item, index) => {
     //     props.nameArray[index].pic = item.request.responseURL
     //     props.playerAvatarName(props.nameArray[index], index)
     // })
-
 
 
     return (
