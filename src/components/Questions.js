@@ -56,7 +56,7 @@ function Questions(props) {
 
     const finalQuestionArray = playerQuestions.map((questions) => {
         return (
-                
+
             <PlayerQuestions
                 key={Math.random()}
                 triviaQuestn={questions.triviaQuestn}
@@ -78,6 +78,7 @@ function Questions(props) {
     const playerFiveQuestions = finalQuestionArray.slice(12, 15)
 
     const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
+    console.log(assignedQuestions)
 
 
 
@@ -87,12 +88,11 @@ function Questions(props) {
         setAnswerCheck(number)
     }
 
-   
 
 
     function next() {
         // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
-        
+
         setScore(score + answerCheck)
         setCurrentQuestion(currentQuestion + 1)
 
@@ -106,7 +106,7 @@ function Questions(props) {
 
         setIsDisabled(false);
         setIsReset(true);
-        
+
     }
 
     function reset() {
@@ -115,6 +115,7 @@ function Questions(props) {
         if (currentPlayer === (numOfPlayers - 1)) {
             setShowResultsLink(true)
             setShowQuestions(false)
+            props.updateFinalScores(playerInfo)
         } else {
             setCurrentPlayer(currentPlayer + 1)
         }
@@ -126,7 +127,7 @@ function Questions(props) {
     //     setIsReset(false)
     // }
 
-    
+
 
     return (
 
@@ -137,9 +138,9 @@ function Questions(props) {
 
                         <p>Player: {props.playerInfo[currentPlayer].name}  </p>
                         <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
-                        {assignedQuestions[currentPlayer][currentQuestion] }
+                        {assignedQuestions[currentPlayer][currentQuestion]}
                         <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={isReset} />
-                        
+
                         <button onClick={next}>next</button>
                     </div>
                     : null
