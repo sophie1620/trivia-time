@@ -1,22 +1,40 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom'
 import './App.scss';
 
 import Questions from './components/Questions'
 import Header from './components/Header';
 import Form from './components/Form';
+import Results from './components/Results';
+
 
 
 function App() {
 
   const [currentQuestions, setCurrentQuestions] = useState([])
+  const [numberOfPlayers, setNumberOfPlayers] = useState([])
 
-  function showQuestions(event, questionArray) {
-    // event.preventDefault()
+
+  // console.log(numberOfPlayers)
+
+  // getting player avatar and name to pass to <Questions />
+  const [playerInfo, setPlayerInfo] = useState([])
+  const [finalScores, setFinalScores] = useState([])
+
+  // console.log(playerInfo);
+  console.log(finalScores)
+
+  function handleSubmit(questionArray, number) {
+
     setCurrentQuestions(questionArray)
+    setNumberOfPlayers(number)
   }
-  // { console.log(currentQuestions) }
+
+  function update(newPlayerInfo) {
+    setFinalScores(newPlayerInfo)
+
+  }
+
 
   return (
     <div className="App">
@@ -24,19 +42,25 @@ function App() {
 
       <main>
         <div className="wrapper">
-          {/* <Form showQuestions={handleSubmit} /> */}
+
           <Routes>
-            <Route path="/" element={<Form showQuestions={showQuestions} />} />
-            <Route path="/game" element={<Questions currentQuestions={currentQuestions} />} />
-            {/* <Route path="/results" element={<Scoreboard />} /> */}
+
+
+            <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
+            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} updateFinalScores={update} />} />
+
+            <Route path="/results" element={<Results scores={finalScores} />} />
           </Routes>
-          {/* <Questions currentQuestions={currentQuestions} /> */}
+
         </div>
       </main>
 
 
       <footer>
         <div className="wrapper">
+          <p className='footerP'>Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
+          <p className='footerP'>Seanna Stewart | Michelle Wong | Sylvia Raposo | <a href="https://sophielai.ca/">Sophie Lai</a></p>
+          <p className='footerP'>APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
 
         </div>
       </footer>

@@ -303,6 +303,7 @@ p {
   color: #264653;
 }
 
+
 .gameForm {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -364,4 +365,30 @@ p {
   cursor: pointer;
   color: #fffef6;
   font-size: 25px;
+=======
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+footer {
+  background-color: #fffef6;
+  padding: 30px;
+}
+
+footer::before {
+  content: url("../../public/assets/footerWave.svg");
+  position: relative;
+  top: 0;
+}
+
+.footerP {
+  color: #195b53;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+
 }

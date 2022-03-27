@@ -1,0 +1,17 @@
+footer {
+    background-color: $cream;
+    padding: 30px;
+}
+
+footer::before {
+    content: url('../../public/assets/footerWave.svg');
+    position: relative;
+    top: 0;
+}
+
+.footerP {
+    color: $dark-teal;
+    text-align: center;
+    font-family: $tertiary-font;
+    font-size: $paragraph-text;
+}

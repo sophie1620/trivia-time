@@ -2,11 +2,19 @@
 @use "./partials/showAvatars";
 
 
+
 // Base Styles
 @import './partials/baseStyles';
 // Variables
 @import './partials/variables';
 // Typography
 @import './partials/typography';
+
 // Form
 @import './partials/form';
+
+
+@import './partials/avatarPic';
+
+@import './partials/footer';
+

@@ -1,16 +1,25 @@
 import PlayerQuestions from './PlayerQuestions'
 import { useState, useEffect } from 'react'
 
+import { Link } from 'react-router-dom'
+import CountDown from './CountDown';
+
 function Questions(props) {
-    // console.log('question props', props.currentQuestions);
 
+    const [showQuestions, setShowQuestions] = useState(true)
+    const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
-    const [playerSelectedAns, setPlayerSelectedAns] = useState('')
+    const [answerCheck, setAnswerCheck] = useState(0)
     const [score, setScore] = useState(0)
+    const [currentPlayer, setCurrentPlayer] = useState(0)
+    const [currentQuestion, setCurrentQuestion] = useState(0)
 
+    const [isDisabled, setIsDisabled] = useState(false);
+    const [isReset, setIsReset] = useState(false)
 
-    // handleSubmit button will have a function that maps through each question to identify and save that value
-    // will compare this saved value with the value that the player has selected, which has been passed back up to us in an onChange function?
+    const { currentQuestions, numOfPlayers, playerInfo } = props;
+    // console.log(props);
+
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -25,8 +34,8 @@ function Questions(props) {
     const newShuffledAnswersArray = [];
 
     useEffect(() => {
-        props.currentQuestions.map(function (question) {
-            console.log(question.correct_answer);
+
+        currentQuestions.map(function (question) {
 
             const allAnswerOptions = question.incorrect_answers.concat(question.correct_answer);
             const shuffledAnswerOptions = shuffleArray(allAnswerOptions);
@@ -39,104 +48,122 @@ function Questions(props) {
             return (
                 newShuffledAnswersArray.push(newObj)
             )
-            // console.log(question);
-            // console.log('all answer options', allAnswerOptions);
-            // console.log('all SHUFFLED answer options', shuffledAnswerOptions);
+
         })
-        // console.log(newShuffledAnswersArray);
+
         setPlayerQuestions(newShuffledAnswersArray)
-    }, props.currentQuestions)
+    }, [currentQuestions])
 
-    // console.log(playerQuestions);
-    // console.log('player ans', playerSelectedAns)
+    const finalQuestionArray = playerQuestions.map((questions) => {
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        props.currentQuestions.map((question) => {
-            if (question.correct_answer === playerSelectedAns) {
-                console.log('right answer!')
-            } else {
-                console.log('better luck next time!')
-            }
-        })
+        return (
+
+            <PlayerQuestions
+                key={Math.random()}
+                triviaQuestn={questions.triviaQuestn}
+                answers={questions.answers}
+                rightAnswer={questions.correct}
+                changeScore={changeScore}
+            />
+
+        )
+
+    })
+
+    // const playerOneQuestions = finalQuestionArray.slice(0, 3)
+    // const playerTwoQuestions = finalQuestionArray.slice(3, 6)
+    // const playerThreeQuestions = finalQuestionArray.slice(6, 9)
+    // const playerFourQuestions = finalQuestionArray.slice(9, 12)
+    // const playerFiveQuestions = finalQuestionArray.slice(12, 15)
+
+    const assignedQuestions = [];
+    playerInfo.forEach((indivPlayer, i) => {
+        assignedQuestions.push(finalQuestionArray.slice(((i + 1) * 3) - 3, (i + 1) * 3));
+    })
+
+    // const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
+    console.log(assignedQuestions);
+
+
+
+    // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
+    function changeScore(number) {
+        // console.log(number);
+        setAnswerCheck(number)
+        
     }
 
-    function increaseScore() {
-        setScore(score + 1)
+
+
+    function next() {
+        // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
+
+        setScore(score + answerCheck)
+        setCurrentQuestion(currentQuestion + 1)
+
+        // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
+        if (currentQuestion === 2) {
+            playerInfo[currentPlayer].points = score;
+            // setIsDisabled(false);
+            // setIsReset(true);
+            reset()
+        }
+
+        // setIsDisabled(false);
+        console.log(isReset);
+        setIsReset(true);
+
     }
-    // it SOMEWHAT works, but it only keeps track of the last submitted response, so I think the check will need to be done in PlayerQuestions
+
+    function reset() {
+        setScore(0)
+        setCurrentQuestion(0)
+        if (currentPlayer === (numOfPlayers - 1)) {
+            setShowResultsLink(true)
+            setShowQuestions(false)
+            props.updateFinalScores(playerInfo)
+        } else {
+            setCurrentPlayer(currentPlayer + 1)
+        }
+    }
 
 
+    // const handleCountdown = (disabledStatus) => {
+    //     setIsDisabled(disabledStatus)
+    //     setIsReset(false)
     // }
-    // useEffect((handleSubmit) => {
-    //     if (playerSelectedAnswer === correctAnswer) {
-    //         console.log('correct')
-    //         // create counter usestate and update score
-    //     }
-    // }, [])
-
+    useEffect(() => { 
+        setIsReset(false);
+    }, [currentQuestion])
 
     return (
+
         <div>
+            {
+                showQuestions
+                    ? <div>
 
-            {/* {console.log(props)} */}
-            <p>score: {score}</p>
-            <form onSubmit={handleSubmit}>
-                {
-                    playerQuestions.map((questions) => {
-                        // console.log(questions)
-                        return (
+                        <p>Player: {props.playerInfo[currentPlayer].name}  </p>
+                        <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
 
-                            <PlayerQuestions
-                                playerSelected={setPlayerSelectedAns}
-                                key={Math.random()}
-                                triviaQuestn={questions.triviaQuestn.replace(/&[#039]*;/g, "'")
-                                    .replace(/&[amp]*;/g, '&')
-                                    .replace(/&[quot]*;/g, '"')
-                                    .replace(/&[rsquo]*;/g, '’')
-                                    .replace(/&[lsquo]*;/g, '‘')
-                                    .replace(/&[ldquo]*;/g, '“')
-                                    .replace(/&[rdquo]*;/g, '”')
-                                    .replace(/&[apos]*;/gd, "'")
-                                    .replace(/&[hellip]*;/g, "…")
-                                    .replace(/&[percnt]*;/g, '%')
-                                    .replace(/&[divide]*;/g, '÷')
-                                    .replace(/&[div]*;/g, '÷')
-                                    .replace(/&[lt]*;/g, '<')
-                                    .replace(/&[gt]*;/g, '>')
-                                    .replace(/&[sup2]*;/g, '²')
-                                    .replace(/&[deg]*;/g, '°')
-                                    .replace(/&[aacute]*;/g, 'á')
-                                    .replace(/&[aAring]*;/g, 'Å')
-                                    .replace(/&[eacute]*;/g, 'é')
-                                    .replace(/&[iacute]*;/g, 'í')
-                                    .replace(/&[ntilde]*;/g, 'ñ')
-                                    .replace(/&[oacirc]*;/g, 'ô')
-                                    .replace(/&[oacute]*;/g, 'ó')
-                                    .replace(/&[uacute]*;/g, 'ú')
-                                    .replace(/&[auml]*;/g, 'ä')
-                                    .replace(/&[euml]*;/g, 'ë')
-                                    .replace(/&[iuml]*;/g, 'ï')
-                                    .replace(/&[ouml]*;/g, 'ö')
-                                    .replace(/&[uuml]*;/g, 'ü')
-                                    .replace(/&[yuml]*;/g, 'ÿ')
-                                    .replace(/&[uuml]*;/g, 'ü')
-                                    .replace(/&[scaron]*;/g, 'š')
-                                    .replace(/&[epsilon]*;/g, 'ε')
-                                    .replace(/&[Phi]*;/g, 'φ')}
-                                answers={questions.answers}
-                                rightAnswer={questions.correct}
-                                increaseScore={increaseScore}
-                            // correct={questions.correct_answer}
-                            // incorrect={questions.incorrect_answers} 
-                            />
+                        {assignedQuestions[currentPlayer][currentQuestion] }
+                        <CountDown seconds={30} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                        
 
-                        )
+                        <button onClick={next}>next</button>
+                    </div>
+                    : null
+            }
 
-                    })
-                }
-                <button>submit</button>
-            </form>
+            {
+                showResultsLink
+                    ?
+                    <Link to="/results">
+                        <button>Finish game</button>
+                    </Link>
+                    : null
+            }
+
         </div>
     )
 }
