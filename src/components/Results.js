@@ -6,7 +6,7 @@ function Results(props) {
     const scoreboard = props.scores.map((info) => {
         return (
             <div>
-                <p>{info.name}: {info.points}</p>
+                <p>{info.name}'s score: {info.points}</p>
 
                 <img src={info.pic} alt="Player avatar" />
 

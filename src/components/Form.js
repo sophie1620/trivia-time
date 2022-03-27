@@ -81,8 +81,8 @@ function Form(props) {
             <form action="">
                 <fieldset>
                     <label htmlFor="numOfPlayer">Number of Players</label>
-                    <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber}>
-                        <option value="0">0</option>
+                    <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber} value={selectedNumber}>
+                        <option value="0">How many players?</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
