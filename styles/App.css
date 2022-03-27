@@ -266,6 +266,12 @@ a {
   color: inherit;
 }
 
+.wrapper {
+  max-width: 1260px;
+  width: 80%;
+  margin: 0 auto;
+}
+
 html {
   font-size: 125%;
 }
@@ -297,6 +303,69 @@ p {
   color: #264653;
 }
 
+
+.gameForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.gameForm p {
+  width: 70%;
+  text-align: center;
+}
+.gameForm form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.gameForm form fieldset {
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+.gameForm form fieldset select {
+  color: #e9c46a;
+  padding: 1%;
+  border: 2px solid #264653;
+  text-align: center;
+  border-radius: 5px;
+  margin: 2%;
+  width: 250px;
+}
+.gameForm form a .start {
+  background-color: #2a9d8f;
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+  cursor: pointer;
+  color: #fffef6;
+  font-size: 25px;
+=======
 .hide {
   display: none;
 }
@@ -321,4 +390,5 @@ footer::before {
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+
 }
