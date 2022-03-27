@@ -56,7 +56,7 @@ function PlayerQuestions(props) {
     }
 
     return (
-        <fieldset disabled={props.disabledStatus}>
+        <fieldset>
 
 
             <legend>{normalizeText(triviaQuestn)}</legend>

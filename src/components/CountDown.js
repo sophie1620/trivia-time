@@ -2,14 +2,14 @@ import React from "react";
 // import { useState } from "react";
 // import PlayerQuestions from "./PlayerQuestions";
 
-const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNextButton }) => {
-    const [paused, setPaused] = React.useState(false);
-    const [over, setOver] = React.useState(false);
-    const [[m, s], setTime] = React.useState([minutes, seconds]);
+const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNextButton, }) => {
+    const [paused, setPaused] = useState(false);
+    const [over, setOver] = useState(false);
+    const [[m, s], setTime] = useState([minutes, seconds]);
 
 
     const tick = () => {
-        if (paused || over || !handleCountdownFinish) return;
+        if (paused || over ) return;
         if (m === 0 && s === 0) {
             setOver(true);
         } else if (s == 0) {
@@ -19,31 +19,31 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
         }
     };
 
-    const reset = () => {
-        setTime([parseInt(minutes), parseInt(seconds)]);
+    const resetTimer = () => {
+        setTime([ parseInt(minutes), parseInt(seconds)]);
         setPaused(false);
         setOver(false);
-        handleCountdownFinish(false);
     };
 
     const timesUp = () => {
         setOver(false);
         setPaused(true);
-        handleCountdownFinish(true);
+        handleCountdownFinish();
+        resetTimer();
     }
 
     React.useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
         return () => clearInterval(timerID);
-    });
+    }, [null]);
 
     React.useEffect(() => {
         if (handleNextButton == true) {
-            reset();
+            resetTimer();
         }
-        // handleNextButton ? reset() : null;
 
     }, [handleNextButton]);
+
 
     return (
         <div>
@@ -61,7 +61,7 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
             <button onClick={() => setPaused(!paused)}>
                 {paused ? 'Resume' : 'Pause'}
             </button>
-            <button onClick={() => reset()}>
+            <button onClick={() => resetTimer()}>
                 Restart
             </button>
         </div>
