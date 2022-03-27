@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 // import PlayerQuestions from "./PlayerQuestions";
 
-const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNextButton, isNext, grabProps }) => {
+const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNextButton, }) => {
     const [paused, setPaused] = useState(false);
     const [over, setOver] = useState(false);
     const [[m, s], setTime] = useState([minutes, seconds]);

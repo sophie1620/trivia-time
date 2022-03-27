@@ -143,7 +143,7 @@ function Questions(props) {
                         <p>Player: {props.playerInfo[currentPlayer].name}  </p>
                         <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
                         {assignedQuestions[currentPlayer][currentQuestion] }
-                        <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                        <CountDown seconds={30} handleCountdownFinish={() => next()} handleNextButton={isReset} />
                         
                         <button onClick={next}>next</button>
                     </div>
