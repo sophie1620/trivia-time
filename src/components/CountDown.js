@@ -35,7 +35,7 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
     React.useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
         return () => clearInterval(timerID);
-    }, [null]);
+    }, [tick]);
 
     React.useEffect(() => {
         if (handleNextButton == true) {
