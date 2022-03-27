@@ -56,18 +56,15 @@ function Questions(props) {
 
     const finalQuestionArray = playerQuestions.map((questions) => {
         return (
-            <>  
-
                 
-                <PlayerQuestions
-                    key={Math.random()}
-                    triviaQuestn={questions.triviaQuestn}
-                    answers={questions.answers}
-                    rightAnswer={questions.correct}
-                    disabledStatus={isDisabled}
-                    changeScore={changeScore}
-                />
-            </>
+            <PlayerQuestions
+                key={Math.random()}
+                triviaQuestn={questions.triviaQuestn}
+                answers={questions.answers}
+                rightAnswer={questions.correct}
+                disabledStatus={isDisabled}
+                changeScore={changeScore}
+            />
 
         )
 
@@ -82,7 +79,6 @@ function Questions(props) {
 
     const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
 
-    // console.log(score);
 
     // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
     function changeScore(number) {
@@ -94,7 +90,6 @@ function Questions(props) {
     playerInfo.map((player) => {
         player.points = 0;
     })
-    // console.log(props.playerInfo)
 
 
 
@@ -107,15 +102,14 @@ function Questions(props) {
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
             playerInfo[currentPlayer].points = score;
+            setIsDisabled(false);
+            setIsReset(true);
             reset()
         }
 
         setIsDisabled(false);
-
         setIsReset(true);
-
-
-
+        
     }
 
     function reset() {
@@ -130,11 +124,10 @@ function Questions(props) {
     }
 
 
-    const handleCountdown = (disabledStatus) => {
-        setIsDisabled(disabledStatus)
-        setIsReset(false)
-
-    }
+    // const handleCountdown = (disabledStatus) => {
+    //     setIsDisabled(disabledStatus)
+    //     setIsReset(false)
+    // }
 
     
 
@@ -148,7 +141,7 @@ function Questions(props) {
                         <p>Player: {props.playerInfo[currentPlayer].name}  </p>
                         <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
                         {assignedQuestions[currentPlayer][currentQuestion] }
-                        <CountDown seconds={5} handleCountdownFinish={(disabledStatus) => handleCountdown(disabledStatus)} handleNextButton={isReset}/>
+                        <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={isReset} />
                         
                         <button onClick={next}>next</button>
                     </div>
