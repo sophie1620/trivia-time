@@ -70,15 +70,20 @@ function Questions(props) {
 
     })
 
-    console.log(finalQuestionArray);
-    const playerOneQuestions = finalQuestionArray.slice(0, 3)
-    const playerTwoQuestions = finalQuestionArray.slice(3, 6)
-    const playerThreeQuestions = finalQuestionArray.slice(6, 9)
-    const playerFourQuestions = finalQuestionArray.slice(9, 12)
-    const playerFiveQuestions = finalQuestionArray.slice(12, 15)
+    // console.log(finalQuestionArray);
+    // const playerOneQuestions = finalQuestionArray.slice(0, 3)
+    // const playerTwoQuestions = finalQuestionArray.slice(3, 6)
+    // const playerThreeQuestions = finalQuestionArray.slice(6, 9)
+    // const playerFourQuestions = finalQuestionArray.slice(9, 12)
+    // const playerFiveQuestions = finalQuestionArray.slice(12, 15)
 
-    const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
-    console.log(assignedQuestions)
+    const assignedQuestions = [];
+    playerInfo.forEach((indivPlayer, i) => {
+        assignedQuestions.push(finalQuestionArray.slice(((i + 1) * 3) - 3, (i + 1) * 3));
+    })
+
+    // const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
+    console.log(assignedQuestions);
 
 
 
