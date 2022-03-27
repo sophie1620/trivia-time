@@ -1,18 +1,30 @@
+import { Link } from 'react-router-dom'
+
 function Results(props) {
+    console.log(props)
 
+    const scoreboard = props.scores.map((info) => {
+        return (
+            <div>
+                <p>{info.name}: {info.points}</p>
 
+                <img src={info.pic} alt="Player avatar" />
+
+            </div>
+        )
+    })
 
     return (
-        props.finalScores.map((info) => {
-            return (
-                <div>
-                    <p>{info.name}: {info.points}</p>
+        <div>
+            <h3>Results</h3>
+            {scoreboard}
+            <Link to={"/"}>
+                <button>Play again</button>
+            </Link >
+        </div>
 
-                    <img src={info.pic} alt="Player avatar" />
 
-                </div>
-            )
-        }));
+    );
 
 
 

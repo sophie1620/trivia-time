@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
 import CountDown from './CountDown';
-import Results from './Results'
+
 
 function Questions(props) {
 
@@ -126,9 +126,7 @@ function Questions(props) {
         }
     }
 
-    const submitScores = function () {
-        props.updateFinalScores(playerInfo)
-    }
+
 
 
     const handleCountdown = () => {
@@ -155,10 +153,10 @@ function Questions(props) {
             {
                 showResultsLink
                     ?
-                    // <Link to="/results" >
-                    //     <button onClick={submitScores}>Finish game</button>
-                    // </Link>
-                    <Results finalScores={playerInfo} />
+                    <Link to="/results" >
+                        <button >Finish game</button>
+                    </Link>
+                    // <Results finalScores={playerInfo} />
                     : null
             }
 

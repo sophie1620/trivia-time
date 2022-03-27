@@ -32,6 +32,7 @@ function App() {
 
   function update(newPlayerInfo) {
     setFinalScores(newPlayerInfo)
+
   }
 
 
@@ -48,7 +49,7 @@ function App() {
             <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
             <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} updateFinalScores={update} />} />
 
-            <Route path="/results" element={<Results />} finalResults={finalScores} />
+            <Route path="/results" element={<Results scores={finalScores} />} />
           </Routes>
 
         </div>
