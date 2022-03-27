@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CountDown from './CountDown';
 
-
 function Questions(props) {
 
     const [showQuestions, setShowQuestions] = useState(true)
@@ -19,7 +18,7 @@ function Questions(props) {
     const [isReset, setIsReset] = useState(false)
 
     const { currentQuestions, numOfPlayers, playerInfo } = props;
-
+    // console.log(props);
 
 
     function shuffleArray(array) {
@@ -87,7 +86,10 @@ function Questions(props) {
         setAnswerCheck(number)
     }
 
-
+    // map over the playerInfo array to create points key value pair in order to store the score
+    playerInfo.map((player) => {
+        player.points = 0;
+    })
 
 
 
@@ -99,15 +101,10 @@ function Questions(props) {
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
-
             playerInfo[currentPlayer].points = score;
-
             setIsDisabled(false);
             setIsReset(true);
-
             reset()
-
-
         }
 
         setIsDisabled(false);
@@ -121,13 +118,10 @@ function Questions(props) {
         if (currentPlayer === (numOfPlayers - 1)) {
             setShowResultsLink(true)
             setShowQuestions(false)
-            props.updateFinalScores(playerInfo)
-
         } else {
             setCurrentPlayer(currentPlayer + 1)
         }
     }
-
 
 
     // const handleCountdown = (disabledStatus) => {
@@ -137,7 +131,6 @@ function Questions(props) {
 
     
 
-
     return (
 
         <div>
@@ -145,11 +138,11 @@ function Questions(props) {
                 showQuestions
                     ? <div>
 
-
-                        <p>Player: {playerInfo[currentPlayer].name}  </p>
-                        <img src={playerInfo[currentPlayer].pic} alt="player avatar" />
-
-
+                        <p>Player: {props.playerInfo[currentPlayer].name}  </p>
+                        <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
+                        {assignedQuestions[currentPlayer][currentQuestion] }
+                        <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                        
                         <button onClick={next}>next</button>
                     </div>
                     : null
@@ -158,10 +151,9 @@ function Questions(props) {
             {
                 showResultsLink
                     ?
-                    <Link to="/results" >
-                        <button >Finish game</button>
+                    <Link to="/results">
+                        <button>Finish game</button>
                     </Link>
-                    // <Results finalScores={playerInfo} />
                     : null
             }
 
