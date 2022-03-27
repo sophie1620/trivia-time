@@ -1,4 +1,4 @@
-// import CountDown from './CountDown';
+import CountDown from './CountDown';
 
 function PlayerQuestions(props) {
 
@@ -13,6 +13,7 @@ function PlayerQuestions(props) {
 
         event.target.value === rightAnswer ? changeScore(1) : changeScore(0)
     }
+    
 
     // console.log(rightAnswer)
 
@@ -56,6 +57,7 @@ function PlayerQuestions(props) {
 
     return (
         <fieldset disabled={props.disabledStatus}>
+
 
             <legend>{normalizeText(triviaQuestn)}</legend>
 
