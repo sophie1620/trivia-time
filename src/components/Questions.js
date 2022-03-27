@@ -55,14 +55,12 @@ function Questions(props) {
     }, [currentQuestions])
 
     const finalQuestionArray = playerQuestions.map((questions) => {
-        return (
-                
+        return ( 
             <PlayerQuestions
                 key={Math.random()}
                 triviaQuestn={questions.triviaQuestn}
                 answers={questions.answers}
                 rightAnswer={questions.correct}
-                disabledStatus={isDisabled}
                 changeScore={changeScore}
             />
 
@@ -70,9 +68,9 @@ function Questions(props) {
 
     })
 
-    console.log(finalQuestionArray);
+    // console.log(finalQuestionArray);
     const playerOneQuestions = finalQuestionArray.slice(0, 3)
-    const playerTwoQuestions = finalQuestionArray.slice(3, 6)
+    const playerTwoQuestions = finalQuestionArray.slice(3, 7)
     const playerThreeQuestions = finalQuestionArray.slice(6, 9)
     const playerFourQuestions = finalQuestionArray.slice(9, 12)
     const playerFiveQuestions = finalQuestionArray.slice(12, 15)
@@ -82,7 +80,7 @@ function Questions(props) {
 
     // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
     function changeScore(number) {
-        console.log(number);
+        // console.log(number);
         setAnswerCheck(number)
     }
 
@@ -102,13 +100,15 @@ function Questions(props) {
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
             playerInfo[currentPlayer].points = score;
-            setIsDisabled(false);
-            setIsReset(true);
+            // setIsDisabled(false);
+            // setIsReset(false);
             reset()
         }
 
-        setIsDisabled(false);
+        // setIsDisabled(false);
         setIsReset(true);
+        // console.log(resetTimer);
+        // resetTimer();
         
     }
 
@@ -120,7 +120,9 @@ function Questions(props) {
             setShowQuestions(false)
         } else {
             setCurrentPlayer(currentPlayer + 1)
+            // grabProp();
         }
+
     }
 
 
@@ -129,7 +131,10 @@ function Questions(props) {
     //     setIsReset(false)
     // }
 
-    
+    function grabProp(nextStatus) {
+        // nextStatus()
+        console.log(nextStatus);
+    }
 
     return (
 
@@ -141,7 +146,7 @@ function Questions(props) {
                         <p>Player: {props.playerInfo[currentPlayer].name}  </p>
                         <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
                         {assignedQuestions[currentPlayer][currentQuestion] }
-                        <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                        <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={next} currentQuestions={currentQuestions} />
                         
                         <button onClick={next}>next</button>
                     </div>
