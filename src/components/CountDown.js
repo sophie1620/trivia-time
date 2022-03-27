@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 // import PlayerQuestions from "./PlayerQuestions";
 
-const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish }) => {
+const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNextButton }) => {
     const [paused, setPaused] = React.useState(false);
     const [over, setOver] = React.useState(false);
     const [[m, s], setTime] = React.useState([minutes, seconds]);
@@ -23,12 +23,13 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish }) => {
         setTime([ parseInt(minutes), parseInt(seconds)]);
         setPaused(false);
         setOver(false);
+        handleCountdownFinish(false);
     };
 
     const timesUp = () => {
         setOver(false);
         setPaused(true);
-        handleCountdownFinish();
+        handleCountdownFinish(true);
     }
 
     React.useEffect(() => {
@@ -36,7 +37,13 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish }) => {
         return () => clearInterval(timerID);
     });
 
-
+    React.useEffect(() => {
+        if (handleNextButton == true) {
+            reset();
+        }
+        // handleNextButton ? reset() : null;
+        
+    }, [handleNextButton]);
 
     return (
         <div>

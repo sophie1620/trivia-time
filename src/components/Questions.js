@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CountDown from './CountDown';
 
-
 function Questions(props) {
 
     const [showQuestions, setShowQuestions] = useState(true)
@@ -16,10 +15,10 @@ function Questions(props) {
     const [currentQuestion, setCurrentQuestion] = useState(0)
 
     const [isDisabled, setIsDisabled] = useState(false);
+    const [isReset, setIsReset] = useState(false)
 
     const { currentQuestions, numOfPlayers, playerInfo } = props;
-
-    console.log(score)
+    // console.log(props);
 
 
     function shuffleArray(array) {
@@ -56,9 +55,8 @@ function Questions(props) {
     }, [currentQuestions])
 
     const finalQuestionArray = playerQuestions.map((questions) => {
-
         return (
-
+                
             <PlayerQuestions
                 key={Math.random()}
                 triviaQuestn={questions.triviaQuestn}
@@ -71,6 +69,8 @@ function Questions(props) {
         )
 
     })
+
+    console.log(finalQuestionArray);
     const playerOneQuestions = finalQuestionArray.slice(0, 3)
     const playerTwoQuestions = finalQuestionArray.slice(3, 6)
     const playerThreeQuestions = finalQuestionArray.slice(6, 9)
@@ -79,38 +79,34 @@ function Questions(props) {
 
     const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
 
-    console.log(score);
+
 
     // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
     function changeScore(number) {
+        console.log(number);
         setAnswerCheck(number)
     }
 
-    // map over the playerInfo array to create points key value pair in order to store the score
-    // (changed this to for each since we dont want to create a new array, just alter the current one)
-    // playerInfo.forEach((player) => {
-    //     player.points = 0;
-
-    // })
-
-
+   
 
 
     function next() {
         // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
+        
         setScore(score + answerCheck)
         setCurrentQuestion(currentQuestion + 1)
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
-
             playerInfo[currentPlayer].points = score;
-            console.log(playerInfo[currentPlayer].points)
+            setIsDisabled(false);
+            setIsReset(true);
             reset()
-
-
         }
 
+        setIsDisabled(false);
+        setIsReset(true);
+        
     }
 
     function reset() {
@@ -119,20 +115,18 @@ function Questions(props) {
         if (currentPlayer === (numOfPlayers - 1)) {
             setShowResultsLink(true)
             setShowQuestions(false)
-            props.updateFinalScores(playerInfo)
-
         } else {
             setCurrentPlayer(currentPlayer + 1)
         }
     }
 
 
+    // const handleCountdown = (disabledStatus) => {
+    //     setIsDisabled(disabledStatus)
+    //     setIsReset(false)
+    // }
 
-
-    const handleCountdown = () => {
-        setIsDisabled(true)
-        // console.log('this');
-    }
+    
 
     return (
 
@@ -140,11 +134,12 @@ function Questions(props) {
             {
                 showQuestions
                     ? <div>
-                        <CountDown seconds={30} handleCountdownFinish={() => handleCountdown()} />
 
-                        <p>Player: {playerInfo[currentPlayer].name}  </p>
-                        <img src={playerInfo[currentPlayer].pic} alt="player avatar" />
-                        {assignedQuestions[currentPlayer][currentQuestion]}
+                        <p>Player: {props.playerInfo[currentPlayer].name}  </p>
+                        <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
+                        {assignedQuestions[currentPlayer][currentQuestion] }
+                        <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                        
                         <button onClick={next}>next</button>
                     </div>
                     : null
@@ -153,10 +148,9 @@ function Questions(props) {
             {
                 showResultsLink
                     ?
-                    <Link to="/results" >
-                        <button >Finish game</button>
+                    <Link to="/results">
+                        <button>Finish game</button>
                     </Link>
-                    // <Results finalScores={playerInfo} />
                     : null
             }
 
