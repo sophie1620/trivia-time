@@ -5,6 +5,7 @@ import './App.scss';
 import Questions from './components/Questions'
 import Header from './components/Header';
 import Form from './components/Form';
+import Results from './components/Results';
 
 
 
@@ -13,17 +14,25 @@ function App() {
   const [currentQuestions, setCurrentQuestions] = useState([])
   const [numberOfPlayers, setNumberOfPlayers] = useState([])
 
-  console.log(numberOfPlayers)
+
+  // console.log(numberOfPlayers)
 
   // getting player avatar and name to pass to <Questions />
   const [playerInfo, setPlayerInfo] = useState([])
+  const [finalScores, setFinalScores] = useState([])
 
-  console.log(playerInfo);
+  // console.log(playerInfo);
+  console.log(finalScores)
 
   function handleSubmit(questionArray, number) {
 
     setCurrentQuestions(questionArray)
     setNumberOfPlayers(number)
+  }
+
+  function update(newPlayerInfo) {
+    setFinalScores(newPlayerInfo)
+
   }
 
 
@@ -38,9 +47,9 @@ function App() {
 
 
             <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
-            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} />} />
+            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} updateFinalScores={update} />} />
 
-            {/* <Route path="/results" element={<Scoreboard />} /> */}
+            <Route path="/results" element={<Results scores={finalScores} />} />
           </Routes>
 
         </div>
