@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 // import PlayerQuestions from "./PlayerQuestions";
 
 const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNextButton }) => {
@@ -20,7 +20,7 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
     };
 
     const reset = () => {
-        setTime([ parseInt(minutes), parseInt(seconds)]);
+        setTime([parseInt(minutes), parseInt(seconds)]);
         setPaused(false);
         setOver(false);
         handleCountdownFinish(false);
@@ -42,22 +42,22 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
             reset();
         }
         // handleNextButton ? reset() : null;
-        
+
     }, [handleNextButton]);
 
     return (
         <div>
-            
+
             <p>{`${m
                 .toString()
                 .padStart(2, '0')}:${s.toString().padStart(2, '0')}`}</p>
 
-        <div>
-            {/* Call a function here that has time up logic */}
-            {/* {over ? "Time's up!" : ''} */}
-            {over ? timesUp()  : ''}
+            <div>
+                {/* Call a function here that has time up logic */}
+                {/* {over ? "Time's up!" : ''} */}
+                {over ? timesUp() : ''}
 
-        </div>
+            </div>
             <button onClick={() => setPaused(!paused)}>
                 {paused ? 'Resume' : 'Pause'}
             </button>
