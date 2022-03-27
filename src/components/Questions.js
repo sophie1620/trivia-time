@@ -82,6 +82,7 @@ function Questions(props) {
     function changeScore(number) {
         // console.log(number);
         setAnswerCheck(number)
+        
     }
 
     // map over the playerInfo array to create points key value pair in order to store the score
@@ -101,14 +102,13 @@ function Questions(props) {
         if (currentQuestion === 2) {
             playerInfo[currentPlayer].points = score;
             // setIsDisabled(false);
-            // setIsReset(false);
+            // setIsReset(true);
             reset()
         }
 
         // setIsDisabled(false);
+        console.log(isReset);
         setIsReset(true);
-        // console.log(resetTimer);
-        // resetTimer();
         
     }
 
@@ -120,9 +120,7 @@ function Questions(props) {
             setShowQuestions(false)
         } else {
             setCurrentPlayer(currentPlayer + 1)
-            // grabProp();
         }
-
     }
 
 
@@ -130,12 +128,11 @@ function Questions(props) {
     //     setIsDisabled(disabledStatus)
     //     setIsReset(false)
     // }
+    useEffect(() => { 
+        setIsReset(false);
+    }, [currentQuestion])
 
-    function grabProp(nextStatus) {
-        // nextStatus()
-        console.log(nextStatus);
-    }
-
+    
     return (
 
         <div>
@@ -146,7 +143,7 @@ function Questions(props) {
                         <p>Player: {props.playerInfo[currentPlayer].name}  </p>
                         <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
                         {assignedQuestions[currentPlayer][currentQuestion] }
-                        <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={next} currentQuestions={currentQuestions} />
+                        <CountDown seconds={5} handleCountdownFinish={() => next()} handleNextButton={isReset} />
                         
                         <button onClick={next}>next</button>
                     </div>
