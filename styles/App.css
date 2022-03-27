@@ -297,9 +297,23 @@ p {
   color: #264653;
 }
 
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 footer {
   background-color: #fffef6;
   padding: 30px;
+}
+
+footer::before {
+  content: url("../../public/assets/footerWave.svg");
+  position: relative;
+  top: 0;
 }
 
 .footerP {
