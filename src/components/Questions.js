@@ -81,14 +81,12 @@ function Questions(props) {
     console.log(assignedQuestions)
 
 
+
     // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
     function changeScore(number) {
         console.log(number);
         setAnswerCheck(number)
     }
-
-    // map over the playerInfo array to create points key value pair in order to store the score
-
 
 
 
