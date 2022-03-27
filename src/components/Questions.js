@@ -99,17 +99,23 @@ function Questions(props) {
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
             playerInfo[currentPlayer].points = score;
-            console.log(playerInfo[currentPlayer])
-            setScore(0);
-            setCurrentPlayer(currentPlayer + 1)
-            setCurrentQuestion(0)
-        }
-        if (currentPlayer === (numOfPlayers)) {
-            setShowResultsLink(true)
-            setShowQuestions(false)
+            reset()
         }
 
     }
+
+    function reset() {
+        setScore(0)
+        setCurrentQuestion(0)
+        if (currentPlayer === (numOfPlayers - 1)) {
+            setShowResultsLink(true)
+            setShowQuestions(false)
+        } else {
+            setCurrentPlayer(currentPlayer + 1)
+        }
+    }
+
+
     const handleCountdown = () => {
         setIsDisabled(true)
         // console.log('this');
@@ -122,8 +128,9 @@ function Questions(props) {
                 showQuestions
                     ? <div>
                         <CountDown seconds={30} handleCountdownFinish={() => handleCountdown()} />
-                        <p>score: {score}</p>
-                        <p>Player: {currentPlayer + 1} </p>
+
+                        <p>Player: {props.playerInfo[currentPlayer].name}  </p>
+                        <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
                         {assignedQuestions[currentPlayer][currentQuestion]}
                         <button onClick={next}>next</button>
                     </div>
