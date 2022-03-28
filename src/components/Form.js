@@ -54,6 +54,8 @@ function Form(props) {
         props.showQuestions(questions, selectedNumber)
         props.playerInfo(nameArray)
 
+        console.log(props.playerInfo);
+
     }
 
     useEffect(() => {

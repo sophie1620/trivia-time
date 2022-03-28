@@ -137,34 +137,42 @@ function Questions(props) {
     }, [currentQuestion])
 
     return (
-
-        <div>
-            {
-                showQuestions
-                    ? <div>
-
-                        <p>Player: {props.playerInfo[currentPlayer].name}  </p>
-                        <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
-
-                        {assignedQuestions[currentPlayer][currentQuestion] }
-                        <CountDown seconds={30} handleCountdownFinish={() => next()} handleNextButton={isReset} />
-                        
-
-                        <button onClick={next}>next</button>
-                    </div>
-                    : null
-            }
-
-            {
-                showResultsLink
+        <div className="wrapper">
+                {
+                    showQuestions
                     ?
-                    <Link to="/results">
-                        <button>Finish game</button>
-                    </Link>
-                    : null
-            }
+                        <div className="questionContainer">
 
-        </div>
+                            <div className="playerNameContainer">
+                                <h3>Player: {props.playerInfo[currentPlayer].name}  </h3>
+                            </div>
+                            <div className="avatarImgContainer">
+                                <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
+                            </div>
+
+                            <div className="questionText">
+                                {assignedQuestions[currentPlayer][currentQuestion] }
+                            </div> 
+
+                            <div className="countdownContainer">
+                                <CountDown seconds={30} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                            </div>
+                            
+
+                            <button onClick={next}>next</button>
+                        </div>
+                        : null
+                }
+
+                {
+                    showResultsLink
+                        ?
+                        <Link to="/results">
+                            <button>Finish game</button>
+                        </Link>
+                        : null
+                }
+            </div>
     )
 }
 

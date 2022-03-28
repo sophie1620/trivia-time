@@ -5,7 +5,7 @@ function AvatarPic(props) {
 
 
     const [display, setDisplay] = useState('hide');
-    const [userInput, setUserInput] = useState (props.userObject.name);
+    const [userInput, setUserInput] = useState ('');
 
 
     const handleInputChange = function (event) {
