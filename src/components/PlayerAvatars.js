@@ -4,10 +4,10 @@ import AvatarPic from './AvatarPic';
 
 function PlayerAvatars(props) {
     // console.log(props.triviaPlayers);
-    // console.log(props.playerAvatarName);
+    // console.log(props.playerAvatarName);s
 
     const [avatar, setAvatar] = useState([]);
-    const [playerName, setPlayerName] = useState([]);
+
     const numOfAvatar = props.triviaPlayers;
 
     // console.log(playerName);
