@@ -1,7 +1,10 @@
-.hide {
-    display: none;
+img.avatarPic {
+    border: 5px solid $coral-orange;
+    border-radius: 50%;
+    background-color: $cream;
 }
 
-.show {
-    display: block;
+fieldset.playerInfo {
+    display: flex;
+    flex-direction: column;
 }

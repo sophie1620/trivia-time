@@ -1,5 +1,5 @@
-import PlayerQuestions from './PlayerQuestions'
-import { useState, useEffect } from 'react'
+import PlayerQuestions from './PlayerQuestions';
+import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom'
 import CountDown from './CountDown';
@@ -14,9 +14,9 @@ function Questions(props) {
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
 
-    const [isDisabled, setIsDisabled] = useState(false);
     const [isReset, setIsReset] = useState(false)
 
+    // destructure props passed from parent component
     const { currentQuestions, numOfPlayers, playerInfo } = props;
     // console.log(props);
 
@@ -70,19 +70,11 @@ function Questions(props) {
 
     })
 
-    // const playerOneQuestions = finalQuestionArray.slice(0, 3)
-    // const playerTwoQuestions = finalQuestionArray.slice(3, 6)
-    // const playerThreeQuestions = finalQuestionArray.slice(6, 9)
-    // const playerFourQuestions = finalQuestionArray.slice(9, 12)
-    // const playerFiveQuestions = finalQuestionArray.slice(12, 15)
-
     const assignedQuestions = [];
     playerInfo.forEach((indivPlayer, i) => {
         assignedQuestions.push(finalQuestionArray.slice(((i + 1) * 3) - 3, (i + 1) * 3));
     })
-
-    // const assignedQuestions = [playerOneQuestions, playerTwoQuestions, playerThreeQuestions, playerFourQuestions, playerFiveQuestions]
-    console.log(assignedQuestions);
+    // console.log(assignedQuestions);
 
 
 
@@ -90,7 +82,7 @@ function Questions(props) {
     function changeScore(number) {
         // console.log(number);
         setAnswerCheck(number)
-        
+
     }
 
 
@@ -99,6 +91,7 @@ function Questions(props) {
         // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
 
         setScore(score + answerCheck)
+        setAnswerCheck(0)
         setCurrentQuestion(currentQuestion + 1)
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
@@ -112,7 +105,6 @@ function Questions(props) {
         // setIsDisabled(false);
         console.log(isReset);
         setIsReset(true);
-
     }
 
     function reset() {
@@ -132,14 +124,32 @@ function Questions(props) {
     //     setIsDisabled(disabledStatus)
     //     setIsReset(false)
     // }
-    useEffect(() => { 
+
+    useEffect(() => {
         setIsReset(false);
     }, [currentQuestion])
 
     return (
-        <div className="wrapper">
-                {
-                    showQuestions
+
+        <div>
+            {
+                showQuestions
+                    ? <div>
+
+                        <p>Player: {props.playerInfo[currentPlayer].name}  </p>
+                        <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
+
+                        {assignedQuestions[currentPlayer][currentQuestion]}
+                        <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+
+
+                        <button onClick={next}>next</button>
+                    </div>
+                    : null
+            }
+
+            {
+                showResultsLink
                     ?
                         <div className="questionContainer">
 

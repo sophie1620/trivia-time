@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.scss';
 
 import Questions from './components/Questions'
 import Header from './components/Header';
 import Form from './components/Form';
 import Results from './components/Results';
+import Leaderboard from './components/Leaderboard';
+
 
 
 
@@ -21,7 +23,7 @@ function App() {
   const [playerInfo, setPlayerInfo] = useState([])
   const [finalScores, setFinalScores] = useState([])
 
-  // console.log(playerInfo);
+  console.log(playerInfo);
   console.log(finalScores)
 
   function handleSubmit(questionArray, number) {
@@ -41,25 +43,31 @@ function App() {
       <Header />
 
       <main>
-        <div className="wrapper">
-
-          <Routes>
 
 
-            <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
-            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} updateFinalScores={update} />} />
+        <Routes>
+          <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
+          <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} updateFinalScores={update} />} />
 
-            <Route path="/results" element={<Results scores={finalScores} />} />
-          </Routes>
+          <Route path="/results" element={<Results scores={finalScores} />} />
+          <Route path="/previousWinners" element={<Leaderboard />} />
+        </Routes>
 
-        </div>
+
+        <Link to={"/previousWinners"}>
+          <button>See previous winners!</button>
+        </Link>
+
       </main>
 
 
       <footer>
         <div className="wrapper">
           <p className='footerP'>Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
-          <p className='footerP'>Seanna Stewart | Michelle Wong | Sylvia Raposo | <a href="https://sophielai.ca/">Sophie Lai</a></p>
+
+          <p className='footerP'>
+            <a href="https://seannastewart.com/" target="_blank" rel="noreferrer noopener">Seanna Stewart</a>  |  <a href="https://codemich.dev/" target="_blank" rel="noreferrer noopener">Michelle Wong</a>  |  <a href="https://sylviaraposo.com/" target="_blank" rel="noreferrer noopener">Sylvia Raposo</a>  |  <a href="https://sophielai.ca/" target="blank" rel="noreferrer noopener">Sophie Lai</a>
+          </p>
           <p className='footerP'>APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
 
         </div>
