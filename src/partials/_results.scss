@@ -1,0 +1,42 @@
+.results {
+    background-color: $bright-yellow;
+    text-align: center;
+    padding: 5% 0;
+    h2 {
+        letter-spacing: 2px;
+    }
+    img {
+        border-radius: 50%;
+        background-color: white;
+        border: 2px solid $light-teal;
+    }
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    li {
+        margin: 0 2.5%;
+    }
+    button {
+        font-family: $tertiary-font;
+        font-size: $paragraph-text;
+        color: $dark-teal;
+        background-color: white;
+        padding: 1.5% 10%;
+        border: 2px solid $dark-blue;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.5s;
+        &:hover,
+        &:focus {
+            background-color: $light-teal;
+            color: white;
+        }
+    }
+    .hidePlayer {
+        display: none;
+    }
+
+}

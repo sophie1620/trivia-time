@@ -42,18 +42,17 @@ function App() {
       <Header />
 
       <main>
-        <div className="wrapper">
-
-          <Routes>
 
 
-            <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
-            <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} updateFinalScores={update} />} />
+        <Routes>
 
-            <Route path="/results" element={<Results scores={finalScores} />} />
-          </Routes>
 
-        </div>
+          <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
+          <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} updateFinalScores={update} />} />
+
+          <Route path="/results" element={<Results scores={finalScores} />} />
+        </Routes>
+
       </main>
 
 

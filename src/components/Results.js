@@ -2,20 +2,19 @@ import { Link } from 'react-router-dom';
 
 
 function Results(props) {
-    console.log(props)
+    // console.log(props)
 
-    // if points = 3 for any player they win
-
-    const scoreArray = props.scores.map((number) => {
-
+    const fullScoreArray = props.scores.map((number) => {
         return (
             number.points
         )
     })
 
-    const highestScore = Math.max(...scoreArray)
+    const scoreArray = fullScoreArray.filter((number) =>
+        number !== undefined
+    )
 
-    console.log(highestScore)
+    const highestScore = Math.max(...scoreArray)
 
     const winnerArray = props.scores.filter((score) =>
         score.points === highestScore
@@ -25,50 +24,66 @@ function Results(props) {
         score.points !== highestScore
     )
 
-    console.log(winnerArray)
-
 
     const winner = winnerArray.map((info) => {
 
         return (
-            <div>
+            <li>
                 <div>
-                    <p>{info.name} wins!</p>
-                    <p>{info.name}'s score: {info.points}</p>
 
-                    <img src={info.pic} alt="Player avatar" />
+                    <img className="avatarPic" src={info.pic} alt="Player avatar" />
+                    <p>{info.name}! </p>
+                    <p> score: {info.points}</p>
 
                 </div>
 
-            </div>
+            </li>
         )
     })
 
     const losers = loserArray.map((info) => {
 
         return (
-            <div>
+            // if the player has a picture (they are playing), set class to showPlayer, else hidePlayer
+            <li className={info.pic !== "" ? "showPlayer" : "hidePlayer"}>
                 <div>
-                    <p>{info.name}'s score: {info.points}</p>
 
-                    <img src={info.pic} alt="Player avatar" />
+                    <img className="avatarPic" src={info.pic} alt="Player avatar" />
+                    <p>{info.name} </p>
+                    <p> score: {info.points}</p>
 
                 </div>
 
-            </div>
+            </li>
         )
     })
 
-    return (
-        <div>
-            <h3>Results</h3>
-            {winner}
-            {losers}
-            <Link to={"/"}>
-                <button>Play again</button>
-            </Link >
-        </div>
 
+    return (
+        <section className="results">
+            <div className="wrapper">
+                <h3>results</h3>
+                <section className="winnersContainer">
+                    {winnerArray.length === 1 ?
+                        <h2>The winner is:</h2>
+                        : <h2>The winners are:</h2>}
+                    <ul className="winners">
+                        {winner}
+                    </ul>
+                </section>
+
+                <section className="losersContainer">
+                    <h2>better luck next time!</h2>
+                    <ul className="losers">
+                        {losers}
+                    </ul>
+                </section>
+
+                <Link to={"/"}>
+                    <button>Play again</button>
+                </Link >
+            </div>
+        </section>
 
     );
 
