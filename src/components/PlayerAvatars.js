@@ -7,9 +7,6 @@ function PlayerAvatars(props) {
     // console.log(props.playerAvatarName);s
 
     const [avatar, setAvatar] = useState([]);
-    // const [playerName, setPlayerName] = useState([]);
-
-    // const [numOfAvatar, setNumOfAvatar] = useState([]);
 
     const numOfAvatar = props.triviaPlayers;
 

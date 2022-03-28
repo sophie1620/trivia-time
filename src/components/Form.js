@@ -8,11 +8,7 @@ function Form(props) {
     // declare a use state to hold user category
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedNumber, setSelectedNumber] = useState(0);
-    const [questions, setQuestions] = useState([])
-
-    // showing name error in player name input
-    const [display, setDisplay] = useState('hide');
-    const [disable, setDisable] = useState(false)
+    const [questions, setQuestions] = useState([]);
 
     // const [playerInfo, setPlayerInfo] = useState([])
     const [nameArray, setNameArray] = useState([])
@@ -27,40 +23,23 @@ function Form(props) {
         // console.log(selectedNumber)
 
         let tempArray = [];
-        for (let i = 0; i < event.target.value; i++) {
+        for (let i = 0; i <= 4 ; i++) {
+
             tempArray.push({
                 name: `player${i + 1}`,
                 pic: ''
             })
         }
         setNameArray(tempArray);
-
         // to get player avatar and name
         props.playerInfo(nameArray)
-        // console.log(props.playerInfo)
     }
-
-
-    // useEffect(() => {
-    //     let tempArray = [];
-    //     for (let i = 0; i < selectedNumber; i++) {
-    //         tempArray.push({
-    //             name: `player${i + 1}`,
-    //             pic: ''
-    //         })
-    //     }
-    //     setNameArray(tempArray);
-
-    //     props.playerInfo(nameArray)
-    // }, [selectedNumber])
-
 
 
     const playerAvatarName = function (userObject, arrayIndex) {
         // console.log(userObject, arrayIndex);
         // userObject will hold the name and URL link
         // arrayIndex is to help identify which location within the array the object belongs to
-
 
         const tempArray = [...nameArray]
 
@@ -72,21 +51,8 @@ function Form(props) {
     }
 
     const handleClick = function () {
-        
-        nameArray.forEach((name) => {
-            props.playerInfo(nameArray)
-            props.showQuestions(questions, selectedNumber)
-
-            let regEx = /^\S+$/
-            if (!regEx.test(name)){
-                // setDisplay('show')
-                console.log('error in name')
-                setDisable(true)
-            } else {
-                // props.playerInfo(nameArray)
-                // props.showQuestions(questions, selectedNumber)
-            }
-        })
+        props.playerInfo(nameArray)
+        props.showQuestions(questions, selectedNumber)
     }
 
     useEffect(() => {
@@ -144,7 +110,6 @@ function Form(props) {
                     {/* Need to set height/class to avoid button jumping */}
                     <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} />
 
-                    <span className={display}>Please remove spaces in player name.</span>
                 </div>
                 {/* <Link to={{
                     pathname: '/game',
@@ -154,7 +119,7 @@ function Form(props) {
 
                 {/* <button id='submit' >Submit</button> */}
                 <Link to="/game">
-                    <button className="start" onClick={handleClick} disabled={disable}>START</button>
+                    <button className="start" onClick={handleClick} >START</button>
                 </Link>
                 {/* <button>submit</button> */}
 
