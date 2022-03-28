@@ -4,8 +4,9 @@ function AvatarPic(props) {
     // console.log(props)
 
 
-    const [display, setDisplay] = useState('hide');
-    const [userInput, setUserInput] = useState (props.userObject.name);
+    // const [display, setDisplay] = useState('hide');
+    const [userInput, setUserInput] = useState('');
+    // props.userObject.name
 
 
     const handleInputChange = function (event) {
@@ -22,17 +23,17 @@ function AvatarPic(props) {
     }
 
     const handleLocalInputChange = function (event) {
+        setUserInput('')
         setUserInput(event.target.value)
 
         // regEx
-        let regEx = /^\S+$/
-        if (!regEx.test(userInput)){
-            setDisplay('show')
-        }
+        // let regEx = /^\S+$/
+        // if (!regEx.test(userInput)){
+        //     setDisplay('show')
+        // }
     }
     return (
         <fieldset >
-
             <img
                 className="avatarPic"
                 src={props.src}
@@ -40,18 +41,11 @@ function AvatarPic(props) {
             />
 
             {/* for players to set their own names */}
-
             <label htmlFor="playerName">Player Name</label>
             <input type="text" name="playerName" id="playerName" value={userInput} onChange={handleLocalInputChange} onBlur={handleInputChange} />
-            {/* oncChange now only handles LOCAL changes, and onBlur will update with the object info ONCE the user clicks away from the input box */}
+                {/* oncChange now only handles LOCAL changes, and onBlur will update with the object info ONCE the user clicks away from the input box */}
 
-
-
-            <span className={display}>Please remove spaces in player name.</span>
-
-
-            
-
+            {/* <span className={display}>Please remove spaces in player name.</span> */}
         </fieldset>
     )
 }

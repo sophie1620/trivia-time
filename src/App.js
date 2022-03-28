@@ -21,7 +21,7 @@ function App() {
   const [playerInfo, setPlayerInfo] = useState([])
   const [finalScores, setFinalScores] = useState([])
 
-  // console.log(playerInfo);
+  console.log(playerInfo);
   console.log(finalScores)
 
   function handleSubmit(questionArray, number) {
