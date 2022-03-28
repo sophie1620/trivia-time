@@ -26,7 +26,8 @@ function AvatarPic(props) {
 
     }
     return (
-        <fieldset >
+
+        <fieldset className="playerInfo" >
             <img
                 className="avatarPic"
                 src={props.src}
@@ -34,9 +35,11 @@ function AvatarPic(props) {
             />
 
             {/* for players to set their own names */}
-            <label htmlFor="playerName">Player Name</label>
+
+            <label className="sr-only" htmlFor="playerName">Player Name</label>
             <input type="text" name="playerName" id="playerName" value={userInput} onChange={handleLocalInputChange} onBlur={handleInputChange} />
-            {/* oncChange now only handles LOCAL changes, and onBlur will update with the object info ONCE the user clicks away from the input box */}
+                {/* oncChange now only handles LOCAL changes, and onBlur will update with the object info ONCE the user clicks away from the input box */}
+
         </fieldset>
     )
 }

@@ -253,14 +253,6 @@ img {
   width: 200px;
 }
 
-.none {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
 a {
   text-decoration: none;
   color: inherit;
@@ -366,23 +358,40 @@ p {
   font-size: 25px;
 }
 
-.hide {
-  display: none;
+img.avatarPic {
+  border: 5px solid #e76f51;
+  border-radius: 50%;
+  background-color: #fffef6;
 }
 
-.show {
-  display: block;
+fieldset.playerInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body {
+  background-color: lightblue;
 }
 
 footer {
   background-color: #fffef6;
-  padding: 30px;
+  padding: 30px 0;
+  position: relative;
+  height: 25vh;
 }
 
 footer::before {
-  content: url("../../public/assets/footerWave.svg");
+  content: url(./../../public/assets/footerWave.svg);
   position: relative;
-  top: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
 }
 
 .footerP {

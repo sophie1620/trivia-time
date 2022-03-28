@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom';
 import './App.scss';
 
 import Questions from './components/Questions'
 import Header from './components/Header';
 import Form from './components/Form';
 import Results from './components/Results';
+
 
 
 
@@ -21,7 +22,7 @@ function App() {
   const [playerInfo, setPlayerInfo] = useState([])
   const [finalScores, setFinalScores] = useState([])
 
-  // console.log(playerInfo);
+  console.log(playerInfo);
   console.log(finalScores)
 
   function handleSubmit(questionArray, number) {
@@ -58,7 +59,10 @@ function App() {
       <footer>
         <div className="wrapper">
           <p className='footerP'>Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
-          <p className='footerP'>Seanna Stewart | Michelle Wong | Sylvia Raposo | <a href="https://sophielai.ca/">Sophie Lai</a></p>
+
+          <p className='footerP'>
+            <a href="https://seannastewart.com/" target="_blank" rel="noreferrer noopener">Seanna Stewart</a>  |  <a href="https://codemich.dev/" target="_blank" rel="noreferrer noopener">Michelle Wong</a>  |  <a href="https://sylviaraposo.com/" target="_blank" rel="noreferrer noopener">Sylvia Raposo</a>  |  <a href="https://sophielai.ca/" target="blank" rel="noreferrer noopener">Sophie Lai</a>
+          </p>
           <p className='footerP'>APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
 
         </div>

@@ -23,7 +23,9 @@ function Form(props) {
         // console.log(selectedNumber)
 
         let tempArray = [];
+
         for (let i = 0; i <= 4; i++) {
+
 
             tempArray.push({
                 name: `player${i + 1}`,
