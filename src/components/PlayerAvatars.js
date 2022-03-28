@@ -4,10 +4,10 @@ import AvatarPic from './AvatarPic';
 
 function PlayerAvatars(props) {
     // console.log(props.triviaPlayers);
-    // console.log(props.playerAvatarName);
+    // console.log(props.playerAvatarName);s
 
     const [avatar, setAvatar] = useState([]);
-    const [playerName, setPlayerName] = useState([]);
+
     const numOfAvatar = props.triviaPlayers;
 
     // console.log(playerName);
@@ -68,9 +68,9 @@ function PlayerAvatars(props) {
                 avatar.map((avatarUrl, i) => {
                     return (
                         // Using Math.Random() for now to generate temporary ID
-                        <AvatarPic 
-                            src={avatarUrl.request.responseURL} 
-                            key={Math.random()} 
+                        <AvatarPic
+                            src={avatarUrl.request.responseURL}
+                            key={Math.random()}
                             // playerNameInfo={playerNameInfo}
                             // playInfo={props.playInfo}
                             userObject={props.nameArray[i]}

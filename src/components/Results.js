@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom'
 function Results(props) {
     console.log(props)
 
-    // if points = 3 for any player they win
-
-    const scoreArray = props.scores.map((number) => {
-
+    const fullScoreArray = props.scores.map((number) => {
         return (
             number.points
         )
     })
+    console.log(fullScoreArray)
+
+    const scoreArray = fullScoreArray.filter((number) =>
+        number !== undefined
+    )
 
     const highestScore = Math.max(...scoreArray)
 
@@ -33,7 +35,7 @@ function Results(props) {
             <li>
                 <div>
 
-                    <img src={info.pic} alt="Player avatar" />
+                    <img className="avatarPic" src={info.pic} alt="Player avatar" />
                     <p>{info.name}! </p>
                     <p> score: {info.points}</p>
 
@@ -44,12 +46,14 @@ function Results(props) {
     })
 
     const losers = loserArray.map((info) => {
+        console.log(info)
 
         return (
-            <li>
+            // if the player has a picture (they are playing), set class to showPlayer, else hidePlayer
+            <li className={info.pic !== "" ? "showPlayer" : "hidePlayer"}>
                 <div>
 
-                    <img src={info.pic} alt="Player avatar" />
+                    <img className="avatarPic" src={info.pic} alt="Player avatar" />
                     <p>{info.name} </p>
                     <p> score: {info.points}</p>
 
