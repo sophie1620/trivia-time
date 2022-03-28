@@ -90,7 +90,7 @@ function Questions(props) {
     function changeScore(number) {
         // console.log(number);
         setAnswerCheck(number)
-        
+
     }
 
 
@@ -99,6 +99,7 @@ function Questions(props) {
         // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
 
         setScore(score + answerCheck)
+        setAnswerCheck(0)
         setCurrentQuestion(currentQuestion + 1)
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
@@ -132,7 +133,7 @@ function Questions(props) {
     //     setIsDisabled(disabledStatus)
     //     setIsReset(false)
     // }
-    useEffect(() => { 
+    useEffect(() => {
         setIsReset(false);
     }, [currentQuestion])
 
@@ -146,9 +147,9 @@ function Questions(props) {
                         <p>Player: {props.playerInfo[currentPlayer].name}  </p>
                         <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
 
-                        {assignedQuestions[currentPlayer][currentQuestion] }
-                        <CountDown seconds={30} handleCountdownFinish={() => next()} handleNextButton={isReset} />
-                        
+                        {assignedQuestions[currentPlayer][currentQuestion]}
+                        <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+
 
                         <button onClick={next}>next</button>
                     </div>

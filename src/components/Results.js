@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
 
 function Results(props) {
-    console.log(props)
+    // console.log(props)
 
     const fullScoreArray = props.scores.map((number) => {
         return (
             number.points
         )
     })
-    console.log(fullScoreArray)
+    // console.log(fullScoreArray)
 
     const scoreArray = fullScoreArray.filter((number) =>
         number !== undefined
@@ -16,7 +16,7 @@ function Results(props) {
 
     const highestScore = Math.max(...scoreArray)
 
-    console.log(highestScore)
+    // console.log(highestScore)
 
     const winnerArray = props.scores.filter((score) =>
         score.points === highestScore
@@ -26,7 +26,7 @@ function Results(props) {
         score.points !== highestScore
     )
 
-    console.log(winnerArray)
+    // console.log(winnerArray)
 
 
     const winner = winnerArray.map((info) => {
@@ -46,7 +46,7 @@ function Results(props) {
     })
 
     const losers = loserArray.map((info) => {
-        console.log(info)
+        // console.log(info)
 
         return (
             // if the player has a picture (they are playing), set class to showPlayer, else hidePlayer
@@ -62,7 +62,7 @@ function Results(props) {
             </li>
         )
     })
-    console.log(winner)
+    // console.log(winner)
 
     return (
         <section className="results">
