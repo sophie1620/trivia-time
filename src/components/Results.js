@@ -30,44 +30,61 @@ function Results(props) {
     const winner = winnerArray.map((info) => {
 
         return (
-            <div>
+            <li>
                 <div>
-                    <p>{info.name} wins!</p>
-                    <p>{info.name}'s score: {info.points}</p>
 
                     <img src={info.pic} alt="Player avatar" />
+                    <p>{info.name}! </p>
+                    <p> score: {info.points}</p>
 
                 </div>
 
-            </div>
+            </li>
         )
     })
 
     const losers = loserArray.map((info) => {
 
         return (
-            <div>
+            <li>
                 <div>
-                    <p>{info.name}'s score: {info.points}</p>
 
                     <img src={info.pic} alt="Player avatar" />
+                    <p>{info.name} </p>
+                    <p> score: {info.points}</p>
 
                 </div>
 
-            </div>
+            </li>
         )
     })
+    console.log(winner)
 
     return (
-        <div>
-            <h3>Results</h3>
-            {winner}
-            {losers}
-            <Link to={"/"}>
-                <button>Play again</button>
-            </Link >
-        </div>
+        <section className="results">
+            <div className="wrapper">
+                <h3>results</h3>
+                <section className="winnersContainer">
+                    {winnerArray.length === 1 ?
+                        <h2>The winner is:</h2>
+                        : <h2>The winners are:</h2>}
+                    <ul className="winners">
+                        {winner}
+                    </ul>
+                </section>
 
+                <section className="losersContainer">
+                    <h2>better luck next time!</h2>
+                    <ul className="losers">
+                        {losers}
+                    </ul>
+                </section>
+
+                <Link to={"/"}>
+                    <button>Play again</button>
+                </Link >
+            </div>
+        </section>
 
     );
 
