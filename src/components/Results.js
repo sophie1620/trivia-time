@@ -8,15 +8,12 @@ function Results(props) {
             number.points
         )
     })
-    // console.log(fullScoreArray)
 
     const scoreArray = fullScoreArray.filter((number) =>
         number !== undefined
     )
 
     const highestScore = Math.max(...scoreArray)
-
-    // console.log(highestScore)
 
     const winnerArray = props.scores.filter((score) =>
         score.points === highestScore
@@ -25,8 +22,6 @@ function Results(props) {
     const loserArray = props.scores.filter((score) =>
         score.points !== highestScore
     )
-
-    // console.log(winnerArray)
 
 
     const winner = winnerArray.map((info) => {
@@ -46,7 +41,6 @@ function Results(props) {
     })
 
     const losers = loserArray.map((info) => {
-        // console.log(info)
 
         return (
             // if the player has a picture (they are playing), set class to showPlayer, else hidePlayer
@@ -62,7 +56,7 @@ function Results(props) {
             </li>
         )
     })
-    // console.log(winner)
+
 
     return (
         <section className="results">
