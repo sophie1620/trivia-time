@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.scss';
 
 import Questions from './components/Questions'
 import Header from './components/Header';
 import Form from './components/Form';
 import Results from './components/Results';
+import Leaderboard from './components/Leaderboard';
 
 
 
@@ -45,13 +46,17 @@ function App() {
 
 
         <Routes>
-
-
           <Route path="/" element={<Form showQuestions={handleSubmit} playerInfo={setPlayerInfo} />} />
           <Route path="/game" element={<Questions currentQuestions={currentQuestions} playerInfo={playerInfo} numOfPlayers={numberOfPlayers} updateFinalScores={update} />} />
 
           <Route path="/results" element={<Results scores={finalScores} />} />
+          <Route path="/previousWinners" element={<Leaderboard />} />
         </Routes>
+
+
+        <Link to={"/previousWinners"}>
+          <button>See previous winners!</button>
+        </Link>
 
       </main>
 
