@@ -34,6 +34,7 @@ function AvatarPic(props) {
         <fieldset >
 
             <img
+                className="avatarPic"
                 src={props.src}
                 alt="robot avatar"
             />

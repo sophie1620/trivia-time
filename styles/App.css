@@ -366,6 +366,12 @@ p {
   font-size: 25px;
 }
 
+img.avatarPic {
+  border: 2px solid #e76f51;
+  border-radius: 50%;
+}
+
+/* to hide or show warning for spaces in player name */
 .hide {
   display: none;
 }
@@ -377,12 +383,17 @@ p {
 footer {
   background-color: #fffef6;
   padding: 30px;
+  position: relative;
+  bottom: -150px;
 }
 
 footer::before {
-  content: url("../../public/assets/footerWave.svg");
-  position: relative;
-  top: 0;
+  content: "";
+  background-image: url(./../../public/assets/footerWave.svg);
+  position: absolute;
+  top: -150px;
+  width: 100%;
+  height: 150px;
 }
 
 .footerP {
