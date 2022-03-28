@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom';
 import './App.scss';
 
 import Questions from './components/Questions'
 import Header from './components/Header';
 import Form from './components/Form';
 import Results from './components/Results';
+
 
 
 

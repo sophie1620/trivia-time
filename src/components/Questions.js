@@ -112,7 +112,6 @@ function Questions(props) {
         // setIsDisabled(false);
         console.log(isReset);
         setIsReset(true);
-
     }
 
     function reset() {

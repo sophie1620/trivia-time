@@ -1,14 +1,10 @@
-
 img.avatarPic {
-    border: 2px solid $coral-orange;
+    border: 5px solid $coral-orange;
     border-radius: 50%;
+    background-color: $cream;
 }
 
-/* to hide or show warning for spaces in player name */
-.hide {
-    display: none;
-}
-
-.show {
-    display: block;
+fieldset.playerInfo {
+    display: flex;
+    flex-direction: column;
 }
