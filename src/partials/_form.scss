@@ -7,17 +7,20 @@
     h3 {
         margin: 2%
     }
+
     p {
         width: 40%;
         text-align: center;
         margin-top: 0;
     }
+
     form {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         margin-top: 2%;
+        width: 100%;
 
         fieldset {
             border: none;
@@ -34,29 +37,10 @@
                 border-radius:5px;
                 margin:2%;
                 width: 250px
+            }
+
         }
 
-    
-    
-    }
-    a{
-        
-        .start {
-        background-color:$light-teal;
-        border:none;
-        border-radius: 15px;
-        padding:10px;
-        cursor: pointer;
-        color: $cream;
-        font-size:25px;
-        margin: 10%;
-        
-        &:hover {
-            background-color: $dark-blue;
-        }
-    }
-    }
-    
-    }
+    } 
 
 }

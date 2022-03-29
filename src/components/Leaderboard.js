@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import firebase from '../firebase';
-import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 function Leaderboard() {
     const [winners, setWinners] = useState([]);
 
-    //////// accessing Firebase results
     useEffect(() => {
         // we don't need to set an empty array, because we already have access to the info from playerInfo array of object?
 
@@ -13,8 +12,6 @@ function Leaderboard() {
         const dbRef = ref(database);
 
         onValue(dbRef, (response) => {
-            // console.log(response.val());
-
             const newState = [];
 
             const data = response.val();
@@ -26,46 +23,31 @@ function Leaderboard() {
         })
     }, [])
 
-    // console.log(winners);
-    // const newWinners = [... winners];
+    return (
 
-    // const blah = [];
+        <div>
+            {winners.map((winner) =>
+            (
+                <div>
+                    {winner.map((eachWinner) =>
+                    (
+                        <div>
+                            <p>{eachWinner.name}</p>
+                            <p>{eachWinner.points}</p>
 
-    // newWinners.map((info, i) => {
-    //     console.log(info);
-
-    // })
-
-
-    
-    return(
-        
-          <div>
-                        {winners.map((winner) => 
-                        (
-                            <div>
-                                {winner.map((eachWinner) => 
-                                (
-                                    <div>
-                                        <p>{eachWinner.name}</p>
-                                        <p>{eachWinner.points}</p>
-                                        
-                                        <img
-                                            className="avatarPic"
-                                            src={eachWinner.pic}
-                                            alt="robot avatar"
-                                        />
-                                    </div>
-                                )
-                                )}
-                            </div>
-                            )
-                        )}
-
+                            <img
+                                className="avatarPic"
+                                src={eachWinner.pic}
+                                alt="robot avatar"
+                            />
+                        </div>
+                    )
+                    )}
                 </div>
-        )
+            )
+            )}
+        </div>
+    )
 }
-    
-
 
 export default Leaderboard;

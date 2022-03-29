@@ -10,41 +10,33 @@ function Form(props) {
     const [selectedNumber, setSelectedNumber] = useState(0);
     const [questions, setQuestions] = useState([]);
     const [showButton, setShowButton] = useState(false);
-
-    // const [playerInfo, setPlayerInfo] = useState([])
     const [nameArray, setNameArray] = useState([])
 
     const handleSelections = function (event) {
         setSelectedCategory(event.target.value);
     }
 
-
     // a function to handle number of users
     const handleSelectionsNumber = function (event) {
         setSelectedNumber(event.target.value);
 
         let tempArray = [];
-
         for (let i = 0; i <= 4; i++) {
-
             tempArray.push({
                 name: `player${i + 1}`,
                 pic: ''
             })
         }
+
         setNameArray(tempArray);
         // to get player avatar and name
         props.playerInfo(nameArray)
         setShowButton(true)
-
     }
 
-
     const playerAvatarName = function (userObject, arrayIndex) {
-        // console.log(userObject, arrayIndex);
         // userObject will hold the name and URL link
         // arrayIndex is to help identify which location within the array the object belongs to
-
         const tempArray = [...nameArray]
 
         tempArray[arrayIndex] = userObject
@@ -55,16 +47,13 @@ function Form(props) {
     }
 
     const handleClick = function () {
-
         props.playerInfo(nameArray)
         props.showQuestions(questions, selectedNumber)
-
-
     }
 
     useEffect(() => {
         axios({
-            url: 'https://opentdb.com/api.php/',
+            url: "https://opentdb.com/api.php/",
             params: {
                 category: selectedCategory,
                 amount: (selectedNumber * 3),
@@ -72,8 +61,7 @@ function Form(props) {
 
             }
         }).then((apiData) => {
-            // console.log('Trivia Data', apiData.data.results);
-            if (apiData.status === 200 || apiData.statusText == 'OK') {
+            if (apiData.status === 200 || apiData.statusText == "OK") {
                 setQuestions(apiData.data.results)
             } else {
                 throw new Error(apiData.statusText)
@@ -88,7 +76,7 @@ function Form(props) {
             <form action="" >
                 <fieldset>
 
-                    <label htmlFor="numOfPlayer" className='sr-only'>How many players?</label>
+                    <label htmlFor="numOfPlayer" className="sr-only">How many players?</label>
                     <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber} value={selectedNumber}>
                         <option value="0" defaultValue disabled>How many players?</option>
                         <option value="1">1</option>
@@ -98,9 +86,7 @@ function Form(props) {
                         <option value="5">5</option>
                     </select>
 
-
-
-                    <label htmlFor="categories" className='sr-only' >Pick a category!</label>
+                    <label htmlFor="categories" className="sr-only">Pick a category!</label>
                     <select name="categories" id="categories" onChange={handleSelections} value={selectedCategory}>
                         <option value="" defaultValue>Pick a category!</option>
                         <option value="9">General</option>
@@ -116,21 +102,13 @@ function Form(props) {
                     </select>
 
                 </fieldset>
+
                 <div className="playerAvatarName">
-                    {/* Need to set height/class to avoid button jumping */}
-
-                    { selectedNumber 
-                        ? <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} /> 
+                    {selectedNumber
+                        ? <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} />
                         : null
-                }
-
-                    {/* <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} /> */}
+                    }
                 </div>
-                {/*                
-                <Link to="/game">
-                    <button className="start" onClick={handleClick} >START</button>
-                </Link> */}
-
 
                 {
                     showButton
@@ -142,9 +120,6 @@ function Form(props) {
                 }
 
             </form>
-
-
-
         </div>
     )
 }

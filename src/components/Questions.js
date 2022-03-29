@@ -1,11 +1,10 @@
-import PlayerQuestions from './PlayerQuestions';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { Link } from 'react-router-dom'
+import PlayerQuestions from './PlayerQuestions';
 import CountDown from './CountDown';
 
 function Questions(props) {
-
     const [showQuestions, setShowQuestions] = useState(true)
     const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
@@ -13,13 +12,10 @@ function Questions(props) {
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
-
     const [isReset, setIsReset] = useState(false)
 
     // destructure props passed from parent component
     const { currentQuestions, numOfPlayers, playerInfo } = props;
-    // console.log(props);
-
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -34,9 +30,7 @@ function Questions(props) {
     const newShuffledAnswersArray = [];
 
     useEffect(() => {
-
         currentQuestions.map(function (question) {
-
             const allAnswerOptions = question.incorrect_answers.concat(question.correct_answer);
             const shuffledAnswerOptions = shuffleArray(allAnswerOptions);
 
@@ -45,10 +39,10 @@ function Questions(props) {
                 answers: shuffledAnswerOptions,
                 correct: question.correct_answer
             }
+
             return (
                 newShuffledAnswersArray.push(newObj)
             )
-
         })
 
         setPlayerQuestions(newShuffledAnswersArray)
@@ -57,7 +51,6 @@ function Questions(props) {
     const finalQuestionArray = playerQuestions.map((questions) => {
 
         return (
-
             <PlayerQuestions
                 key={Math.random()}
                 triviaQuestn={questions.triviaQuestn}
@@ -65,24 +58,18 @@ function Questions(props) {
                 rightAnswer={questions.correct}
                 changeScore={changeScore}
             />
-
         )
-
     })
 
+    // creating an array of questions for each player by slicing the original array with questions 
     const assignedQuestions = [];
     playerInfo.forEach((indivPlayer, i) => {
         assignedQuestions.push(finalQuestionArray.slice(((i + 1) * 3) - 3, (i + 1) * 3));
     })
-    // console.log(assignedQuestions);
-
-
 
     // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
     function changeScore(number) {
-        // console.log(number);
         setAnswerCheck(number)
-
     }
 
 
@@ -97,13 +84,9 @@ function Questions(props) {
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 2) {
             playerInfo[currentPlayer].points = score;
-            // setIsDisabled(false);
-            // setIsReset(true);
             reset()
         }
 
-        // setIsDisabled(false);
-        console.log(isReset);
         setIsReset(true);
     }
 
@@ -119,79 +102,47 @@ function Questions(props) {
         }
     }
 
-
-    // const handleCountdown = (disabledStatus) => {
-    //     setIsDisabled(disabledStatus)
-    //     setIsReset(false)
-    // }
-
     useEffect(() => {
         setIsReset(false);
     }, [currentQuestion])
 
-    return (  
+    return (
         <div>
             {
                 showQuestions
-                    ? 
-                        <section className='questions'>
-                            <div className='question-container'>
-                                <div className='player-name-text'>
-                                    <h3>Player: {props.playerInfo[currentPlayer].name}  </h3>
-                                </div>
-                                <div className='player-avatar-container'>
-                                    <img
-                                    className="avatarPic"src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
-                                </div>
-                                
-                                {assignedQuestions[currentPlayer][currentQuestion]}
-                                
-                                <div className="timer-flex">
-                                    <div className='timer-container'>
-                                        <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
-                                    </div>
-                                </div>
-                                <button onClick={next} className='next-button'>next</button>
+                    ?
+                    <section className="questions">
+                        <div className="question-container">
+                            <div className="player-name-text">
+                                <h3>Player: {props.playerInfo[currentPlayer].name}  </h3>
                             </div>
-                        </section>
+                            <div className="player-avatar-container">
+                                <img
+                                    className="avatarPic" src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
+                            </div>
+
+                            {assignedQuestions[currentPlayer][currentQuestion]}
+
+                            <div className="timer-flex">
+                                <div className="timer-container">
+                                    <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                                </div>
+                            </div>
+                            <button onClick={next} className="next-button">next</button>
+                        </div>
+                    </section>
                     : null
             }
 
             {
                 showResultsLink
                     ?
-                        <div className="questionContainer">
-
-                            <div className="playerNameContainer">
-                                <h3>Player: {props.playerInfo[currentPlayer].name}  </h3>
-                            </div>
-                            <div className="avatarImgContainer">
-                                <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
-                            </div>
-
-                            <div className="questionText">
-                                {assignedQuestions[currentPlayer][currentQuestion] }
-                            </div> 
-
-                            <div className="countdownContainer">
-                                <CountDown seconds={30} handleCountdownFinish={() => next()} handleNextButton={isReset} />
-                            </div>
-                            
-
-                            <button onClick={next}>next</button>
-                        </div>
-                        : null
-                }
-
-                {
-                    showResultsLink
-                        ?
-                        <Link to="/results">
-                            <button>Finish game</button>
-                        </Link>
-                        : null
-                }
-            </div>
+                    <Link to="/results">
+                        <button>Finish game</button>
+                    </Link>
+                    : null
+            }
+        </div>
     )
 }
 

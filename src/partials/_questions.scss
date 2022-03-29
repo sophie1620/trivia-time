@@ -2,6 +2,7 @@
 .questions {
     background-color: $cream; 
     padding: 150px 0;
+
     .question-container {
         background-color: $light-teal;
         width: 70%;
@@ -23,11 +24,13 @@
                 width: 100%;
             }
         }
+
         .player-name-text {
             position: absolute;
             top:-70px;
             left:70px;
         }
+
         .question-text legend{
             background-color: $dark-teal;
             text-align: center;
@@ -39,12 +42,13 @@
             margin-bottom: 20px;
             font-family: $tertiary-font;
             font-weight: 200;
-
         }
+
         .next-button {
             margin-top:20px;
             padding: 10px 40px;
         }
+
         .timer-flex {
             display: flex;
             justify-content: center;
@@ -53,16 +57,19 @@
             position: absolute;
             top:-20px;
             left:38%;
+
             .timer-container {
                 border: 3px solid $bright-yellow;
                 background-color: $cream; 
                 text-align: center;
                 padding:0 5px;
+
                 p {
                     margin: 8px;
                     font-weight: 600;
                     letter-spacing: .6px;
                 }
+
                 .pause-button {
                     position: absolute;
                     right: 0;
@@ -72,6 +79,7 @@
                     font-weight: 300;
                     font-family: $primary-font;
                 }
+
                 .reset-button {
                     position: absolute;
                     font-family: $primary-font;
@@ -88,10 +96,12 @@
             flex-direction: column;
             align-items: center; 
             flex-wrap: wrap;
+
             fieldset {
                 width: 100%;
                 border:none;
             }
+
             input {
                 display: none; 
                 &:checked + label {
@@ -123,6 +133,4 @@
             } 
         }
     }
-
-
 }

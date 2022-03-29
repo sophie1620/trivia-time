@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import firebase from '../firebase';
-import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
+import { getDatabase, ref, push } from 'firebase/database';
 
 
 function Results(props) {
-    // console.log(props)
+    const { scores } = props;
 
-    const [scoreData, setScoreData] = useState([]);
-
-    const fullScoreArray = props.scores.map((number) => {
+    const fullScoreArray = scores.map((number) => {
         return (
             number.points
         )
@@ -21,11 +19,11 @@ function Results(props) {
 
     const highestScore = Math.max(...scoreArray)
 
-    const winnerArray = props.scores.filter((score) =>
+    const winnerArray = scores.filter((score) =>
         score.points === highestScore
     )
 
-    const loserArray = props.scores.filter((score) =>
+    const loserArray = scores.filter((score) =>
         score.points !== highestScore
     )
 
@@ -40,7 +38,6 @@ function Results(props) {
                     <p> score: {info.points}</p>
 
                 </div>
-
             </li>
         )
     })
@@ -57,7 +54,6 @@ function Results(props) {
                     <p> score: {info.points}</p>
 
                 </div>
-
             </li>
         )
     })
@@ -66,21 +62,21 @@ function Results(props) {
     useEffect(() => {
         const database = getDatabase(firebase);
         const dbRef = ref(database);
-
-
         push(dbRef, winnerArray);
     }, winnerArray)
-
-    console.log(scoreData);
 
     return (
         <section className="results">
             <div className="wrapper">
                 <h3>results</h3>
+
                 <section className="winnersContainer">
-                    {winnerArray.length === 1 ?
-                        <h2>The winner is:</h2>
-                        : <h2>The winners are:</h2>}
+                    {
+                        winnerArray.length === 1
+                            ? <h2>The winner is:</h2>
+                            : <h2>The winners are:</h2>
+                    }
+
                     <ul className="winners">
                         {winner}
                     </ul>
@@ -94,20 +90,15 @@ function Results(props) {
                 </section>
 
                 <Link to={"/"}>
-                    <button>Play again</button>
+                    <button className="start">Play again</button>
                 </Link >
 
                 <Link to={"/previousWinners"}>
-                    <button>See previous winners!</button>
+                    <button className="start">See previous winners!</button>
                 </Link>
             </div>
         </section>
-
-    );
-
-
-
+    )
 }
-
 
 export default Results

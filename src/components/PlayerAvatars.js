@@ -6,7 +6,6 @@ function PlayerAvatars(props) {
     const { triviaPlayers, nameArray, playerAvatarName } = props;
 
     const [avatar, setAvatar] = useState([]);
-
     const numOfAvatar = triviaPlayers;
 
     useEffect(async () => {
@@ -36,7 +35,7 @@ function PlayerAvatars(props) {
             const apiData = await axios({
                 url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
             })
-            if (apiData.request.status === 200 || apiData.request.statusText == 'OK') {
+            if (apiData.request.status === 200 || apiData.request.statusText === "OK") {
                 return apiData
             } else {
                 throw new Error(apiData.request.statusText);
@@ -51,7 +50,6 @@ function PlayerAvatars(props) {
 
             <h2>let's get to know each-other.</h2>
             <ul className="playerList">
-
                 {
                     avatar.map((avatarUrl, i) => {
                         return (
@@ -62,7 +60,7 @@ function PlayerAvatars(props) {
                                 userObject={nameArray[i]}
                                 playerAvatarName={playerAvatarName}
                                 arrayIndex={i}
-                                
+
                             />
                         )
 
