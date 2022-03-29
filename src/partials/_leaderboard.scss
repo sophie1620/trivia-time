@@ -1,6 +1,6 @@
 .leaderboard {
     margin-bottom: 15%;
-
+    transition: all 235ms ease-in-out;
     h3 {
         text-align: center;
     }
@@ -29,6 +29,24 @@
         align-items: center;
         img {
             transform: scale(0.6);
+        }
+    }
+}
+
+@media (max-width: 1500px){ 
+    .leaderboard {
+        margin-bottom: 20%;
+    }
+}
+
+@media (max-width: 1000px){ 
+    .leaderboard {
+        margin-bottom: 30%;
+        .listInfo {
+            flex-direction: column;
+            h4 {
+                margin:0;
+            }
         }
     }
 }

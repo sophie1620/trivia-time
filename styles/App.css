@@ -684,6 +684,7 @@ button.finish {
 
 .leaderboard {
   margin-bottom: 15%;
+  transition: all 235ms ease-in-out;
 }
 .leaderboard h3 {
   text-align: center;
@@ -714,6 +715,22 @@ button.finish {
   transform: scale(0.6);
 }
 
+@media (max-width: 1500px) {
+  .leaderboard {
+    margin-bottom: 20%;
+  }
+}
+@media (max-width: 1000px) {
+  .leaderboard {
+    margin-bottom: 30%;
+  }
+  .leaderboard .listInfo {
+    flex-direction: column;
+  }
+  .leaderboard .listInfo h4 {
+    margin: 0;
+  }
+}
 footer {
   background-color: #195b53;
   padding: 0 0 20px;
