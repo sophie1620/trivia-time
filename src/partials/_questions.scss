@@ -94,9 +94,8 @@
             }
             input {
                 display: none; 
-
                 &:checked + label {
-                    background-color: $dark-blue;
+                    background-color: $dark-teal;
                     color:white;            
                     font-weight: 300;
                 }

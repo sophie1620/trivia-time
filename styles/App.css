@@ -471,7 +471,7 @@ fieldset.playerInfo {
   display: none;
 }
 .questions .question-container .player-question-list input:checked + label {
-  background-color: #264653;
+  background-color: #195b53;
   color: white;
   font-weight: 300;
 }
