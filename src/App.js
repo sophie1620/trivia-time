@@ -63,12 +63,25 @@ function App() {
 
       <footer>
         <div className="wrapper">
-          <p className='footerP'>Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
+          <p className="footerP">Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
 
-          <p className='footerP'>
-            <a href="https://seannastewart.com/" target="_blank" rel="noreferrer noopener">Seanna Stewart</a>  |  <a href="https://codemich.dev/" target="_blank" rel="noreferrer noopener">Michelle Wong</a>  |  <a href="https://sylviaraposo.com/" target="_blank" rel="noreferrer noopener">Sylvia Raposo</a>  |  <a href="https://sophielai.ca/" target="blank" rel="noreferrer noopener">Sophie Lai</a>
+          <p className="footerP portfolio">
+            <a href="https://seannastewart.com/" target="_blank" rel="noreferrer noopener">Seanna Stewart</a>
+
+            <span>  |  </span>
+
+            <a href="https://codemich.dev/" target="_blank" rel="noreferrer noopener">Michelle Wong</a>
+
+            <span>  |  </span>
+
+            <a href="https://sylviaraposo.com/" target="_blank" rel="noreferrer noopener">Sylvia Raposo</a>
+
+            <span>  |  </span>
+            
+            <a href="https://sophielai.ca/" target="blank" rel="noreferrer noopener">Sophie Lai</a>
           </p>
-          <p className='footerP'>APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
+
+          <p className="footerP">APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
 
         </div>
       </footer>

@@ -40,7 +40,7 @@ function Leaderboard() {
     
     return(
         
-                <div>
+          <div>
                         {winners.map((winner) => 
                         (
                             <div>
@@ -66,5 +66,6 @@ function Leaderboard() {
         )
 }
     
+
 
 export default Leaderboard;

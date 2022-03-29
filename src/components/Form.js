@@ -27,7 +27,6 @@ function Form(props) {
 
         for (let i = 0; i <= 4; i++) {
 
-
             tempArray.push({
                 name: `player${i + 1}`,
                 pic: ''
@@ -77,13 +76,13 @@ function Form(props) {
             if (apiData.status === 200 || apiData.statusText == 'OK') {
                 setQuestions(apiData.data.results)
             } else {
-                alert("Oops!  It seems like we're having some technical difficulties.  Please play Trivia Time at a later time.  Thank you for understanding.")
+                throw new Error(apiData.statusText)
             }
         })
     }, [selectedCategory, selectedNumber])
 
     return (
-        <div className="gameForm">
+        <div className="gameForm wrapper">
             <h3>how to play</h3>
             <p>Each player will have 30 seconds to answer 3 questions. The player that get the most questions correct wins!</p>
             <form action="" >
@@ -119,8 +118,13 @@ function Form(props) {
                 </fieldset>
                 <div className="playerAvatarName">
                     {/* Need to set height/class to avoid button jumping */}
-                    <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} />
 
+                    { selectedNumber 
+                        ? <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} /> 
+                        : null
+                }
+
+                    {/* <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} /> */}
                 </div>
                 {/*                
                 <Link to="/game">
