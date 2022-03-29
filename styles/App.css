@@ -322,30 +322,109 @@ p {
   color: #264653;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.wrapper {
+  max-width: 1260px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+body {
+  background-color: #fffef6;
+  position: relative;
+}
+
+header::before {
+  content: "";
+  background-image: url(./../../public/assets/headerWave.svg);
+  position: absolute;
+  top: -35px;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+header .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 10%;
+}
+
+img {
+  width: 15%;
+  border: 3px solid #e76f51;
+  border-radius: 50%;
+  padding: 1%;
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: 5px;
+}
+
 .gameForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.gameForm h3 {
+  margin: 2%;
+}
 .gameForm p {
-  width: 70%;
+  width: 40%;
   text-align: center;
+  margin-top: 0;
 }
 .gameForm form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 2%;
 }
 .gameForm form fieldset {
   border: none;
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 0;
 }
 .gameForm form fieldset select {
-  color: #e9c46a;
+  color: #e76f51;
   padding: 1%;
   border: 2px solid #264653;
   text-align: center;
@@ -357,10 +436,14 @@ p {
   background-color: #2a9d8f;
   border: none;
   border-radius: 15px;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
   color: #fffef6;
   font-size: 25px;
+  margin: 10%;
+}
+.gameForm form a .start:hover {
+  background-color: #264653;
 }
 
 img.avatarPic {
@@ -536,8 +619,54 @@ fieldset.playerInfo {
   display: none;
 }
 
-body {
-  background-color: lightblue;
+.results {
+  background-color: #e9c46a;
+  text-align: center;
+  padding: 5% 0;
+}
+.results h2 {
+  letter-spacing: 2px;
+}
+.results img {
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid #2a9d8f;
+}
+.results ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.results li {
+  margin: 0 2.5%;
+}
+.results button {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #195b53;
+  background-color: white;
+  padding: 1.5% 10%;
+  border: 2px solid #264653;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.results button:hover, .results button:focus {
+  background-color: #2a9d8f;
+  color: white;
+}
+.results .hidePlayer {
+  display: none;
 }
 
 footer {
