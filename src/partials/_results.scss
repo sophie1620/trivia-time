@@ -1,9 +1,21 @@
 .results {
-    background-color: $bright-yellow;
+    background-color: $cream;
     text-align: center;
     padding: 5% 0;
     h2 {
         letter-spacing: 2px;
+    }
+    .target {
+        position: relative;
+        &::before {
+            content: url(../../public/assets/crown.svg);
+            position: absolute;
+            top: -45px;
+            left: 40px;
+            width: 90px;
+            height: 100%;
+            transform: rotate(-35deg);
+        }
     }
     img {
         border-radius: 50%;
@@ -25,13 +37,15 @@
         color: $dark-teal;
         background-color: white;
         padding: 1.5% 10%;
+        margin: 0 2.5%;
         border: 2px solid $dark-blue;
         border-radius: 5px;
         cursor: pointer;
         transition: all 0.5s;
         &:hover,
         &:focus {
-            background-color: $light-teal;
+            background-color: $coral-orange;
+            border: 2px solid $dark-teal;
             color: white;
         }
     }

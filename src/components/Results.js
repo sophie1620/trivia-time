@@ -7,7 +7,7 @@ import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
 function Results(props) {
     // console.log(props)
 
-    const [scoreData, setScoreData] = useState([]); 
+    const [scoreData, setScoreData] = useState([]);
 
     const fullScoreArray = props.scores.map((number) => {
         return (
@@ -33,10 +33,10 @@ function Results(props) {
 
         return (
             <li key={Math.random()}>
-                <div>
+                <div className="target">
 
                     <img className="avatarPic" src={info.pic} alt="Player avatar" />
-                    <p>{info.name}! </p>
+                    <h4>{info.name}! </h4>
                     <p> score: {info.points}</p>
 
                 </div>
@@ -53,7 +53,7 @@ function Results(props) {
                 <div>
 
                     <img className="avatarPic" src={info.pic} alt="Player avatar" />
-                    <p>{info.name} </p>
+                    <h4>{info.name} </h4>
                     <p> score: {info.points}</p>
 
                 </div>
@@ -62,7 +62,7 @@ function Results(props) {
         )
     })
 
-   // //////// accessing Firebase results
+    // //////// accessing Firebase results
     useEffect(() => {
         const database = getDatabase(firebase);
         const dbRef = ref(database);
