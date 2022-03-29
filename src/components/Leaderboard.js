@@ -27,37 +27,44 @@ function Leaderboard() {
     }, [])
 
     console.log(winners);
-    const newWinners = [... winners];
+    // const newWinners = [... winners];
 
-    const blah = [];
+    // const blah = [];
 
-    newWinners.map((info, i) => {
-        console.log(info);
+    // newWinners.map((info, i) => {
+    //     console.log(info);
 
-    })
+    // })
 
 
     
     return(
         
-        <p></p>
-        // winners.forEach((winner) => {
-            // winners.map((info, i) => {
-            //     return (
+                <div>
+                        {winners.map((winner) => 
+                         (
+                            <div>
+                                {winner.map((eachWinner) => 
+                                (
+                                    <div>
+                                        <p>{eachWinner.name}</p>
+                                        <p>{eachWinner.points}</p>
+                                        
+                                        <img
+                                            className="avatarPic"
+                                            src={eachWinner.pic}
+                                            alt="robot avatar"
+                                        />
+                                    </div>
+                                )
+                                )}
+                            </div>
+                            )
+                        )}
 
-            //         <li key={Math.random()}>
-            //             <div>
-            //                 <img className="avatarPic" src={info.pic} alt="Player avatar" />
-            //                 <p>{info.name}! </p>
-            //                 <p> score: {info.points}</p>
-
-            //             </div>
-
-            //         </li>
-
-            //     )
-            // })
-        // }) //end bracket for forEach
-    )}
+                </div>
+        )
+}
+    
 
 export default Leaderboard;
