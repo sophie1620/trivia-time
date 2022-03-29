@@ -26,21 +26,46 @@ function Leaderboard() {
         })
     }, [])
 
-    console.log(winners);
-    const newWinners = [... winners];
+    // console.log(winners);
+    // const newWinners = [... winners];
 
-    const blah = [];
+    // const blah = [];
 
-    newWinners.map((info, i) => {
-        console.log(info);
+    // newWinners.map((info, i) => {
+    //     console.log(info);
 
-    })
+    // })
 
 
     
     return(
         
-        <p></p>
-    )}
+          <div>
+                        {winners.map((winner) => 
+                        (
+                            <div>
+                                {winner.map((eachWinner) => 
+                                (
+                                    <div>
+                                        <p>{eachWinner.name}</p>
+                                        <p>{eachWinner.points}</p>
+                                        
+                                        <img
+                                            className="avatarPic"
+                                            src={eachWinner.pic}
+                                            alt="robot avatar"
+                                        />
+                                    </div>
+                                )
+                                )}
+                            </div>
+                            )
+                        )}
+
+                </div>
+        )
+}
+    
+
 
 export default Leaderboard;

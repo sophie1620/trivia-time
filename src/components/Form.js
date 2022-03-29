@@ -9,6 +9,7 @@ function Form(props) {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedNumber, setSelectedNumber] = useState(0);
     const [questions, setQuestions] = useState([]);
+    const [showButton, setShowButton] = useState(false);
 
     // const [playerInfo, setPlayerInfo] = useState([])
     const [nameArray, setNameArray] = useState([])
@@ -17,10 +18,10 @@ function Form(props) {
         setSelectedCategory(event.target.value);
     }
 
+
     // a function to handle number of users
     const handleSelectionsNumber = function (event) {
         setSelectedNumber(event.target.value);
-        // console.log(selectedNumber)
 
         let tempArray = [];
 
@@ -34,6 +35,8 @@ function Form(props) {
         setNameArray(tempArray);
         // to get player avatar and name
         props.playerInfo(nameArray)
+        setShowButton(true)
+
     }
 
 
@@ -52,8 +55,11 @@ function Form(props) {
     }
 
     const handleClick = function () {
+
         props.playerInfo(nameArray)
         props.showQuestions(questions, selectedNumber)
+
+
     }
 
     useEffect(() => {
@@ -78,13 +84,13 @@ function Form(props) {
     return (
         <div className="gameForm wrapper">
             <h3>how to play</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet culpa voluptas odio atque aperiam plac perspiciatis iusto, fugiat aut ut labore? Nisi quas velit quasi.</p>
+            <p>Each player will have 30 seconds to answer 3 questions. The player that get the most questions correct wins!</p>
             <form action="" >
                 <fieldset>
 
-                    <label htmlFor="numOfPlayer" className="sr-only">Number of Players</label>
+                    <label htmlFor="numOfPlayer" className='sr-only'>How many players?</label>
                     <select name="numOfPlayer" id="numofPlayer" onChange={handleSelectionsNumber} value={selectedNumber}>
-                        <option value="placeholer">How many players?</option>
+                        <option value="0" defaultValue disabled>How many players?</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -92,9 +98,11 @@ function Form(props) {
                         <option value="5">5</option>
                     </select>
 
-                    <label htmlFor="categories" className='sr-only'>Pick a category!</label>
-                    <select name="categories" id="categories" onChange={handleSelections}>
-                        <option value="placeholder">Pick a category!</option>
+
+
+                    <label htmlFor="categories" className='sr-only' >Pick a category!</label>
+                    <select name="categories" id="categories" onChange={handleSelections} value={selectedCategory}>
+                        <option value="" defaultValue>Pick a category!</option>
                         <option value="9">General</option>
                         <option value="10">Books</option>
                         <option value="11">Film</option>
@@ -106,6 +114,7 @@ function Form(props) {
                         <option value="26">Celebrities</option>
                         <option value="27">Animals</option>
                     </select>
+
                 </fieldset>
                 <div className="playerAvatarName">
                     {/* Need to set height/class to avoid button jumping */}
@@ -117,17 +126,20 @@ function Form(props) {
 
                     {/* <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} /> */}
                 </div>
-                {/* <Link to={{
-                    pathname: '/game',
-                    state: { currentQuestions: questions }
-                }}
-                /> */}
-
-                {/* <button id='submit' >Submit</button> */}
+                {/*                
                 <Link to="/game">
                     <button className="start" onClick={handleClick} >START</button>
-                </Link>
-                {/* <button>submit</button> */}
+                </Link> */}
+
+
+                {
+                    showButton
+                        ?
+                        <Link to="/game">
+                            <button className="start" onClick={handleClick} >START</button>
+                        </Link>
+                        : null
+                }
 
             </form>
 

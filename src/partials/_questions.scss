@@ -1,0 +1,128 @@
+
+.questions {
+    background-color: $cream; 
+    padding: 150px 0;
+    .question-container {
+        background-color: $light-teal;
+        width: 70%;
+        margin: 0 auto;
+        box-shadow: 4px 4px 5px rgba(34, 25, 25, 0.4);
+        padding:50px;
+        position: relative;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        .player-avatar-container {
+            position: absolute;
+            top:-50px;
+            left:-50px;
+            height:110px;
+            width: 110px;
+            // border:1px solid black;
+            img {
+                width: 100%;
+            }
+        }
+        .player-name-text {
+            position: absolute;
+            top:-70px;
+            left:70px;
+        }
+        .question-text legend{
+            background-color: $dark-teal;
+            text-align: center;
+            margin: 0 auto;
+            padding:20px;
+            border-radius: 5px;
+            box-shadow: 4px 4px 5px rgba(34, 25, 25, 0.4);
+            color:$cream;
+            margin-bottom: 20px;
+            font-family: $tertiary-font;
+            font-weight: 200;
+
+        }
+        .next-button {
+            margin-top:20px;
+            padding: 10px 40px;
+        }
+        .timer-flex {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            width:30%;
+            position: absolute;
+            top:-20px;
+            left:38%;
+            .timer-container {
+                border: 3px solid $bright-yellow;
+                background-color: $cream; 
+                text-align: center;
+                padding:0 5px;
+                p {
+                    margin: 8px;
+                    font-weight: 600;
+                    letter-spacing: .6px;
+                }
+                .pause-button {
+                    position: absolute;
+                    right: 0;
+                    top:2px;
+                    padding:10px 10px;
+                    font-size:.8rem;
+                    font-weight: 300;
+                    font-family: $primary-font;
+                }
+                .reset-button {
+                    position: absolute;
+                    font-family: $primary-font;
+                    left: 0;
+                    // height:40px;
+                    padding:10px 10px;
+                    top:2px;
+                    font-size:.8rem
+                }
+            }
+        }
+        .player-question-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            flex-wrap: wrap;
+            fieldset {
+                width: 100%;
+                border:none;
+            }
+            input {
+                display: none; 
+                &:checked + label {
+                    background-color: $dark-teal;
+                    color:white;            
+                    font-weight: 300;
+                }
+            }
+
+            label { 
+                padding: 10px;
+                margin-bottom: 10px;
+                display: inline-block;
+                width: 40%;
+                margin:20px;
+                margin-top:10px;
+                background-color: white;
+                color:$dark-teal;
+                font-family: $secondary-font;
+                border-radius: 5px;
+                box-shadow: 3px 3px 5px black;
+
+                &:hover, &:focus {
+                    cursor: pointer;
+                    font-weight: 300;
+                    color: white; 
+                    background-color: $dark-teal;
+                }
+            } 
+        }
+    }
+
+
+}

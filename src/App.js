@@ -54,9 +54,9 @@ function App() {
         </Routes>
 
 
-        <Link to={"/previousWinners"}>
+        {/* <Link to={"/previousWinners"}>
           <button>See previous winners!</button>
-        </Link>
+        </Link> */}
 
       </main>
 
