@@ -79,7 +79,7 @@ function Form(props) {
     return (
         <div className="gameForm">
             <h3>how to play</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet culpa voluptas odio atque aperiam plac perspiciatis iusto, fugiat aut ut labore? Nisi quas velit quasi.</p>
+            <p>Each player will have 30 seconds to answer 3 questions. The player that get the most questions correct wins!</p>
             <form action="" >
                 <fieldset>
 

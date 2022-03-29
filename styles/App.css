@@ -253,17 +253,6 @@ img {
   width: 200px;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.wrapper {
-  max-width: 1260px;
-  width: 80%;
-  margin: 0 auto;
-}
-
 html {
   font-size: 125%;
 }
@@ -293,6 +282,37 @@ p {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   color: #264653;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.wrapper {
+  max-width: 1260px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+body {
+  background-color: #fffef6;
+}
+
+header::before {
+  content: url("../../public/assets/headerWave.svg");
+  position: relative;
+  top: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+  letter-spacing: 5px;
 }
 
 .gameForm {
@@ -374,8 +394,54 @@ fieldset.playerInfo {
           flex-direction: column;
 }
 
-body {
-  background-color: lightblue;
+.results {
+  background-color: #e9c46a;
+  text-align: center;
+  padding: 5% 0;
+}
+.results h2 {
+  letter-spacing: 2px;
+}
+.results img {
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid #2a9d8f;
+}
+.results ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.results li {
+  margin: 0 2.5%;
+}
+.results button {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #195b53;
+  background-color: white;
+  padding: 1.5% 10%;
+  border: 2px solid #264653;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.results button:hover, .results button:focus {
+  background-color: #2a9d8f;
+  color: white;
+}
+.results .hidePlayer {
+  display: none;
 }
 
 footer {

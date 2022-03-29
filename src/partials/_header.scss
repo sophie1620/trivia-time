@@ -1,0 +1,11 @@
+header::before {
+    content: url('../../public/assets/headerWave.svg');
+    position: relative;
+    top: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+    letter-spacing: 5px;
+}
