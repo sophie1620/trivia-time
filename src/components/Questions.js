@@ -138,7 +138,7 @@ function Questions(props) {
                 showResultsLink
                     ?
                     <Link to="/results">
-                        <button>Finish game</button>
+                        <button className="start finish">Finish game</button>
                     </Link>
                     : null
             }

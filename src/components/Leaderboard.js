@@ -25,7 +25,7 @@ function Leaderboard() {
 
     return (
 
-        <div>
+        <div className="leaderBoard">
             {winners.map((winner) =>
             (
                 <div>
