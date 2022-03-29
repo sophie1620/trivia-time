@@ -26,10 +26,10 @@
         fieldset {
             border: none;
             display:flex;
-            width:100%;
             justify-content: space-evenly;
             width: 50%;
             padding:0;
+            margin-bottom: 40px;
 
             select {
                 color: $coral-orange;
