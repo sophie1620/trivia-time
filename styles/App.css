@@ -347,9 +347,13 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
 }
+.gameForm h3 {
+  margin: 2%;
+}
 .gameForm p {
-  width: 70%;
+  width: 40%;
   text-align: center;
+  margin-top: 0;
 }
 .gameForm form {
   display: -webkit-box;
@@ -365,6 +369,7 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-top: 2%;
 }
 .gameForm form fieldset {
   border: none;
@@ -375,9 +380,10 @@ h1 {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  padding: 0;
 }
 .gameForm form fieldset select {
-  color: #e9c46a;
+  color: #e76f51;
   padding: 1%;
   border: 2px solid #264653;
   text-align: center;
@@ -389,10 +395,14 @@ h1 {
   background-color: #2a9d8f;
   border: none;
   border-radius: 15px;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
   color: #fffef6;
   font-size: 25px;
+  margin: 10%;
+}
+.gameForm form a .start:hover {
+  background-color: #264653;
 }
 
 img.avatarPic {
