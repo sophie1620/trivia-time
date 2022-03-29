@@ -8,14 +8,17 @@ function Questions(props) {
     const [showQuestions, setShowQuestions] = useState(true)
     const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
-    const [answerCheck, setAnswerCheck] = useState(0)
+    // const [answerCheck, setAnswerCheck] = useState(0)
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [isReset, setIsReset] = useState(false)
+    // const [scoreIsUpdated, setScoreIsUpdated] = useState(false)
 
     // destructure props passed from parent component
-    const { currentQuestions, numOfPlayers, playerInfo } = props;
+    const { currentQuestions, numOfPlayers, playerInfo, updateFinalScores } = props;
+
+    let scoreUpdater = 0;
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -69,21 +72,22 @@ function Questions(props) {
 
     // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
     function changeScore(number) {
-        setAnswerCheck(number)
+        scoreUpdater = number;
     }
 
-
+    console.log(score)
+    console.log(currentQuestion)
 
     function next() {
         // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
 
-        setScore(score + answerCheck)
-        setAnswerCheck(0)
+        setScore(score + scoreUpdater)
+        scoreUpdater = 0;
         setCurrentQuestion(currentQuestion + 1)
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
-        if (currentQuestion === 2) {
-            playerInfo[currentPlayer].points = score;
+        if (currentQuestion === 3) {
+            (playerInfo[currentPlayer].points = score)
             reset()
         }
 
@@ -91,14 +95,16 @@ function Questions(props) {
     }
 
     function reset() {
+        // setScoreIsUpdated(false)
         setScore(0)
-        setCurrentQuestion(0)
+
         if (currentPlayer === (numOfPlayers - 1)) {
             setShowResultsLink(true)
             setShowQuestions(false)
-            props.updateFinalScores(playerInfo)
+            updateFinalScores(playerInfo)
         } else {
             setCurrentPlayer(currentPlayer + 1)
+            setCurrentQuestion(0)
         }
     }
 
@@ -122,6 +128,9 @@ function Questions(props) {
                             </div>
 
                             {assignedQuestions[currentPlayer][currentQuestion]}
+                            <div className={currentQuestions === 3 ? "here" : "nothere"}>
+                                <p>hello</p>
+                            </div>
 
                             <div className="timer-flex">
                                 <div className="timer-container">

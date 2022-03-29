@@ -1,6 +1,8 @@
 function PlayerQuestions(props) {
     const { triviaQuestn, answers, rightAnswer, changeScore } = props;
 
+    console.log(rightAnswer)
+
     function handleSelect(event) {
         event.target.value === rightAnswer ? changeScore(1) : changeScore(0)
     }

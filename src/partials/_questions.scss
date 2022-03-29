@@ -3,6 +3,13 @@
     background-color: $cream; 
     padding: 150px 0;
 
+    div.nothere {
+        display: none;
+    }
+    div.here {
+        display: block;
+    }
+
     .question-container {
         background-color: $light-teal;
         width: 70%;
