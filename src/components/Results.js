@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import firebase from '../firebase';
+import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
 
 
 function Results(props) {
     // console.log(props)
+
+    const [scoreData, setScoreData] = useState([]);
 
     const fullScoreArray = props.scores.map((number) => {
         return (
@@ -24,15 +29,14 @@ function Results(props) {
         score.points !== highestScore
     )
 
-
     const winner = winnerArray.map((info) => {
 
         return (
-            <li>
-                <div>
+            <li key={Math.random()}>
+                <div className="target">
 
                     <img className="avatarPic" src={info.pic} alt="Player avatar" />
-                    <p>{info.name}! </p>
+                    <h4>{info.name}! </h4>
                     <p> score: {info.points}</p>
 
                 </div>
@@ -45,11 +49,11 @@ function Results(props) {
 
         return (
             // if the player has a picture (they are playing), set class to showPlayer, else hidePlayer
-            <li className={info.pic !== "" ? "showPlayer" : "hidePlayer"}>
+            <li className={info.pic !== "" ? "showPlayer" : "hidePlayer"} key={Math.random()}>
                 <div>
 
                     <img className="avatarPic" src={info.pic} alt="Player avatar" />
-                    <p>{info.name} </p>
+                    <h4>{info.name} </h4>
                     <p> score: {info.points}</p>
 
                 </div>
@@ -58,6 +62,16 @@ function Results(props) {
         )
     })
 
+    // //////// accessing Firebase results
+    useEffect(() => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database);
+
+
+        push(dbRef, winnerArray);
+    }, winnerArray)
+
+    console.log(scoreData);
 
     return (
         <section className="results">
@@ -82,6 +96,10 @@ function Results(props) {
                 <Link to={"/"}>
                     <button>Play again</button>
                 </Link >
+
+                <Link to={"/previousWinners"}>
+                    <button>See previous winners!</button>
+                </Link>
             </div>
         </section>
 
