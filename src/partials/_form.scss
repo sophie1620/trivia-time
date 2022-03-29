@@ -22,13 +22,13 @@
         flex-direction: column;
         margin-top: 2%;
         margin-bottom: 150px;
-        width: 50%;
 
         fieldset {
             border: none;
             display:flex;
             width:100%;
             justify-content: space-evenly;
+            width: 50%;
             padding:0;
 
             select {
