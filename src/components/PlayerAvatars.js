@@ -8,14 +8,14 @@ function PlayerAvatars(props) {
     const [avatar, setAvatar] = useState([]);
     const numOfAvatar = triviaPlayers;
 
-    useEffect(async () => {
+    useEffect(() => {
         // Array to store batched API response
         const batchRes = [];
 
         // Loop and call API 5 times;
         for (let i = 0; i < numOfAvatar; i++) {
             // Push response to temporary array
-            const res = await avatarCall(i)
+            const res = avatarCall(i)
             batchRes.push(res)
         }
 
@@ -41,7 +41,7 @@ function PlayerAvatars(props) {
                 throw new Error(apiData.request.statusText);
             }
         }
-    }, triviaPlayers);
+    }, numOfAvatar, nameArray, playerAvatarName);
 
 
     return (

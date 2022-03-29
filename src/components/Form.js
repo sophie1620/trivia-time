@@ -6,7 +6,7 @@ import PlayerAvatars from "./PlayerAvatars";
 function Form(props) {
 
     // declare a use state to hold user category
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(9);
     const [selectedNumber, setSelectedNumber] = useState(0);
     const [questions, setQuestions] = useState([]);
     const [showButton, setShowButton] = useState(false);
@@ -61,7 +61,7 @@ function Form(props) {
 
             }
         }).then((apiData) => {
-            if (apiData.status === 200 || apiData.statusText == "OK") {
+            if (apiData.status === 200 || apiData.statusText === "OK") {
                 setQuestions(apiData.data.results)
             } else {
                 throw new Error(apiData.statusText)
@@ -88,7 +88,7 @@ function Form(props) {
 
                     <label htmlFor="categories" className="sr-only">Pick a category!</label>
                     <select name="categories" id="categories" onChange={handleSelections} value={selectedCategory}>
-                        <option value="" defaultValue>Pick a category!</option>
+                        <option value="9" defaultValue>Pick a category!</option>
                         <option value="9">General</option>
                         <option value="10">Books</option>
                         <option value="11">Film</option>

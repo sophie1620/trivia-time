@@ -59,7 +59,7 @@ function App() {
             <a href="https://sophielai.ca/" target="blank" rel="noreferrer noopener">Sophie Lai</a>
           </p>
 
-          <p className="footerP">APIs powered by <a href="">DiceBear</a> and <a href="">OpenTrivia</a> </p>
+          <p className="footerP">APIs powered by <a href="https://avatars.dicebear.com/">DiceBear</a> and <a href="https://opentdb.com/">OpenTrivia</a> </p>
 
         </div>
       </footer>

@@ -719,10 +719,8 @@ img.avatarPic {
   -webkit-transform: rotate(-35deg);
           transform: rotate(-35deg);
 }
-.results img {
-  border-radius: 50%;
-  background-color: white;
-  border: 2px solid #2a9d8f;
+.results button {
+  margin: 3%;
 }
 .results ul {
   display: -webkit-box;

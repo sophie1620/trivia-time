@@ -63,7 +63,7 @@ function Results(props) {
         const database = getDatabase(firebase);
         const dbRef = ref(database);
         push(dbRef, winnerArray);
-    }, winnerArray)
+    }, [winnerArray])
 
     return (
         <section className="results">

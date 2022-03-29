@@ -46,7 +46,7 @@ function Questions(props) {
         })
 
         setPlayerQuestions(newShuffledAnswersArray)
-    }, [currentQuestions])
+    }, [currentQuestions], newShuffledAnswersArray)
 
     const finalQuestionArray = playerQuestions.map((questions) => {
 

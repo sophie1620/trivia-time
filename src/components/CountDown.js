@@ -12,7 +12,7 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
         if (paused || over) return;
         if (m === 0 && s === 0) {
             setOver(true);
-        } else if (s == 0) {
+        } else if (s === 0) {
             setTime([m - 1, 59]);
         } else {
             setTime([m, s - 1]);
@@ -35,14 +35,13 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
     React.useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
         return () => clearInterval(timerID);
-    }, [tick]);
+    }, null);
 
     React.useEffect(() => {
-        if (handleNextButton == true) {
+        if (handleNextButton === true) {
             resetTimer();
         }
-
-    }, [handleNextButton]);
+    }, [handleNextButton], resetTimer);
 
 
     return (
