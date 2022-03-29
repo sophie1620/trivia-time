@@ -26,7 +26,6 @@ function Form(props) {
 
         for (let i = 0; i <= 4; i++) {
 
-
             tempArray.push({
                 name: `player${i + 1}`,
                 pic: ''
@@ -77,7 +76,7 @@ function Form(props) {
     }, [selectedCategory, selectedNumber])
 
     return (
-        <div className="gameForm">
+        <div className="gameForm wrapper">
             <h3>how to play</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet culpa voluptas odio atque aperiam plac perspiciatis iusto, fugiat aut ut labore? Nisi quas velit quasi.</p>
             <form action="" >
@@ -110,8 +109,13 @@ function Form(props) {
                 </fieldset>
                 <div className="playerAvatarName">
                     {/* Need to set height/class to avoid button jumping */}
-                    <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} />
 
+                    { selectedNumber 
+                        ? <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} /> 
+                        : null
+                }
+
+                    {/* <PlayerAvatars triviaPlayers={[selectedNumber]} nameArray={nameArray} playerAvatarName={playerAvatarName} /> */}
                 </div>
                 {/* <Link to={{
                     pathname: '/game',

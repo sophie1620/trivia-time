@@ -9,8 +9,18 @@ function PlayerAvatars(props) {
     const [avatar, setAvatar] = useState([]);
 
     const numOfAvatar = props.triviaPlayers;
-
     // console.log(playerName);
+
+    // // array to for player number
+    // const playerNumbers = ['one', 'two', 'three', 'four', 'five'];
+
+    // const number = function() {
+    //     playerNumbers.map((number) => {
+    //         return (
+    //             `player ${number} `
+    //         )
+    //     })
+    // }
 
     useEffect(async () => {
         // Array to store batched API resonse
@@ -54,33 +64,32 @@ function PlayerAvatars(props) {
     }, props.triviaPlayers);
 
 
-    // // map through the apiData, and then we can update the playerAvatarName with each 
-    // avatar.forEach((item, index) => {
-    //     props.nameArray[index].pic = item.request.responseURL
-    //     props.playerAvatarName(props.nameArray[index], index)
-    // })
-
-
     return (
         // should we put this as a form, so that we can hold onto the player's name info when they press submit?
-        <div>
-            {
-                avatar.map((avatarUrl, i) => {
-                    return (
-                        // Using Math.Random() for now to generate temporary ID
-                        <AvatarPic
-                            src={avatarUrl.request.responseURL}
-                            key={Math.random()}
-                            // playerNameInfo={playerNameInfo}
-                            // playInfo={props.playInfo}
-                            userObject={props.nameArray[i]}
-                            playerAvatarName={props.playerAvatarName}
-                            arrayIndex={i}
-                        />
-                    )
+        <div className="players">
 
-                })
-            }
+            <h2>let's get to know each-other.</h2>
+            <ul className="playerList">
+
+                {
+                    avatar.map((avatarUrl, i) => {
+                        return (
+                            // Using Math.Random() for now to generate temporary ID
+                            <AvatarPic
+                                src={avatarUrl.request.responseURL}
+                                key={Math.random()}
+                                // playerNameInfo={playerNameInfo}
+                                // playInfo={props.playInfo}
+                                userObject={props.nameArray[i]}
+                                playerAvatarName={props.playerAvatarName}
+                                arrayIndex={i}
+                                
+                            />
+                        )
+
+                    })
+                }
+            </ul>
         </div>
     );
 }

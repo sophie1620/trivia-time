@@ -41,23 +41,6 @@ function Leaderboard() {
     return(
         
         <p></p>
-        // winners.forEach((winner) => {
-            // winners.map((info, i) => {
-            //     return (
-
-            //         <li key={Math.random()}>
-            //             <div>
-            //                 <img className="avatarPic" src={info.pic} alt="Player avatar" />
-            //                 <p>{info.name}! </p>
-            //                 <p> score: {info.points}</p>
-
-            //             </div>
-
-            //         </li>
-
-            //     )
-            // })
-        // }) //end bracket for forEach
     )}
 
 export default Leaderboard;

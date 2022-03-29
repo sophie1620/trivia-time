@@ -1,10 +1,69 @@
-img.avatarPic {
-    border: 5px solid $coral-orange;
-    border-radius: 50%;
-    background-color: $cream;
+div.players {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $bright-yellow;
+    width: 100%;
+}
+
+ul.playerList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.playerList li {
+    // border: 1px solid red;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+
+    h3 {
+        // border: 1px solid green;
+        margin: 0;
+        text-align: center;
+    }
 }
 
 fieldset.playerInfo {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 250px;
+    padding: 0;
+
+    input[type=text] {
+        background-color: $cream;
+        width: 100%;
+        border: 4px solid $coral-orange;
+        border-radius: 8px;
+        padding: 8px;
+        text-align: center;
+        color: $dark-teal;
+        font-weight: 600;
+    }
+}
+
+div.imgContainer {
+    width: 220px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px 30px;
+}
+
+img.avatarPic {
+    border: 4px solid $light-teal;
+    border-radius: 50%;
+    background-color: $cream;
+    padding: 5px;
+}
+
+@media (max-width) {
+    
 }
