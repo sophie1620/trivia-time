@@ -1,5 +1,5 @@
 .leaderboard {
-    margin-bottom: 25%;
+    margin-bottom: 15%;
 
     h3 {
         text-align: center;
@@ -19,17 +19,16 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        margin: 2.5% 0;
         background-color: $dark-teal;
-        // border-bottom: 10px solid $dark-teal;
     }
     .listInfo {
         display: flex;
+        border: 4px $light-teal solid;
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
         img {
-            transform: scale(0.8);
+            transform: scale(0.6);
         }
     }
 }
