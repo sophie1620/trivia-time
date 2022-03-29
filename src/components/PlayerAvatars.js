@@ -3,27 +3,14 @@ import axios from 'axios'
 import AvatarPic from './AvatarPic';
 
 function PlayerAvatars(props) {
-    // console.log(props.triviaPlayers);
-    // console.log(props.playerAvatarName);s
+    const { triviaPlayers, nameArray, playerAvatarName } = props;
 
     const [avatar, setAvatar] = useState([]);
 
-    const numOfAvatar = props.triviaPlayers;
-    // console.log(playerName);
-
-    // // array to for player number
-    // const playerNumbers = ['one', 'two', 'three', 'four', 'five'];
-
-    // const number = function() {
-    //     playerNumbers.map((number) => {
-    //         return (
-    //             `player ${number} `
-    //         )
-    //     })
-    // }
+    const numOfAvatar = triviaPlayers;
 
     useEffect(async () => {
-        // Array to store batched API resonse
+        // Array to store batched API response
         const batchRes = [];
 
         // Loop and call API 5 times;
@@ -33,19 +20,14 @@ function PlayerAvatars(props) {
             batchRes.push(res)
         }
 
-        // Set state array to temporary array
-        // We do this because the endpoint only returns one and not an actual batch
-        // Setting it each time will cause unecessary rerenders since we would be calling setState each time with a new array
-        // setAvatar(batchRes);
-
         Promise.all(batchRes)
             .then((apiData) => {
                 setAvatar(apiData)
 
                 // giving each player an avatar for error handling, in case they don't want to change the default placeholder
                 apiData.forEach((item, index) => {
-                    props.nameArray[index].pic = item.request.responseURL
-                    props.playerAvatarName(props.nameArray[index], index)
+                    nameArray[index].pic = item.request.responseURL
+                    playerAvatarName(nameArray[index], index)
                 })
             })
 
@@ -59,9 +41,8 @@ function PlayerAvatars(props) {
             } else {
                 throw new Error(apiData.request.statusText);
             }
-            // Returns response string
         }
-    }, props.triviaPlayers);
+    }, triviaPlayers);
 
 
     return (
@@ -78,10 +59,8 @@ function PlayerAvatars(props) {
                             <AvatarPic
                                 src={avatarUrl.request.responseURL}
                                 key={Math.random()}
-                                // playerNameInfo={playerNameInfo}
-                                // playInfo={props.playInfo}
-                                userObject={props.nameArray[i]}
-                                playerAvatarName={props.playerAvatarName}
+                                userObject={nameArray[i]}
+                                playerAvatarName={playerAvatarName}
                                 arrayIndex={i}
                                 
                             />

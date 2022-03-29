@@ -70,7 +70,7 @@ function Form(props) {
             if (apiData.status === 200 || apiData.statusText == 'OK') {
                 setQuestions(apiData.data.results)
             } else {
-                alert("Oops!  It seems like we're having some technical difficulties.  Please play Trivia Time at a later time.  Thank you for understanding.")
+                throw new Error(apiData.statusText)
             }
         })
     }, [selectedCategory, selectedNumber])

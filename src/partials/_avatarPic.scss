@@ -5,8 +5,11 @@ div.players {
     align-items: center;
     background-color: $bright-yellow;
     width: 100%;
+
+    h2 {
+        text-align: center;
+    }
 }
-// //////// I can't get this player section to remain a consitent width, regardless of how many players are chose.
 
 ul.playerList {
     display: flex;
@@ -16,19 +19,15 @@ ul.playerList {
 }
 
 .playerList li {
-    // border: 1px solid red;
     margin: 20px;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
 
     h3 {
-        // border: 1px solid green;
         margin: 0;
         text-align: center;
     }
-    // ////// In the design, it shows up as "player one", "player two".... I'm not too sure how to add this to each li in the AvatarPic.js component.  I've tried playing aroudn with adding a new array ( ['one', 'two', 'three', etc.] ), but it was not pushing onto the page in the corresponding li where the avatar and player names show up---so like, within each individual .playerList li 
 }
 
 fieldset.playerInfo {
@@ -66,6 +65,14 @@ img.avatarPic {
     padding: 5px;
 }
 
-@media (max-width) {
+@media (max-width: 560px) {
+    .players h2 {
+        width: 80%;
+    }
+}
 
+@media (max-width: 425px) {
+    .players h2 {
+        width: 60%;
+    }
 }

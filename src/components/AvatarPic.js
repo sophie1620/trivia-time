@@ -1,25 +1,20 @@
 import { useState } from "react";
 
 function AvatarPic(props) {
-    // console.log(props);
+    const { userObject, src, arrayIndex, playerAvatarName } = props;
 
-    const [userInput, setUserInput] = useState(props.userObject.name);
-
-
-    // // array to for player number
-    // const playerNumbers = ['one', 'two', 'three', 'four', 'five'];
+    const [userInput, setUserInput] = useState(userObject.name);
 
     const handleInputChange = function (event) {
-        // console.log(event.target.value)
         setUserInput(event.target.value)
 
         const inputObject = {
             name: userInput,
-            pic: props.src,
+            pic: src,
             points: 0,
         }
 
-        props.playerAvatarName(inputObject, props.arrayIndex)
+        playerAvatarName(inputObject, arrayIndex)
     }
 
     const handleLocalInputChange = function (event) {
@@ -31,21 +26,32 @@ function AvatarPic(props) {
         <li>
 
             <h3>
-                player
+                player {arrayIndex}
             </h3>
 
             <fieldset className="playerInfo" >
                 <div className="imgContainer"> 
                     <img
                         className="avatarPic"
-                        src={props.src}
+                        src={src}
                         alt="robot avatar"
                     />
                 </div>
 
                 {/* for players to set their own names */}
-                <label className="sr-only" htmlFor="playerName">Player Name</label>
-                <input type="text" name="playerName" id="playerName" value={userInput} onChange={handleLocalInputChange} onBlur={handleInputChange} />
+                <label 
+                    className="sr-only" 
+                    htmlFor="playerName"
+                >Player Name</label>
+
+                <input 
+                    type="text" 
+                    name="playerName" 
+                    id="playerName" 
+                    value={userInput} 
+                    onChange={handleLocalInputChange} 
+                    onBlur={handleInputChange} 
+                />
                     {/* oncChange now only handles LOCAL changes, and onBlur will update with the object info ONCE the user clicks away from the input box */}
 
             </fieldset>
