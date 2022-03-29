@@ -8,16 +8,11 @@ function Questions(props) {
     const [showQuestions, setShowQuestions] = useState(true)
     const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
-    // const [answerCheck, setAnswerCheck] = useState(0)
+    const [answerCheck, setAnswerCheck] = useState(0)
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [isReset, setIsReset] = useState(false)
-    const [showNextScreen, setShowNextScreen] = useState(false)
-
-    let scoreUpdater = 0
-
-    console.log(currentQuestion)
 
     // destructure props passed from parent component
     const { currentQuestions, numOfPlayers, playerInfo } = props;
@@ -74,39 +69,23 @@ function Questions(props) {
 
     // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
     function changeScore(number) {
-        scoreUpdater = number;
+        setAnswerCheck(number)
     }
 
-    console.log(scoreUpdater, score)
 
 
     function next() {
         // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
 
-        setScore(score + scoreUpdater)
-        // setAnswerCheck(0)
-        scoreUpdater = 0;
+        setScore(score + answerCheck)
+        setAnswerCheck(0)
         setCurrentQuestion(currentQuestion + 1)
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
-        if (currentQuestion === 3) {
+        if (currentQuestion === 2) {
             playerInfo[currentPlayer].points = score;
-
-            console.log(currentQuestion)
             reset()
         }
-
-        if (currentQuestion === 2) {
-            changeScreen()
-        }
-
-        function changeScreen() {
-            setShowNextScreen(true)
-        }
-        // if (currentQuestion === 0) {
-        //     setShowNextScreen(true)
-        // }
-
 
         setIsReset(true);
     }
@@ -114,11 +93,9 @@ function Questions(props) {
     function reset() {
         setScore(0)
         setCurrentQuestion(0)
-
         if (currentPlayer === (numOfPlayers - 1)) {
             setShowResultsLink(true)
             setShowQuestions(false)
-            setShowNextScreen(false)
             props.updateFinalScores(playerInfo)
         } else {
             setCurrentPlayer(currentPlayer + 1)
@@ -155,7 +132,6 @@ function Questions(props) {
                         </div>
                     </section>
                     : null
-
             }
 
             {
@@ -166,18 +142,7 @@ function Questions(props) {
                     </Link>
                     : null
             }
-
-            {
-                showNextScreen
-                    ?
-                    <div className="question-container">
-                        <p>Next player, get ready</p>
-                        <button onClick={next} className="next-button">next</button>
-                    </div>
-
-                    : null
-            }
-        </div >
+        </div>
     )
 }
 
