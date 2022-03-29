@@ -13,7 +13,11 @@ function Questions(props) {
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [isReset, setIsReset] = useState(false)
+    const [showNextScreen, setShowNextScreen] = useState(false)
+
     let scoreUpdater = 0
+
+    console.log(currentQuestion)
 
     // destructure props passed from parent component
     const { currentQuestions, numOfPlayers, playerInfo } = props;
@@ -85,10 +89,24 @@ function Questions(props) {
         setCurrentQuestion(currentQuestion + 1)
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
-        if (currentQuestion === 2) {
+        if (currentQuestion === 3) {
             playerInfo[currentPlayer].points = score;
+
+            console.log(currentQuestion)
             reset()
         }
+
+        if (currentQuestion === 2) {
+            changeScreen()
+        }
+
+        function changeScreen() {
+            setShowNextScreen(true)
+        }
+        // if (currentQuestion === 0) {
+        //     setShowNextScreen(true)
+        // }
+
 
         setIsReset(true);
     }
@@ -96,9 +114,11 @@ function Questions(props) {
     function reset() {
         setScore(0)
         setCurrentQuestion(0)
+
         if (currentPlayer === (numOfPlayers - 1)) {
             setShowResultsLink(true)
             setShowQuestions(false)
+            setShowNextScreen(false)
             props.updateFinalScores(playerInfo)
         } else {
             setCurrentPlayer(currentPlayer + 1)
@@ -135,6 +155,7 @@ function Questions(props) {
                         </div>
                     </section>
                     : null
+
             }
 
             {
@@ -145,7 +166,18 @@ function Questions(props) {
                     </Link>
                     : null
             }
-        </div>
+
+            {
+                showNextScreen
+                    ?
+                    <div className="question-container">
+                        <p>Next player, get ready</p>
+                        <button onClick={next} className="next-button">next</button>
+                    </div>
+
+                    : null
+            }
+        </div >
     )
 }
 
