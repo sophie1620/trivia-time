@@ -8,11 +8,12 @@ function Questions(props) {
     const [showQuestions, setShowQuestions] = useState(true)
     const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
-    const [answerCheck, setAnswerCheck] = useState(0)
+    // const [answerCheck, setAnswerCheck] = useState(0)
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [isReset, setIsReset] = useState(false)
+    let scoreUpdater = 0
 
     // destructure props passed from parent component
     const { currentQuestions, numOfPlayers, playerInfo } = props;
@@ -69,16 +70,18 @@ function Questions(props) {
 
     // when user selects a potential answer, the answerCheck state will update to 0 or 1 depending on whether the correct answer is chosen
     function changeScore(number) {
-        setAnswerCheck(number)
+        scoreUpdater = number;
     }
 
+    console.log(scoreUpdater, score)
 
 
     function next() {
         // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
 
-        setScore(score + answerCheck)
-        setAnswerCheck(0)
+        setScore(score + scoreUpdater)
+        // setAnswerCheck(0)
+        scoreUpdater = 0;
         setCurrentQuestion(currentQuestion + 1)
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
