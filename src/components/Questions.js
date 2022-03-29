@@ -75,6 +75,10 @@ function Questions(props) {
         scoreUpdater = number;
     }
 
+    // function pushScore() {
+    //     playerInfo[currentPlayer].points = score
+    // }
+
     console.log(score)
     console.log(currentQuestion)
 
@@ -87,7 +91,8 @@ function Questions(props) {
 
         // when player has submitted three times, change the current player's points value within the playerInfo array to the current score, then reset everything for next player
         if (currentQuestion === 3) {
-            (playerInfo[currentPlayer].points = score)
+            // pushScore()
+            playerInfo[currentPlayer].points = score
             reset()
         }
 
@@ -137,7 +142,7 @@ function Questions(props) {
                                     <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
                                 </div>
                             </div>
-                            <button onClick={next} className="next-button">next</button>
+                            <button onClick={next} className="next-button">{currentQuestion === 3 ? "next player" : "next"}</button>
                         </div>
                     </section>
                     : null
