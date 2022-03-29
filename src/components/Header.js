@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 function Header() {
     return (
         <header>
-            <div className="wave"></div>
             <div className="wrapper">
+                <img src="https://avatars.dicebear.com/api/bottts/dddddddddddd.svg?colors[]=yellow" alt="robot avatar"></img>
                 <Link to="/">
                     <h1>Trivia Time</h1>
                 </Link>
