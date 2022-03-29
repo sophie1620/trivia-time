@@ -102,8 +102,8 @@ function Form(props) {
 
 
                     <label htmlFor="categories" className='sr-only' >Pick a category!</label>
-                    <select name="categories" id="categories" onChange={handleSelections}>
-                        <option value="placeholder" defaultValue disabled>Pick a category!</option>
+                    <select name="categories" id="categories" onChange={handleSelections} value={selectedCategory}>
+                        <option value="" defaultValue>Pick a category!</option>
                         <option value="9">General</option>
                         <option value="10">Books</option>
                         <option value="11">Film</option>
