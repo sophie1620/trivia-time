@@ -292,6 +292,21 @@ p {
   color: #264653;
 }
 
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: lightblue;
+}
+
+main {
+  min-height: 60vh;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -396,6 +411,7 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 65px;
 }
 .gameForm h3 {
   margin: 2%;
@@ -420,6 +436,7 @@ h1 {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-top: 2%;
+  margin-bottom: 150px;
   width: 100%;
 }
 .gameForm form fieldset {
@@ -441,6 +458,13 @@ h1 {
   border-radius: 5px;
   margin: 2%;
   width: 250px;
+}
+
+div.playerAvatarName {
+  width: 100%;
+  margin-bottom: 30px;
+  -webkit-box-shadow: 4px 4px 5px rgba(34, 25, 25, 0.4);
+          box-shadow: 4px 4px 5px rgba(34, 25, 25, 0.4);
 }
 
 div.players {
@@ -746,17 +770,51 @@ img.avatarPic {
 
 footer {
   background-color: #fffef6;
-  padding: 30px 0;
+  padding: 0 0 20px;
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  background-image: url(./../../public/assets/footerWave.svg);
+  background-size: cover;
+  position: absolute;
+  bottom: 135px;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 155%;
+  z-index: -10;
 }
 
 .footerP {
   color: #195b53;
   text-align: center;
   font-family: "Roboto", sans-serif;
-  font-size: 1.25rem;
+  font-size: 1rem;
+}
+.footerP a:hover,
+.footerP a:focus {
+  text-decoration: underline;
+  color: #e76f51;
 }
 
+@media (max-width: 1700px) {
+  footer::before {
+    bottom: 149px;
+    height: 180px;
+  }
+}
+@media (max-width: 1600px) {
+  footer::before {
+    bottom: 149px;
+    height: 168%;
+  }
+}
 @media (max-width: 600px) {
+  p.footerP {
+    font-size: 0.8rem;
+  }
+
   .portfolio a {
     display: block;
     margin: 16px;
