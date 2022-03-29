@@ -515,7 +515,6 @@ img.avatarPic {
 footer {
   background-color: #fffef6;
   padding: 30px 0;
-  position: relative;
 }
 
 .footerP {
@@ -523,4 +522,15 @@ footer {
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .portfolio a {
+    display: block;
+    margin: 16px;
+  }
+
+  .portfolio span {
+    display: none;
+  }
 }
