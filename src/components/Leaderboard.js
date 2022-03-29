@@ -26,7 +26,7 @@ function Leaderboard() {
         })
     }, [])
 
-    console.log(winners);
+    // console.log(winners);
     // const newWinners = [... winners];
 
     // const blah = [];
@@ -42,7 +42,7 @@ function Leaderboard() {
         
                 <div>
                         {winners.map((winner) => 
-                         (
+                        (
                             <div>
                                 {winner.map((eachWinner) => 
                                 (

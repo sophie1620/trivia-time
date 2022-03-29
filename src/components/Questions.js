@@ -129,22 +129,31 @@ function Questions(props) {
         setIsReset(false);
     }, [currentQuestion])
 
-    return (
-
+    return (  
         <div>
             {
                 showQuestions
-                    ? <div>
-
-                        <p>Player: {props.playerInfo[currentPlayer].name}  </p>
-                        <img src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
-
-                        {assignedQuestions[currentPlayer][currentQuestion]}
-                        <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
-
-
-                        <button onClick={next}>next</button>
-                    </div>
+                    ? 
+                        <section className='questions'>
+                            <div className='question-container'>
+                                <div className='player-name-text'>
+                                    <h3>Player: {props.playerInfo[currentPlayer].name}  </h3>
+                                </div>
+                                <div className='player-avatar-container'>
+                                    <img
+                                    className="avatarPic"src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
+                                </div>
+                                
+                                {assignedQuestions[currentPlayer][currentQuestion]}
+                                
+                                <div className="timer-flex">
+                                    <div className='timer-container'>
+                                        <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                                    </div>
+                                </div>
+                                <button onClick={next} className='next-button'>next</button>
+                            </div>
+                        </section>
                     : null
             }
 
