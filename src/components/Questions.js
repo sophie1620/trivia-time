@@ -95,6 +95,10 @@ function Questions(props) {
             // pushScore()
             playerInfo[currentPlayer].points = score
             reset()
+        } else if (currentPlayer === (numOfPlayers - 1) && currentQuestion === 2) {
+            setShowResultsLink(true)
+            setShowQuestions(false)
+            updateFinalScores(playerInfo)
         }
 
 
@@ -136,9 +140,7 @@ function Questions(props) {
                             </div>
 
                             {assignedQuestions[currentPlayer][currentQuestion]}
-                            <div className={currentQuestions === 3 ? "here" : "nothere"}>
-                                <p>hello</p>
-                            </div>
+
 
                             <div className="timer-flex">
                                 {currentQuestion === 3 ? null : <div className="timer-container">
@@ -146,6 +148,7 @@ function Questions(props) {
                                 </div>}
 
                             </div>
+
                             <button onClick={next} className="next-button">{currentQuestion === 3 ? "next player" : "next"}</button>
                         </div>
                     </section>
