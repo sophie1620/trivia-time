@@ -112,6 +112,11 @@
 
             input {
                 display: none; 
+                &:hover, &:focus {
+                    background-color: $dark-teal;
+                    color:white;            
+                    font-weight: 300;
+                }
                 &:checked + label {
                     background-color: $dark-teal;
                     color:white;            
