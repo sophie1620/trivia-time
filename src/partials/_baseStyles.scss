@@ -1,3 +1,13 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: $cream;
+}
+
+main {
+    min-height: 60vh;
+}
+
 a {
     text-decoration: none;
     color: inherit;

@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 65px;
 
     h3 {
         margin: 2%
@@ -12,6 +13,7 @@
         width: 40%;
         text-align: center;
         margin-top: 0;
+        transition: all 235ms ease-in-out;
     }
 
     form {
@@ -20,14 +22,15 @@
         align-items: center;
         flex-direction: column;
         margin-top: 2%;
-        width: 100%;
+        margin-bottom: 150px;
 
         fieldset {
             border: none;
             display:flex;
-            width:100%;
             justify-content: space-evenly;
+            width: 50%;
             padding:0;
+            margin-bottom: 40px;
 
             select {
                 color: $coral-orange;
@@ -36,11 +39,27 @@
                 text-align: center;
                 border-radius:5px;
                 margin:2%;
-                width: 250px
+                width: 250px;
             }
 
         }
 
     } 
 
+}
+
+@media (max-width:1000px) {
+    .gameForm {
+        p {
+            width:85%;
+        }
+        form fieldset {
+            flex-direction: column;
+            select {
+                padding:10px;
+                margin: 10px auto;
+            }
+        }
+    }
+    
 }
