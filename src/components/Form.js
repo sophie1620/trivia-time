@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import PlayerAvatars from "./PlayerAvatars";
 
 function Form(props) {
-
+    const { playerInfo, showQuestions } = props;
     // declare a use state to hold user category
     const [selectedCategory, setSelectedCategory] = useState(9);
     const [selectedNumber, setSelectedNumber] = useState(0);
@@ -30,7 +30,7 @@ function Form(props) {
 
         setNameArray(tempArray);
         // to get player avatar and name
-        props.playerInfo(nameArray)
+        playerInfo(nameArray)
         setShowButton(true)
     }
 
@@ -47,8 +47,13 @@ function Form(props) {
     }
 
     const handleClick = function () {
-        props.playerInfo(nameArray)
-        props.showQuestions(questions, selectedNumber)
+        playerInfo(nameArray)
+        showQuestions(questions, selectedNumber)
+    }
+
+    const handleSubmit = function () {
+        playerInfo(nameArray)
+        showQuestions(questions, selectedNumber)
     }
 
     useEffect(() => {
@@ -73,7 +78,7 @@ function Form(props) {
         <div className="gameForm wrapper">
             <h3>how to play</h3>
             <p>Each player will have 30 seconds to answer 3 questions. The player that get the most questions correct wins!</p>
-            <form action="" >
+            <form action="" onSubmit={handleSubmit}>
                 <fieldset>
 
                     <label htmlFor="numOfPlayer" className="sr-only">How many players?</label>

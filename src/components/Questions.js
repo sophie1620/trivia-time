@@ -8,13 +8,10 @@ function Questions(props) {
     const [showQuestions, setShowQuestions] = useState(true)
     const [showResultsLink, setShowResultsLink] = useState(false)
     const [playerQuestions, setPlayerQuestions] = useState([])
-    // const [answerCheck, setAnswerCheck] = useState(0)
     const [score, setScore] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [isReset, setIsReset] = useState(false)
-    const [showNextPlayerPage, setShowNextPlayerPage] = useState(false)
-    // const [scoreIsUpdated, setScoreIsUpdated] = useState(false)
 
     // destructure props passed from parent component
     const { currentQuestions, numOfPlayers, playerInfo, updateFinalScores } = props;
@@ -76,13 +73,6 @@ function Questions(props) {
         scoreUpdater = number;
     }
 
-    // function pushScore() {
-    //     playerInfo[currentPlayer].points = score
-    // }
-
-    console.log(score)
-    console.log(currentQuestion)
-
     function next() {
         // when the next button is clicked, add the final value of answerCheck to the player's current score, then increment the current question +1
 
@@ -133,11 +123,11 @@ function Questions(props) {
                     <section className="questions">
                         <div className="question-container">
                             <div className="player-name-text">
-                                <h3>Player: {props.playerInfo[currentPlayer].name}  </h3>
+                                <h3>Player: {playerInfo[currentPlayer].name}  </h3>
                             </div>
                             <div className="player-avatar-container">
                                 <img
-                                    className="avatarPic" src={props.playerInfo[currentPlayer].pic} alt="player avatar" />
+                                    className="avatarPic" src={playerInfo[currentPlayer].pic} alt="player avatar" />
                             </div>
 
                             {assignedQuestions[currentPlayer][currentQuestion]}

@@ -418,6 +418,7 @@ h1:hover {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 65px;
+  width: 100%;
 }
 .gameForm h3 {
   margin: 2%;
@@ -445,6 +446,7 @@ h1:hover {
           flex-direction: column;
   margin-top: 2%;
   margin-bottom: 150px;
+  width: 100%;
 }
 .gameForm form fieldset {
   border: none;
@@ -610,12 +612,6 @@ img.avatarPic {
   margin: 200px 0;
   padding-bottom: 50px;
 }
-.questions div.nothere {
-  display: none;
-}
-.questions div.here {
-  display: block;
-}
 .questions .question-container {
   background-color: #2a9d8f;
   width: 70%;
@@ -670,8 +666,11 @@ img.avatarPic {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;

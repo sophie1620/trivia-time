@@ -7,9 +7,6 @@ function PlayerQuestions(props) {
             event.target.value === rightAnswer ? changeScore(1) : changeScore(0)
         
     }
-    
-    
-    console.log(rightAnswer)
 
     function normalizeText(text) {
         return text

@@ -69,8 +69,6 @@ function Results(props) {
         push(dbRef, winnerArray);
     }, [winnerArray])
 
-    console.log(loserArray)
-
     return (
         <section className="results">
             <div className="wrapper">

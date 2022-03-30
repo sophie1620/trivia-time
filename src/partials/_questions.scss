@@ -1,15 +1,6 @@
 .questions {
-    // background-color: transparent; 
     margin: 200px 0;
     padding-bottom: 50px;
-    
-
-    div.nothere {
-        display: none;
-    }
-    div.here {
-        display: block;
-    }
 
     .question-container {
         background-color: $light-teal;
@@ -75,8 +66,7 @@
                 background-color: $cream; 
                 text-align: center;
                 border-radius: 7px;
-                // padding:0 5px;
-                // margin: 0 auto;
+
                 p {
                     margin: 8px;
                     font-weight: 600;
@@ -97,13 +87,13 @@
                     position: absolute;
                     font-family: $primary-font;
                     left: 0;
-                    // height:40px;
                     padding:10px 10px;
                     top:2px;
                     font-size:.8rem
                 }
             }
         }
+        
         .player-question-list {
             display: flex;
             flex-direction: column;
