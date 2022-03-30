@@ -13,6 +13,7 @@ function Questions(props) {
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [isReset, setIsReset] = useState(false)
+    const [showNextPlayerPage, setShowNextPlayerPage] = useState(false)
     // const [scoreIsUpdated, setScoreIsUpdated] = useState(false)
 
     // destructure props passed from parent component
@@ -96,6 +97,8 @@ function Questions(props) {
             reset()
         }
 
+
+
         setIsReset(true);
     }
 
@@ -138,15 +141,17 @@ function Questions(props) {
                             </div>
 
                             <div className="timer-flex">
-                                <div className="timer-container">
+                                {currentQuestion === 3 ? null : <div className="timer-container">
                                     <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
-                                </div>
+                                </div>}
+
                             </div>
                             <button onClick={next} className="next-button">{currentQuestion === 3 ? "next player" : "next"}</button>
                         </div>
                     </section>
                     : null
             }
+
 
             {
                 showResultsLink
