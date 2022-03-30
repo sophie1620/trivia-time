@@ -29,4 +29,8 @@ img.headerAvatar {
 h1 {
     text-align: center;
     letter-spacing: 5px;
+    transition: 0.2s ease-out;
+    &:hover {
+        text-shadow: 4px 4px 5px rgb(34 25 25 / 40%);
+    }
 }

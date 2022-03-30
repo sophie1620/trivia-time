@@ -28,6 +28,12 @@ footer::before {
         color: $coral-orange;
     }
 }
+@media (max-width: 2000px) {
+    footer::before {
+    bottom: 149px;
+    height: 300px;
+    }
+}
 
 @media (max-width: 1700px) {
     footer::before {

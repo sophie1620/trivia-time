@@ -7,23 +7,27 @@ import { getDatabase, ref, push } from 'firebase/database';
 function Results(props) {
     const { scores } = props;
 
-    const fullScoreArray = scores.map((number) => {
+    // filter out players with avatars (to filter out the non-players)
+    const playersArray = scores.filter((player) =>
+        player.pic !== ''
+    )
+
+    // filter out each score from the playersArray,
+    const scoreArray = playersArray.map((player) => {
         return (
-            number.points
+            player.points
         )
     })
 
-    const scoreArray = fullScoreArray.filter((number) =>
-        number !== undefined
-    )
 
     const highestScore = Math.max(...scoreArray)
 
-    const winnerArray = scores.filter((score) =>
+    // compare player scores to highest score, then filter accordingly
+    const winnerArray = playersArray.filter((score) =>
         score.points === highestScore
     )
 
-    const loserArray = scores.filter((score) =>
+    const loserArray = playersArray.filter((score) =>
         score.points !== highestScore
     )
 
@@ -65,6 +69,8 @@ function Results(props) {
         push(dbRef, winnerArray);
     }, [winnerArray])
 
+    console.log(loserArray)
+
     return (
         <section className="results">
             <div className="wrapper">
@@ -82,12 +88,16 @@ function Results(props) {
                     </ul>
                 </section>
 
-                <section className="losersContainer">
-                    <h2>better luck next time!</h2>
-                    <ul className="losers">
-                        {losers}
-                    </ul>
-                </section>
+                {
+                    loserArray.length > 0
+                        ? <section className="losersContainer">
+                            <h2>better luck next time!</h2>
+                            <ul className="losers">
+                                {losers}
+                            </ul>
+                        </section>
+                        : null
+                }
 
                 <Link to={"/"}>
                     <button className="start">Play again</button>
