@@ -77,7 +77,6 @@ function PlayerQuestions(props) {
                 <div tabIndex="3">
                     <input type="radio" name={triviaQuestn} id={`ans4-${normalizeText(triviaQuestn)}}`} value={answers[3]} onChange={e => { handleSelect(e) }} />
                     <label htmlFor={`ans4-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[3])}</label>
-
                 </div>
 
             </fieldset>
