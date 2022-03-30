@@ -567,6 +567,9 @@ fieldset.playerInfo input[type=text] {
   color: #195b53;
   font-weight: 600;
 }
+fieldset.playerInfo input[type=text]:hover, fieldset.playerInfo input[type=text]:focus {
+  border: 4px solid #2a9d8f;
+}
 
 div.imgContainer {
   width: 220px;
