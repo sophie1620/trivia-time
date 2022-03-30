@@ -41,7 +41,7 @@ function App() {
 
       <footer>
         <div className="wrapper">
-          <p className="footerP">Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/">Juno College</a></p>
+          <p className="footerP">Made with <i className="fa-solid fa-heart"></i> at <a href="https://junocollege.com/" target="blank" rel="noreferrer noopener">Juno College</a></p>
 
           <p className="footerP portfolio">
             <a href="https://seannastewart.com/" target="_blank" rel="noreferrer noopener">Seanna Stewart</a>
