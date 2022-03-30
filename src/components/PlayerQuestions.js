@@ -63,18 +63,18 @@ function PlayerQuestions(props) {
                     <label htmlFor={`ans1-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[0])}</label>
                 </div>
 
-                <div tabIndex="1">
+                <div tabIndex="0">
                     <input type="radio" name={triviaQuestn} id={`ans2-${normalizeText(triviaQuestn)}}`} value={answers[1]} onChange={e => {handleSelect(e)}}/>
                     <label htmlFor={`ans2-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[1])}</label>
                 </div>
 
-                <div tabIndex="2">
+                <div tabIndex="0">
                     <input type="radio" name={triviaQuestn} id={`ans3-${normalizeText(triviaQuestn)}}`} value={answers[2]} onChange={e => {handleSelect(e) }}/>
                     <label htmlFor={`ans3-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[2])}</label>
                 </div>
 
 
-                <div tabIndex="3">
+                <div tabIndex="0">
                     <input type="radio" name={triviaQuestn} id={`ans4-${normalizeText(triviaQuestn)}}`} value={answers[3]} onChange={e => { handleSelect(e) }} />
                     <label htmlFor={`ans4-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[3])}</label>
                 </div>

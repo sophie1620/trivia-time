@@ -667,21 +667,22 @@ img.avatarPic {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  width: 30%;
+  justify-content: center;
+  align-content: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  width: 100%;
   position: absolute;
   top: -20px;
-  left: 38%;
+  left: 0;
 }
 .questions .question-container .timer-flex .timer-container {
   border: 3px solid #e9c46a;
   background-color: #fffef6;
   text-align: center;
-  padding: 0 5px;
+  border-radius: 7px;
 }
 .questions .question-container .timer-flex .timer-container p {
   margin: 8px;
