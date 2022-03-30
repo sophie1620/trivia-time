@@ -96,6 +96,7 @@ function Questions(props) {
             playerInfo[currentPlayer].points = score
             reset()
         } else if (currentPlayer === (numOfPlayers - 1) && currentQuestion === 2) {
+            playerInfo[currentPlayer].points = score
             setShowResultsLink(true)
             setShowQuestions(false)
             updateFinalScores(playerInfo)
