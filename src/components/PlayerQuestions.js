@@ -58,18 +58,26 @@ function PlayerQuestions(props) {
                     <legend>{normalizeText(triviaQuestn)}</legend>
                 </div>
 
-                <input type="radio" name={triviaQuestn} id={`ans1-${normalizeText(triviaQuestn)}}`} value={answers[0]} onChange={() => {handleSelect()}} />
-                <label htmlFor={`ans1-${normalizeText(triviaQuestn)}}`}>{normalizeText(answers[0])}</label>
+                <div tabIndex="0">
+                    <input type="radio" name={triviaQuestn} id={`ans1-${normalizeText(triviaQuestn)}}`} value={answers[0]} onChange={() => { handleSelect() }} />
+                    <label htmlFor={`ans1-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[0])}</label>
+                </div>
 
-                <input type="radio" name={triviaQuestn} id={`ans2-${normalizeText(triviaQuestn)}}`} value={answers[1]} onChange={e => {handleSelect(e)}} />
-                <label htmlFor={`ans2-${normalizeText(triviaQuestn)}}`}>{normalizeText(answers[1])}</label>
+                <div tabIndex="1">
+                    <input type="radio" name={triviaQuestn} id={`ans2-${normalizeText(triviaQuestn)}}`} value={answers[1]} onChange={e => {handleSelect(e)}}/>
+                    <label htmlFor={`ans2-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[1])}</label>
+                </div>
 
-                <input type="radio" name={triviaQuestn} id={`ans3-${normalizeText(triviaQuestn)}}`} value={answers[2]} onChange={e => {handleSelect(e) }}/>
-                <label htmlFor={`ans3-${normalizeText(triviaQuestn)}}`}>{normalizeText(answers[2])}</label>
+                <div tabIndex="2">
+                    <input type="radio" name={triviaQuestn} id={`ans3-${normalizeText(triviaQuestn)}}`} value={answers[2]} onChange={e => {handleSelect(e) }}/>
+                    <label htmlFor={`ans3-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[2])}</label>
+                </div>
 
-                <input type="radio" name={triviaQuestn} id={`ans4-${normalizeText(triviaQuestn)}}`} value={answers[3]} onChange={e => {handleSelect(e)}} />
 
-                <label htmlFor={`ans4-${normalizeText(triviaQuestn)}}`}>{normalizeText(answers[3])}</label>
+                <div tabIndex="3">
+                    <input type="radio" name={triviaQuestn} id={`ans4-${normalizeText(triviaQuestn)}}`} value={answers[3]} onChange={e => { handleSelect(e) }} />
+                    <label htmlFor={`ans4-${normalizeText(triviaQuestn)}}`} >{normalizeText(answers[3])}</label>
+                </div>
 
             </fieldset>
         </div>

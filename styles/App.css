@@ -510,7 +510,7 @@ img.avatarPic {
 }
 .questions {
   background-color: #fffef6;
-  padding: 150px 0;
+  margin: 250px 0;
 }
 .questions div.nothere {
   display: none;

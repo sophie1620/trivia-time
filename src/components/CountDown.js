@@ -57,12 +57,12 @@ const CountDown = ({ minutes = 0, seconds = 0, handleCountdownFinish, handleNext
                 {over ? timesUp() : ''}
 
             </div>
-            <button onClick={() => setPaused(!paused)} className='pause-button'>
+            {/* <button onClick={() => setPaused(!paused)} className='pause-button'>
                 {paused ? 'Resume' : 'Pause'}
             </button>
             <button onClick={() => resetTimer()} className='reset-button'>
                 Restart
-            </button>
+            </button> */}
         </div>
     );
 };
