@@ -386,7 +386,7 @@ header .wrapper {
 }
 
 img.headerAvatar {
-  width: 15%;
+  width: 220px;
   border: 3px solid #264653;
   border-radius: 50%;
   padding: 1%;
@@ -403,6 +403,21 @@ h1:hover {
   text-shadow: 4px 4px 5px rgba(34, 25, 25, 0.4);
 }
 
+@media (max-width: 800px) {
+  header::before {
+    top: 0;
+  }
+}
+@media (max-width: 560px) {
+  img.headerAvatar {
+    width: 180px;
+  }
+}
+@media (max-width: 400px) {
+  img.headerAvatar {
+    width: 160px;
+  }
+}
 .gameForm {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -780,6 +795,37 @@ button.finish {
   }
   .questions .question-container .pause-button {
     display: none;
+  }
+}
+@media (max-width: 600px) {
+  .questions {
+    overflow-x: hidden;
+  }
+  .questions fieldset {
+    width: 80%;
+  }
+  .questions .question-container {
+    margin-top: 50px;
+    padding: 60px 10px;
+  }
+  .questions .question-container .timer-flex {
+    left: 27%;
+    top: 14px;
+  }
+  .questions .question-container .player-question-list {
+    margin-top: 20px;
+  }
+  .questions .question-container .player-question-list label h3 {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 425px) {
+  .questions {
+    overflow-x: visible;
+  }
+  .questions .question-container .player-name-text {
+    top: -100px;
+    z-index: 10;
   }
 }
 .results {

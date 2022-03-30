@@ -7,7 +7,7 @@
         width: 70%;
         margin: 0 auto;
         box-shadow: 4px 4px 5px rgba(34, 25, 25, 0.4);
-        padding:50px;
+        padding: 50px;
         position: relative;
         display: flex;
         text-align: center;
@@ -167,6 +167,42 @@ button.finish {
             display: none;
         }
     }
-        
-    
+}
+
+@media (max-width: 600px) {
+    .questions {
+        overflow-x: hidden;
+            fieldset {
+                width: 80%;
+            }
+
+        .question-container {
+            margin-top:50px;
+            padding: 60px 10px;
+
+            .timer-flex {
+                left:27%;
+                top:14px;
+            }
+
+            .player-question-list {
+                margin-top: 20px;
+
+                label h3 {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .questions {
+        overflow-x: visible;
+
+        .question-container .player-name-text {
+            top: -100px;
+            z-index: 10;
+        }
+    }
 }

@@ -91,9 +91,6 @@ function Questions(props) {
             setShowQuestions(false)
             updateFinalScores(playerInfo)
         }
-
-
-
         setIsReset(true);
     }
 
@@ -135,7 +132,7 @@ function Questions(props) {
 
                             <div className="timer-flex">
                                 {currentQuestion === 3 ? null : <div className="timer-container">
-                                    <CountDown seconds={10} handleCountdownFinish={() => next()} handleNextButton={isReset} />
+                                    <CountDown seconds={30} handleCountdownFinish={() => next()} handleNextButton={isReset} />
                                 </div>}
 
                             </div>
