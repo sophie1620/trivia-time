@@ -55,13 +55,15 @@ function PlayerAvatars(props) {
                     avatar.map((avatarUrl, i) => {
                         return (
                             // Using Math.Random() for now to generate temporary ID
-                            <AvatarPic
-                                src={avatarUrl.request.responseURL}
-                                key={Math.random()}
-                                userObject={nameArray[i]}
-                                playerAvatarName={playerAvatarName}
-                                arrayIndex={i}
-                            />
+                            <div tabIndex="0">
+                                <AvatarPic
+                                    src={avatarUrl.request.responseURL}
+                                    key={Math.random()}
+                                    userObject={nameArray[i]}
+                                    playerAvatarName={playerAvatarName}
+                                    arrayIndex={i}
+                                />
+                            </div>
                         )
 
                     })

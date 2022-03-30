@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function AvatarPic(props) {
-    const { userObject, src, arrayIndex, playerAvatarName, tabIndex } = props;
+    const { userObject, src, arrayIndex, playerAvatarName } = props;
 
     const [userInput, setUserInput] = useState(userObject.name);
 
