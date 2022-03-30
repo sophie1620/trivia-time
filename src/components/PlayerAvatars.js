@@ -49,21 +49,19 @@ function PlayerAvatars(props) {
         <div className="players">
 
             <h2>let's get to know each-other.</h2>
+            <p>Enter the player names below.</p>
             <ul className="playerList">
                 {
                     avatar.map((avatarUrl, i) => {
                         return (
                             // Using Math.Random() for now to generate temporary ID
-                            <div tabIndex="0">
-                                <AvatarPic
-                                    src={avatarUrl.request.responseURL}
-                                    key={Math.random()}
-                                    userObject={nameArray[i]}
-                                    playerAvatarName={playerAvatarName}
-                                    arrayIndex={i}
-
-                                />
-                            </div>
+                            <AvatarPic
+                                src={avatarUrl.request.responseURL}
+                                key={Math.random()}
+                                userObject={nameArray[i]}
+                                playerAvatarName={playerAvatarName}
+                                arrayIndex={i}
+                            />
                         )
 
                     })
