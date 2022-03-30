@@ -54,7 +54,7 @@
             width:85%;
         }
         form fieldset {
-            display: block;
+            flex-direction: column;
             select {
                 padding:10px;
                 margin: 10px auto;

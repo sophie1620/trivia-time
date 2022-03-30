@@ -421,7 +421,7 @@ h1 {
     width: 85%;
   }
   .gameForm form fieldset {
-    display: block;
+    flex-direction: column;
   }
   .gameForm form fieldset select {
     padding: 10px;
