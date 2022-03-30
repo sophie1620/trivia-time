@@ -13,6 +13,7 @@
         width: 40%;
         text-align: center;
         margin-top: 0;
+        transition: all 235ms ease-in-out;
     }
 
     form {
@@ -38,11 +39,27 @@
                 text-align: center;
                 border-radius:5px;
                 margin:2%;
-                width: 250px
+                width: 250px;
             }
 
         }
 
     } 
 
+}
+
+@media (max-width:1000px) {
+    .gameForm {
+        p {
+            width:85%;
+        }
+        form fieldset {
+            display: block;
+            select {
+                padding:10px;
+                margin: 10px auto;
+            }
+        }
+    }
+    
 }
