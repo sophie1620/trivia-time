@@ -604,8 +604,8 @@ img.avatarPic {
   }
 }
 .questions {
-  background-color: #fffef6;
-  margin: 250px 0;
+  margin: 200px 0;
+  padding-bottom: 50px;
 }
 .questions div.nothere {
   display: none;
@@ -725,6 +725,11 @@ img.avatarPic {
 }
 .questions .question-container .player-question-list input {
   display: none;
+}
+.questions .question-container .player-question-list input:hover, .questions .question-container .player-question-list input:focus {
+  background-color: #195b53;
+  color: white;
+  font-weight: 300;
 }
 .questions .question-container .player-question-list input:checked + label {
   background-color: #195b53;
@@ -919,6 +924,12 @@ footer::before {
   color: #e76f51;
 }
 
+@media (max-width: 2000px) {
+  footer::before {
+    bottom: 149px;
+    height: 300px;
+  }
+}
 @media (max-width: 1700px) {
   footer::before {
     bottom: 149px;
