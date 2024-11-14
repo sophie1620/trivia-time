@@ -24,7 +24,6 @@ function PlayerAvatars(props) {
 
                 // giving each player an avatar for error handling, in case they don't want to change the default placeholder
                 apiData.forEach((item, index) => {
-                    // nameArray[index].pic = item.request.responseURL
                     playerAvatarName(nameArray[index], index, item.request.responseURL)
                 })
             })
