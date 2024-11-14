@@ -5,7 +5,8 @@ function Header() {
         <header>
             <div className="wrapper">
 
-                <img className="headerAvatar" src="https://avatars.dicebear.com/api/bottts/dddddddddddd.svg?colors[]=yellow" alt="robot avatar"></img>
+                <img className="headerAvatar" src="https://api.dicebear.com/9.x/bottts/svg" alt="robot avatar"></img>
+                {/* https://avatars.dicebear.com/api/bottts/dddddddddddd.svg?colors[]=yellow */}
                 <Link to="/">
                     <h1>Trivia Time</h1>
                 </Link>

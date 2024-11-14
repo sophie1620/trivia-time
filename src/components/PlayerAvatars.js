@@ -6,14 +6,13 @@ function PlayerAvatars(props) {
     const { triviaPlayers, nameArray, playerAvatarName } = props;
 
     const [avatar, setAvatar] = useState([]);
-    const numOfAvatar = triviaPlayers;
 
     useEffect(() => {
         // Array to store batched API response
         const batchRes = [];
 
         // Loop and call API 5 times;
-        for (let i = 0; i < numOfAvatar; i++) {
+        for (let i = 0; i < triviaPlayers; i++) {
             // Push response to temporary array
             const res = avatarCall(i)
             batchRes.push(res)
@@ -25,15 +24,15 @@ function PlayerAvatars(props) {
 
                 // giving each player an avatar for error handling, in case they don't want to change the default placeholder
                 apiData.forEach((item, index) => {
-                    nameArray[index].pic = item.request.responseURL
-                    playerAvatarName(nameArray[index], index)
+                    // nameArray[index].pic = item.request.responseURL
+                    playerAvatarName(nameArray[index], index, item.request.responseURL)
                 })
             })
 
 
         async function avatarCall(number) {
             const apiData = await axios({
-                url: `https://avatars.dicebear.com/api/bottts/${number}.svg`
+                url: `https://api.dicebear.com/9.x/pixel-art/svg?seed=${number}`
             })
             if (apiData.request.status === 200 || apiData.request.statusText === "OK") {
                 return apiData
@@ -41,8 +40,7 @@ function PlayerAvatars(props) {
                 throw new Error(apiData.request.statusText);
             }
         }
-    }, numOfAvatar, nameArray, playerAvatarName);
-
+    }, triviaPlayers, nameArray, playerAvatarName);
 
     return (
         // should we put this as a form, so that we can hold onto the player's name info when they press submit?
