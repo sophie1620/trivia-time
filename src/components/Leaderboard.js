@@ -24,6 +24,7 @@ function Leaderboard() {
         })
     }, [])
 
+
     return (
 
         <section className="leaderboard">
